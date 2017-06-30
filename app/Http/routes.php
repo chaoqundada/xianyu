@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//后台操作
+Route::get('/admin',function()
+	{
+		return redirect('/admin/index/index');
+	});
+	//后台主页面
+	Route::controller('/admin/index','Admin\IndexController');
+	//管理员路由
+	Route::controller('/admin/user','Admin\UserController');
+	// Route::controller('/admin/user','Admin\UserController');
