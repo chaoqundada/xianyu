@@ -25,3 +25,8 @@ Route::get('/admin',function()
 	//管理员路由
 	Route::controller('/admin/user','Admin\UserController');
 	// Route::controller('/admin/user','Admin\UserController');
+
+
+
+//前台操作
+Route::get('/','Home\IndexController@index');

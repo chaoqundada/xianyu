@@ -15,7 +15,7 @@ class IndexController extends Controller
     public function getIndex()
     {   
         //后台主页面
-        return view('admin/layout/index');
+        return view('admin.homepage.index');
     }
 
 }
