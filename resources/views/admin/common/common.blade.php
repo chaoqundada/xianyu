@@ -293,8 +293,8 @@
                       <ul class="sub">
                           <li><a class="" href="">用户列表</a></li>
                           <li><a class="" href="">添加用户</a></li>
-                          <li><a class="" href="/admin/user/add">管理员列表</a></li>
-                          <li><a class="" href="">添加管理员</a></li>
+                          <li><a class="" href="">管理员列表</a></li>
+                          <li><a class="" href="/admin/user/add">添加管理员</a></li>
                           <li><a class="" href="">会员列表</a></li>
                       </ul>
                   </li>
