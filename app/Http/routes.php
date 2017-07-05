@@ -30,3 +30,5 @@ Route::get('/admin',function()
 
 //前台操作
 Route::get('/','Home\IndexController@index');
+
+Route::controller('/myfishpond','Home\FishpondController');
