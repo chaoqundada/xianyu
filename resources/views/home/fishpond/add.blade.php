@@ -24,32 +24,31 @@
                         <p class="am-form-help">头像</p>
 
                         <div class="info-m">
-                            <div><b>用户名：<i>小叮当</i></b></div>
-                            <div class="u-level">
-									<span class="rank r2">
-							             <s class="vip1"></s><a class="classes" href="/homes/#">铜牌会员</a>
-						            </span>
-                            </div>
-                            <div class="u-safety">
-                                <a href="/homes/safety.html">
-                                    账户安全
-                                    <span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0">60分</i></span>
-                                </a>
-                            </div>
+                            <div><b>用户名：<i>{{session('user')['uname']}}</i></b></div>
                         </div>
                     </div>
 
                     <!--个人信息 -->
                     <div class="info-main">
-                        @if(session('error'))
-                            {{session('error')}}
-                        @endif
-                        <form class="am-form am-form-horizontal" action="/myfishpond/doadd" method="POST" enctype="multipart/form-data">
+                        <div id="oooxxx" style="cursor: pointer">
+                            @if(session('error'))
+                                {{session('error')}}
+                                <br>
+                                点击后消失哦
+                            @endif
+                        </div>
+                        <script>
+                            $('#oooxxx').click(function () {
+                                $(this).hide(2000);
+                            })
+                        </script>
+
+                        <form id="art_form" class="am-form am-form-horizontal" action="/myfishpond/doadd" method="POST" enctype="multipart/form-data">
 
                             <div class="am-form-group">
                                 <label for="yname" class="am-form-label">鱼塘名称</label>
                                 <div class="am-form-content">
-                                    <input type="text" name="yname" id="yname" placeholder="鱼塘名称">
+                                    <input type="text" name="yname" id="yname" placeholder="鱼塘名称" style="width:599px">
                                     <script>
                                         $(function(){
                                             $('#yname').blur(function () {
@@ -66,21 +65,69 @@
                             </div>
 
                             <div class="am-form-group">
-                                <label for="ytpic" class="am-form-label">鱼塘封面</label>
-                                <div class="am-form-content">
-                                    <input type="file" name="ytpic" id="ytpic">
-                                </div>
-                            </div>
-
-                            <div class="am-form-group">
                                 <label for="user-email" class="am-form-label">地域</label>
                                 <div class="am-form-content">
-                                    <select name="P2" style="width:250px;float:left"></select><select name="C2" style="width:250px"></select><br>
+                                    <select name="sheng" style="width:288px;float:left;margin-right: 20px;"></select>
+                                    <select name="shi" style="width:288px"></select><br>
                                     <script>
-                                        new PCAS("P2","C2","北京市");
+                                        new PCAS("sheng","shi","北京市");
                                     </script>
                                 </div>
                             </div>
+
+                            <div class="">
+                                <label for="ytpic" class="am-form-label">鱼塘封面</label>
+                                <div class="am-form-content">
+                                    <input readonly type="text" name="ytpic" id="fishpond_thumb" style="float: left;width:599px;margin-top: -5px;margin-right: 8px;">
+                                    <input type="file" name="file_upload" id="file_upload">
+                                    <img src="" alt="" name="pic" id="pic" style="width:777px;display:none;" >
+                                    <script>
+                                        $(function () {
+                                            $("#file_upload").change(function () {
+
+                                                uploadImage();
+                                            });
+                                        });
+                                        function uploadImage() {
+                                            //判断是否有选择上传文件
+                                            var imgPath = $("#file_upload").val();
+                                            if (imgPath == "") {
+                                                alert("请选择上传图片！");
+                                                return;
+                                            }
+                                            //判断上传文件的后缀名
+                                            var strExtension = imgPath.substr(imgPath.lastIndexOf('.') + 1);
+                                            if (strExtension != 'jpg' && strExtension != 'gif'
+                                                && strExtension != 'png' && strExtension != 'bmp') {
+                                                alert("请选择图片文件");
+                                                return;
+                                            }
+
+                                            var formData = new FormData($('#art_form')[0]);
+
+                                            $.ajax({
+                                                type: "POST",
+                                                url: "/myfishpond/upload",
+                                                data: formData,
+                                                async: true,
+                                                cache: false,
+                                                contentType: false,
+                                                processData: false,
+                                                success: function(data) {
+                                                    $('#pic').attr('src','/uploads/fishpond/'+data);
+                                                    $('#pic').show();
+                                                    $('#fishpond_thumb').val(data);
+                                                },
+                                                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                                    alert("上传失败，请检查网络后重试");
+                                                }
+                                            });
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+
+
 
                             <div class="info-btn">
                                 {{csrf_field()}}

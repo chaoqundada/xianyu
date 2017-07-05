@@ -11,8 +11,11 @@
 
     <link href="/homes/css/personal.css" rel="stylesheet" type="text/css">
     <link href="/homes/css/infstyle.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/homes/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/homes/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
+
 
 
 </head>

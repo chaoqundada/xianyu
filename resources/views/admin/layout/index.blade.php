@@ -468,7 +468,7 @@
       </section>
       <!--main content end-->
   </section>
-  
+
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="/admins/js/jquery.js"></script>
     <script src="/admins/js/jquery-1.8.3.min.js"></script>
