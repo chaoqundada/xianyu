@@ -7,7 +7,7 @@
             <div class="long-title"><span class="all-goods">全部分类</span></div>
             <div class="nav-cont">
                 <ul>
-                    <li class="index"><a href="/homes/#">首页</a></li>
+                    <li class="index"><a href="/">首页</a></li>
                     <li class="qc"><a href="/homes/#">鱼塘</a></li>
                     <li class="qc"><a href="/homes/#">发布闲置</a></li>
                     <li class="qc"><a href="/homes/#">团购</a></li>
@@ -630,7 +630,7 @@
                                 </em>
                             </div>
                             <div class="member-logout">
-                                <a class="am-btn-warning btn" href="/homes/login.html">登录</a>
+                                <a class="am-btn-warning btn" href="/home/login/login">登录</a>
                                 <a class="am-btn-warning btn" href="/homes/register.html">注册</a>
                             </div>
                             <div class="member-login">
@@ -676,7 +676,7 @@
             <!--今日推荐 -->
 
             <div class="am-g am-g-fixed recommendation">
-                <div class="clock am-u-sm-3" ">
+                <div class="clock am-u-sm-3" >
                 <img src="/homes/images/2016.png "></img>
                 <p>今日<br>推荐</p>
             </div>

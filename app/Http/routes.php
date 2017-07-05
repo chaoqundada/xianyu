@@ -29,6 +29,17 @@ Route::get('/admin',function()
 
 
 //前台操作
-Route::get('/','Home\IndexController@index');
 
-Route::controller('/myfishpond','Home\FishpondController');
+
+	//主页面
+	Route::get('/','Home\IndexController@index');
+	//注册
+	Route::controller('/user','Home\UserController');
+	//登录
+	Route::controller('/login','Home\LoginController');
+	//地址
+	Route::controller('/addr','Home\AddrController');
+
+	//鱼塘
+	Route::controller('/myfishpond','Home\FishpondController');
+

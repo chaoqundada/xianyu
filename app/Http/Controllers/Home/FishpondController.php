@@ -12,8 +12,6 @@ class FishpondController extends Controller
 {
     public function getIndex()
     {
-        $user=['uid'=>1];
-        session(['user'=>$user]);
         return view('home.fishpond.index');
     }
     public function getAdd()

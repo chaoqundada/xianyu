@@ -20,8 +20,14 @@
     <!-- Custom styles for this template -->
     <link href="/admins/css/style.css" rel="stylesheet">
     <link href="/admins/css/style-responsive.css" rel="stylesheet" />
-      <script src="/admins/js/jquery-1.8.3.min.js"></script>
 
+    <script src="/admins/js/jquery-1.8.3.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+      <script src="/admins/js/html5shiv.js"></script>
+      <script src="/admins/js/respond.min.js"></script>
+    <![endif]-->
   </head>
 
   <body>
@@ -283,25 +289,14 @@
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon-book"></i>
-                          <span>管理员管理</span>
-                          <span class="arrow"></span>
-                      </a>
-                      <ul class="sub">
-                          <li><a class="" href="">用户列表</a></li>
-                          <li><a class="" href="">添加用户</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="icon-book"></i>
                           <span>用户管理</span>
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
                           <li><a class="" href="">用户列表</a></li>
                           <li><a class="" href="">添加用户</a></li>
-                          <li><a class="" href="/admin/user/add">管理员列表</a></li>
-                          <li><a class="" href="">添加管理员</a></li>
+                          <li><a class="" href="">管理员列表</a></li>
+                          <li><a class="" href="/admin/user/add">添加管理员</a></li>
                           <li><a class="" href="">会员列表</a></li>
                       </ul>
                   </li>
@@ -473,8 +468,24 @@
       </section>
       <!--main content end-->
   </section>
+  
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="/admins/js/jquery.js"></script>
+    <script src="/admins/js/jquery-1.8.3.min.js"></script>
+    <script src="/admins/js/bootstrap.min.js"></script>
+    <script src="/admins/js/jquery.scrollTo.min.js"></script>
+    <script src="/admins/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="/admins/js/jquery.sparkline.js" type="text/javascript"></script>
+    <script src="/admins/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    <script src="/admins/js/owl.carousel.js" ></script>
+    <script src="/admins/js/jquery.customSelect.min.js" ></script>
 
-    
+    <!--common script for all pages-->
+    <script src="/admins/js/common-scripts.js"></script>
+
+    <!--script for this page-->
+    <script src="/admins/js/sparkline-chart.js"></script>
+    <script src="/admins/js/easy-pie-chart.js"></script>
 
   <script>
 
@@ -497,27 +508,6 @@
       });
 
   </script>
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-  <!--[if lt IE 9]>
-  <script src="/admins/js/html5shiv.js"></script>
-  <script src="/admins/js/respond.min.js"></script>
-  <![endif]-->
-  <!-- js placed at the end of the document so the pages load faster -->
-  <script src="/admins/js/jquery.js"></script>
 
-  <script src="/admins/js/bootstrap.min.js"></script>
-  <script src="/admins/js/jquery.scrollTo.min.js"></script>
-  <script src="/admins/js/jquery.nicescroll.js" type="text/javascript"></script>
-  <script src="/admins/js/jquery.sparkline.js" type="text/javascript"></script>
-  <script src="/admins/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
-  <script src="/admins/js/owl.carousel.js" ></script>
-  <script src="/admins/js/jquery.customSelect.min.js" ></script>
-
-  <!--common script for all pages-->
-  <script src="/admins/js/common-scripts.js"></script>
-
-  <!--script for this page-->
-  <script src="/admins/js/sparkline-chart.js"></script>
-  <script src="/admins/js/easy-pie-chart.js"></script>
   </body>
 </html>
