@@ -22,6 +22,12 @@ Route::get('/admin',function()
 	});
 	//后台主页面
 	Route::controller('/admin/index','Admin\IndexController');
+	//config 配置页面
+	Route::controller('/admin/config','Admin\ConfigController');
+	//links 友情链接
+	Route::controller('/admin/links','Admin\LinksController');
+
+
 	//管理员路由
 	Route::controller('/admin/user','Admin\UserController');
 	// Route::controller('/admin/user','Admin\UserController');

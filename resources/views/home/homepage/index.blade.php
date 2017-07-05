@@ -2070,29 +2070,4 @@
 
 
 
-        <div class="footer ">
-            <div class="footer-hd ">
-                <p>
-                    <a href="/homes/# ">恒望科技</a>
-                    <b>|</b>
-                    <a href="/homes/# ">商城首页</a>
-                    <b>|</b>
-                    <a href="/homes/# ">支付宝</a>
-                    <b>|</b>
-                    <a href="/homes/# ">物流</a>
-                </p>
-            </div>
-            <div class="footer-bd ">
-                <p>
-                    <a href="/homes/# ">关于恒望</a>
-                    <a href="/homes/# ">合作伙伴</a>
-                    <a href="/homes/# ">联系我们</a>
-                    <a href="/homes/# ">网站地图</a>
-                    <em>© 2015-2025 Hengwang.com 版权所有</em>
-                </p>
-            </div>
-        </div>
-
-    </div>
-    </div>
 @endsection
