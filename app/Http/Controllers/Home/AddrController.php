@@ -41,10 +41,11 @@ class AddrController extends Controller
          }
     }
     /**
-    *修改视图
+    *修改收货地址
     */
-    public function getEdit()
+    public function getEdit($huaid)
     {
+        //
         //地址视图
         return view('home/addr/edit');
     }
