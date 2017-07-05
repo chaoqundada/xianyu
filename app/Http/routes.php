@@ -18,17 +18,29 @@ Route::get('/', function () {
 //后台操作
 Route::get('/admin',function()
 	{
-		return redirect('/admin/index/index');
+		return redirect('/admin/login/login');
 	});
+//后台登录路由
+Route::controller('/admin/login','Admin\LoginController');
+//验证码路由
+Route::get('/code','Model\CodeController@code');
+
+//后台路由组
+Route::group([],function(){
+    //管理员路由
+    Route::controller('/admin/user','Admin\UserController');
+
+
+});
+
+
+
+
 	//后台主页面
-	Route::controller('/admin/index','Admin\IndexController');
-	//管理员路由
-	Route::controller('/admin/user','Admin\UserController');
-	// Route::controller('/admin/user','Admin\UserController');
+Route::controller('/admin/index','Admin\IndexController');
+
 
 
 
 //前台操作
 Route::get('/','Home\IndexController@index');
-
-Route::controller('/myfishpond','Home\FishpondController');
