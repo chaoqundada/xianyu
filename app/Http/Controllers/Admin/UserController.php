@@ -74,7 +74,7 @@ class UserController extends Controller
         $cont = $request->input('sample',5);
         $search = $request->input('search','');
         $all = $request -> all();
-
+        $all['search'] = $search or '';        
          //定义数组
         $arr= [1=>'普通管理员','超级管理员'];
         $brr= [1=>'正常','注销'];
