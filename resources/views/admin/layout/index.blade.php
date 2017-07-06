@@ -7,8 +7,8 @@
     <meta name="author" content="Mosaddek">
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, admins, Template, Theme, Responsive, Fluid, Retina">
     <link rel="shortcut icon" href="/admins/img/favicon.html">
-
-    <title>FlatLab - Flat & Responsive Bootstrap admins Template</title>
+      <script src="/admins/js/jquery-1.8.3.min.js" ></script>
+    <title>{{ Config::get('app.title') }}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/admins/css/bootstrap.min.css" rel="stylesheet">
@@ -20,8 +20,6 @@
     <!-- Custom styles for this template -->
     <link href="/admins/css/style.css" rel="stylesheet">
     <link href="/admins/css/style-responsive.css" rel="stylesheet" />
-
-    <script src="/admins/js/jquery-1.8.3.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -39,7 +37,7 @@
                 <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
             </div>
             <!--logo start-->
-            <a href="/admins/#" class="logo">Flat<span>lab</span></a>
+            <a href="#" class="logo"><span>管理列表</span></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
@@ -150,11 +148,15 @@
                                     </span>
                                 </a>
                             </li>
+
                             <li>
                                 <a href="/admins/#">
                                     <span class="photo"><img alt="avatar" src="/admins/img/avatar-mini2.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">Jhon Doe</span>
+
+
+                                    <span class="from">sss</span>
+
                                     <span class="time">10 mins</span>
                                     </span>
                                     <span class="message">
@@ -256,18 +258,23 @@
                     </li>
                     <!-- user login dropdown start-->
                     <li class="dropdown">
+                        @if(session('user'))
                         <a data-toggle="dropdown" class="dropdown-toggle" href="/admins/#">
                             <img alt="" src="/admins/img/avatar1_small.jpg">
-                            <span class="username">Jhon Doue</span>
+
+                            <span class="username">欢迎!{{session('user')['uname']}}</span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
                             <li><a href="#"><i class=" icon-suitcase"></i>Profile</a></li>
-                            <li><a href="#"><i class="icon-cog"></i> Settings</a></li>
-                            <li><a href="#"><i class="icon-bell-alt"></i> Notification</a></li>
-                            <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+                            <li><a href="#"><i class="icon-cog"></i>修改密码</a></li>
+                            <li><a href="#"><i class="icon-bell-alt"></i>我的消息</a></li>
+                            <li >
+                                <a onclick="return !confirm('帅哥,再逛一会嘛!')" href="{{url('admin/user/outlogin')}}"><i class="icon-key"></i>退出登录</a>
+                            </li>
                         </ul>
+                        @endif
                     </li>
                     <!-- user login dropdown end -->
                 </ul>
@@ -281,7 +288,7 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu">
                   <li class="active">
-                      <a class="" href="/admin">
+                      <a class="" href="{{url('admin/user/show')}}">
                           <i class="icon-dashboard"></i>
                           <span>主页面</span>
                       </a>
@@ -289,15 +296,12 @@
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon-book"></i>
-                          <span>用户管理</span>
+                          <span>后台户管理</span>
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="">用户列表</a></li>
-                          <li><a class="" href="">添加用户</a></li>
-                          <li><a class="" href="">管理员列表</a></li>
-                          <li><a class="" href="/admin/user/add">添加管理员</a></li>
-                          <li><a class="" href="">会员列表</a></li>
+                          <li><a class="" href="{{url('admin/user/index')}}">后台用户列表</a></li>
+                          <li><a class="" href="{{url('admin/user/add')}}">添加后台用户</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -471,7 +475,6 @@
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="/admins/js/jquery.js"></script>
-    <script src="/admins/js/jquery-1.8.3.min.js"></script>
     <script src="/admins/js/bootstrap.min.js"></script>
     <script src="/admins/js/jquery.scrollTo.min.js"></script>
     <script src="/admins/js/jquery.nicescroll.js" type="text/javascript"></script>
@@ -503,8 +506,9 @@
 
       //custom select box
 
-      $(function(){
-          $('select.styled').customSelect();
+     $(function(){
+
+         $('select.styled').customSelect();
       });
 
   </script>
