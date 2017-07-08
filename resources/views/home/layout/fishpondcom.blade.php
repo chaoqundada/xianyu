@@ -4,21 +4,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+    <title>我的鱼塘</title>
 
-    <title>个人资料</title>
     <link href="/homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
     <link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+
     <link href="/homes/css/personal.css" rel="stylesheet" type="text/css">
     <link href="/homes/css/infstyle.css" rel="stylesheet" type="text/css">
-    <link href="{{url('homes/css/addstyle.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{url('homes/css/orstyle.css')}}" rel="stylesheet" type="text/css">
-
     <script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
-    <script language="javascript" src="{{url('homes/js/PCASClass.js')}}"></script>
-    <script language="javascript" src="{{url('layer/layer.js')}}"></script>
-    <link href="{{url('homes/css/stepstyle.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{url('homes/css/systyle.css')}}" rel="stylesheet" type="text/css">
+
 
 </head>
 
@@ -32,13 +27,8 @@
                 <ul class="message-l">
                     <div class="topMessage">
                         <div class="menu-hd">
-                            @if(session('user'))
-                                <span class="h">欢迎:{{session('user')['uname']}}登录</span>
-                                <a href="{{url('login/outlogin')}}" target="_top">退出</a>
-                            @else
-                                <a href="{{url('login/login')}}" target="_top" class="h">亲，请登录</a>
-                                <a href="{{url('user/add')}}" target="_top">免费注册</a>
-                            @endif
+                            <a href="{{url('login/login')}}" target="_top" class="h">亲，请登录</a>
+                            <a href="{{url('user/add')}}" target="_top">免费注册</a>
                         </div>
                     </div>
                 </ul>
@@ -75,6 +65,7 @@
                     </form>
                 </div>
             </div>
+
             <div class="clear"></div>
         </div>
         </div>
@@ -99,64 +90,58 @@
 <b class="line"></b>
 <div class="center">
     <div class="col-main">
-        <div class="main-wrap">
-    <!-- 内容开始 -->
-    @section('content')
+@section('content')
 
-    @show
-    <!-- 内容结束 -->
+@show
+<!--底部-->
+    <div class="footer">
+        <div class="footer-hd">
+            <p>
+                <a href="/homes/#">友情链接1</a>
+                <b>|</b>
+                <a href="/homes/#">友情链接2</a>
+                <b>|</b>
+                <a href="/homes/#">友情链接3</a>
+                <b>|</b>
+                <a href="/homes/#">友情链接4</a>
+            </p>
         </div>
-        <!--底部-->
-        <div class="footer">
-            <div class="footer-hd">
-                <p>
-                    <a href="#">恒望科技</a>
-                    <b>|</b>
-                    <a href="#">商城首页</a>
-                    <b>|</b>
-                    <a href="#">支付宝</a>
-                    <b>|</b>
-                    <a href="#">物流</a>
-                </p>
-            </div>
-            <div class="footer-bd">
-                <p>
-                    <a href="#">关于恒望</a>
-                    <a href="#">合作伙伴</a>
-                    <a href="#">联系我们</a>
-                    <a href="#">网站地图</a>
-                    <em>© 2015-2025 Hengwang.com 版权所有</em>
-                </p>
-            </div>
+        <div class="footer-bd">
+            <p>
+                <a href="/homes/#">关于兄弟连</a>
+                <a href="/homes/#">合作伙伴</a>
+                <a href="/homes/#">联系我们</a>
+                <a href="/homes/#">网站地图</a>
+                <em>© 2015-2025 xianyu.com 版权所有</em>
+            </p>
         </div>
     </div>
-
+    </div>
     <aside class="menu">
-        <ul id='ul'>
+        <ul>
             <li class="person">
-                <a href="{{url('user/index')}}">个人中心</a>
+                <a href="/homes/index.html">鱼塘中心</a>
             </li>
             <li class="person">
-                <a href="#">个人资料</a>
+                <a href="javascript:;">鱼塘信息</a>
                 <ul>
-                    <li class="person"> <a href="{{url('user/detil')}}">个人信息</a></li>
-                    <li> <a href="{{url('pass/security')}}">安全设置</a></li>
-                    <li> <a href="{{url('addr/add')}}">收货地址</a></li>
+                    <li class="active"> <a href="{{url('/myfishpond/list')}}">鱼塘列表</a></li>
+                    <li> <a href="{{url('/myfishpond/add')}}">添加鱼塘</a></li>
                 </ul>
             </li>
             <li class="person">
-                <a href="#">我的交易</a>
+                <a href="/homes/#">我的交易</a>
                 <ul>
-                    <li><a href="order.html">订单管理</a></li>
-                    <li> <a href="change.html">退款售后</a></li>
+                    <li><a href="/homes/order.html">订单管理</a></li>
+                    <li> <a href="/homes/change.html">退款售后</a></li>
                 </ul>
             </li>
             <li class="person">
-                <a href="#">我的资产</a>
+                <a href="/homes/#">我的资产</a>
                 <ul>
-                    <li> <a href="coupon.html">优惠券 </a></li>
-                    <li> <a href="bonus.html">红包</a></li>
-                    <li> <a href="bill.html">账单明细</a></li>
+                    <li> <a href="/homes/coupon.html">优惠券 </a></li>
+                    <li> <a href="/homes/bonus.html">红包</a></li>
+                    <li> <a href="/homes/bill.html">账单明细</a></li>
                 </ul>
             </li>
 

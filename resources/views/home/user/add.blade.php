@@ -48,7 +48,7 @@
 				    <label for="uname"><i class="am-icon-user am-icon-fw"></i></label>
 				    <input value="{{old('uname')}}"  type="text" name="uname" id="uname" placeholder="用户名">
                 </div>
-                <span class='span'>
+                <span class='span' id="span1">
                 	@if($errors ->has('uname'))
 						<font style="color:red">用户为空或格式不正确</font>
 					@elseif(session('uname'))
@@ -77,7 +77,7 @@
 				    <label for="phone"><i class="am-icon-mobile-phone am-icon-md"></i></label>
 				    <input type="tel" value="{{old('phone')}}" name="phone" id="phone" placeholder="请输入手机号">
                 </div>
-                <span class='span'>
+                <span class='span' id="span2">
                 	@if($errors ->has('phone'))
 						<font style="color:red">手机号不能为空</font>
 					@elseif(session('phone'))
@@ -121,15 +121,18 @@
 			var preg = /^[0-9a-zA-Z_]{6,18}$/;
 			//判断验证结果
 			if(preg.test(uname.val())){
-				$('.span:eq('+$('input').index(this)+')').text('用户可用' ).css('color','blue');
-				// $.get('/home/user/yanzheng',{uname:uname.val()},function(msg)
-				// 	{
-				// 		// alert(msg);
-				// 		if(msg){
-				// 			 $('.span:eq('+$('input').index(this)+')').text('用户可用' ).css('color','blue');
-				// 		}
-				// 	});
-				s1 = true;
+					//发送ajax验证是否存在
+					$.post("{{url('user/name')}}/"+uname.val(),{'_token':"{{csrf_token()}}"},function(msg)
+						{
+							//判断结果
+							if(msg == 1){
+								$('#span1').text('用户已存在' ).css('color','red');
+								s1 = false;
+							}else{
+								$('#span1').text('用户可用' ).css('color','blue');
+								s1 = true;
+							}
+						});
 			}else{
 				$('.span:eq('+$('input').index(this)+')').text('用户格式不正确').css('color','red');
 				s1 = false;
@@ -142,46 +145,18 @@
 		upwd.focus(function()
 			{
 				$('.span:eq('+$('input').index(this)+')').text('请输入6-18位密码').css('color','#ccc');
-				var li = $('li');
-				$(this).keyup(function(){
-						var arr = [];
-						/*
-							1.数字  
-							2.小写字母
-							3.大写字母
-							4.特殊符号
-						*/
-						var preg1 = /[0-9]+/g;
-						var preg2 = /[a-z]+/g;
-						var preg3 = /[A-Z]+/g;
-						var preg4 = /[\W_]+/g;
-						if(preg1.test(upwd.val())){
-							arr.push('数字');
-						}
-						if(preg2.test(upwd.val())){
-							arr.push('小写字母');
-						}
-						if(preg3.test(upwd.val())){
-							arr.push('大写字母');
-						}
-						if(preg4.test(upwd.val())){
-							arr.push('特殊字符');
-						}
-				});
 			});
 		//失去焦点
 		upwd.blur(function()
 		{
-			if(upwd.val().length < 6){
-				$('.span:eq('+$('input').index(this)+')').text('密码不能为空').css('color','red');
-				s2 = false;
-			}else if(upwd.val().length>18){
-				$('.span:eq('+$('input').index(this)+')').text('密码格式不正确').css('color','red');
-				s2 = false;
-			}else{
-				$('.span:eq('+$('input').index(this)+')').text('密码安全').css('color','blue');
-				s2 = true;
-			}
+			var preg = /^[0-9a-zA-Z\W_]{6,18}$/;
+				if(preg.test(upwd.val())){
+					$('.span:eq('+$('input').index(this)+')').text(' ' ).css('color','red');
+					s2 = true;
+				}else{
+					$('.span:eq('+$('input').index(this)+')').text('密码格式不正确').css('color','red');
+					s2 = false;
+				}
 		});
 
 		//获取确认密码
@@ -219,8 +194,18 @@
 			var preg = /^1[3,4,5,7,8]\d{9}$/;
 			//判断验证结果
 			if(preg.test(tel.val())){
-				$('.span:eq('+$('input').index(this)+')').text('' ).css('color','blue');
-				s3 = true;
+				//发送ajax验证手机号
+				$.post("{{url('user/tel')}}/"+tel.val(),{'_token':"{{csrf_token()}}"},function(msg)
+						{
+							//判断结果
+							if(msg == 1){
+								$('#span2').text('手机号已存在' ).css('color','red');
+								s3 = false;
+							}else{
+								$('#span2').text('    ').css('color','blue');
+								s3 = true;
+							}
+						});
 			}else{
 				$('.span:eq('+$('input').index(this)+')').text('手机号为空或格式不正确').css('color','red');
 				s3 = false;
@@ -229,7 +214,7 @@
 		//获取验证码
 		$('#dyMobileButton').click(function()
 		{
-			var phone = $('#phone').val();
+			var phone = $('#phone').val()
 
 			// 发送ajax 注册手机号
 			$.get('/user/phone',{phone:phone},function(msg)

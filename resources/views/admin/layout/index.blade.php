@@ -20,6 +20,7 @@
     <!-- Custom styles for this template -->
     <link href="/admins/css/style.css" rel="stylesheet">
     <link href="/admins/css/style-responsive.css" rel="stylesheet" />
+    <script src="/admins/js/jquery-1.8.3.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -300,6 +301,92 @@
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>分类管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="">分类列表</a></li>
+                          <li><a class="" href="">添加分类</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>商品管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="">商品列表</a></li>
+                          <li><a class="" href="">添加商品</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>网站配置</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="">配置详情</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>友情链接</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="">友情链接列表</a></li>
+                          <li><a class="" href="">添加友情链接</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>导航管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="">导航列表</a></li>
+                          <li><a class="" href="">添加导航</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>轮播管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="">轮播列表</a></li>
+                          <li><a class="" href="">添加轮播</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>鱼塘管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="">鱼塘列表</a></li>
+                          <li><a class="" href="">添加鱼塘</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>信息管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="">信息列表</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" class="">
                           <i class="icon-cogs"></i>
                           <span>Components</span>
                           <span class="arrow"></span>
@@ -372,18 +459,13 @@
             @section('content')
 
             @show
-
-
-
           </section>
           <!-- 内容结束 -->
       </section>
       <!--main content end-->
   </section>
-
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="/admins/js/jquery.js"></script>
-    <script src="/admins/js/jquery-1.8.3.min.js"></script>
     <script src="/admins/js/bootstrap.min.js"></script>
     <script src="/admins/js/jquery.scrollTo.min.js"></script>
     <script src="/admins/js/jquery.nicescroll.js" type="text/javascript"></script>
