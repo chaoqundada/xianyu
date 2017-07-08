@@ -301,7 +301,7 @@
                       </a>
                       <ul class="sub">
                           <li><a class="" href="{{url('admin/user/index')}}">后台用户列表</a></li>
-                          <li><a class="" href="{{url('admin/user/add')}}">添加后台用户</a></li>
+                          <li><a class="xxxx" href="{{url('admin/user/add')}}">添加后台用户</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -376,8 +376,7 @@
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="">鱼塘列表</a></li>
-                          <li><a class="" href="">添加鱼塘</a></li>
+                          <li><a class="xxxx" href="{{url('/admin/fishpond/index')}}">鱼塘列表</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -510,6 +509,15 @@
 
          $('select.styled').customSelect();
       });
+
+
+    $(function () {
+        $('.sub-menu .sub a').each(function () {
+            if($(this).attr('href') == location.href){
+                $(this).parent().parent().parent().addClass('active');
+            }
+        })
+    })
 
   </script>
 

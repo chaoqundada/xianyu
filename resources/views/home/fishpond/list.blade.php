@@ -67,7 +67,7 @@
                         <td>{{$yt['yatt']}}</td>
                         <td>{{$status[$yt['ystatic']]}}</td>
                         <td>{{$yt['sheng']}} {{$yt['shi']}}</td>
-                        <td><a href="{{}}">编辑</a></td>
+                        <td><a href="{{url('/myfishpond/edit?yid='.$yt['yid'])}}">编辑</a></td>
                     </tr>
                 @endforeach
                 </tbody>

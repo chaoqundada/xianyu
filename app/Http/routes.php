@@ -39,6 +39,9 @@ Route::group([],function(){
 	//后台主页面
 Route::controller('/admin/index','Admin\IndexController');
 
+//后台鱼塘
+Route::controller('/admin/fishpond','Admin\FishpondController');
+
 
 
 
@@ -53,6 +56,8 @@ Route::controller('/admin/index','Admin\IndexController');
 	//地址
 	Route::controller('/addr','Home\AddrController');
 
-	//鱼塘
-	Route::controller('/myfishpond','Home\FishpondController');
+	//我的鱼塘
+	Route::controller('/myfishpond','Home\MyfishpondController');
 
+	//鱼塘展示
+    Route::controller('/fishpond','Home\FishpondController');

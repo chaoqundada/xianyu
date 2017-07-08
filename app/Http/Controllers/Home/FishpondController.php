@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Model\Ques;
+use App\Http\Model\Sign;
+use App\Http\Model\Yt;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -10,91 +13,97 @@ use Illuminate\Support\Facades\DB;
 
 class FishpondController extends Controller
 {
-    public function getIndex()
+
+
+    /*
+     *前台鱼塘展示
+     * */
+    public function getIndex(Request $request)
     {
-        return view('home.fishpond.index');
+        //还没有获取商品列表!!!!!!!!!!
+        $yt=Yt::where('yid',$request->input('yid'))->where('ystatic','2')->first();
+        if(empty($yt)){
+            return redirect('/');
+        }
+        return view('home.showfishpond.index',['yt'=>$yt,'ques'=>$ques]);
     }
-    public function getAdd()
+
+    public function getQueslist(Request $request)
     {
-        return view('home.fishpond.add');
+        $yt=Yt::where('yid',$request->input('yid'))->where('ystatic','2')->first();
+        if(empty($yt)){
+            return redirect('/');
+        }
+        $ques=$yt->ques()->paginate(2);
+        return view('home.showfishpond.ques',['yt'=>$yt,'ques'=>$ques]);
     }
-    public function postDoadd(Request $request)
+
+    /*
+     * 提问
+     * */
+    public function postAsk(Request $request)
     {
-        if(empty($request->input('yname'))){
-            return redirect('/myfishpond/add')->with('error','鱼塘名称必填');
-        }
-        if(DB::table('yt')->where('yname','=',$request->input('yname'))->first()){
-            return back()->with('error','鱼塘名称已经存在');
-        }
-        if(empty($request->input('ytpic'))){
-            return redirect('/myfishpond/add')->with('error','请上传鱼塘封面');
-        }
-        $data['yname']=$request->input('yname');
-        $data['ytpic']=$request->input('ytpic');
-        $data['uid']=session('user')['uid'];
-        $data['sheng']=$request->input('sheng');
-        $data['shi']=$request->input('shi');
-        $inres=DB::table('yt')->insert($data);
-        if($inres){
-            return redirect('/myfishpond/list')->with('success','申请成功');
+        $this->validate($request, [
+            'uid' => 'required',
+            'title'    =>'required',
+            'content'    =>'required'
+        ],[
+            'uid.required'   => '请先登录brother',
+            'title.required'      =>'标题必填',
+            'content.required'      =>'内容必填',
+        ]);
+        $data=$request->all();
+        $data['ftime']=time();
+        $res= Ques::insert($data);
+        if($res){
+            return 1;
         }else{
-            return redirect('/myfishpond/add')->with('error','申请失败');
+            return 2;
         }
-
     }
 
-    //验证注册鱼塘的名称是否存在
-    public function getAjaxyname(Request $request)
+    /*
+     * 签到
+     * */
+    public function getSignin(Request $request)
     {
-        if(DB::table('yt')->where('yname','=',$request->input('yname'))->first()){
-            echo 1;//已经存在
+        if(empty(session('user'))){
+            return 3;//用户未登录
+        }
+        $sign=Sign::where('uid',session('user')['uid'])->where('yid',$request->input('yid'))->first();
+        if(empty($sign)){
+            $data=$request->all();
+            $data['ytime']=time();
+            $res= Sign::insert($data);
+            if($res){
+                return 1;//签到成功
+            }
         }else{
-            echo 2;//未存在
+            $data['ytime']=time();
+            if(date('Ymd',$data['ytime']) == date('Ymd',$sign['ytime'])){
+                return 2;//已经签到过了
+            }
+            $res=$sign->update(['ytime'=>$data['ytime']]);
+            if($res){
+                return 1;//签到成功
+            }
         }
     }
 
-
-    //鱼塘封面上传
-    public function postUpload(Request $request)
+    /*
+     * 问答详情页
+     * */
+    public function getQuesshow(Request $request)
     {
-        if($request->hasFile('file_upload')) {
-            // 上传 管理
-            // 文件夹  文件名
-            // uploads/20170622/1.jpg
-            // 拼接文件夹
-            $dirname = './uploads/fishpond/';
-            // 拼接文件名
-            $tmp_name = md5(time() + rand(100000, 999999));
-
-            // 获取文件的后缀名
-            $hz = $request->file('file_upload')->getClientOriginalExtension();
-            // 拼接完整的文件名
-            $filename = $tmp_name . '.' . $hz;
-            $request->file('file_upload')->move($dirname, $filename);
-            return $filename;
-
+        //必须传qid这个参数
+        if(empty($request->input('qid'))){
+            return back();//如果没有yid和qid就证明url是非法的直接back
         }
-    }
-
-
-    //鱼塘列表
-    public function getList(Request $request)
-    {
-        $uid=session('user')['uid'];
-        //如果没有申请鱼塘就跳转到鱼塘申请页面
-        /*if(empty($yts)){
-            return redirect('/myfishpond/add');
-        }*/
-        //如果请求带有keywords说明通过查询进入此方法,否则是直接点击链接进入的
-        if($request->has('keywords')){
-            $yts=DB::table('yt')->where('yname','like','%'.$request->input('keywords').'%')->where('uid',$uid)->paginate(2);
-            $status=[1=>'审核中',2=>'正常',3=>'封杀'];
-            return view('home/fishpond/list',['yts'=>$yts,'status'=>$status,'keywords'=>$request->input('keywords')]);
-        }else{
-            $yts=DB::table('yt')->where('uid',$uid)->paginate(2);
-            $status=[1=>'审核中',2=>'正常',3=>'封杀'];
-            return view('home/fishpond/list',['yts'=>$yts,'status'=>$status,'keywords'=>$request->input('keywords')]);
-        }
+        //获取问答详情
+        $ques= Ques::where('qid',$request->input('qid'))->first();
+        //一对多获取对应的鱼塘详情
+        $yt= $ques->yt()->first();
+        return view('home.showfishpond.quesshow',['yt'=>$yt,'ques'=>$ques]);
 
     }
 

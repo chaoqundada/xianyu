@@ -65,6 +65,13 @@
                             </div>
 
                             <div class="am-form-group">
+                                <label for="" class="am-form-label">鱼塘简介</label>
+                                <div class="am-form-content">
+                                    <input type="text" name="description"  placeholder="鱼塘简介" style="width:599px">
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
                                 <label for="user-email" class="am-form-label">地域</label>
                                 <div class="am-form-content">
                                     <select name="sheng" style="width:288px;float:left;margin-right: 20px;"></select>
