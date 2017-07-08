@@ -53,11 +53,16 @@ Route::controller('/admin/fishpond','Admin\FishpondController');
 	Route::controller('/user','Home\UserController');
 	//登录
 	Route::controller('/login','Home\LoginController');
+
+	
 	//地址
 	Route::controller('/addr','Home\AddrController');
+	//安全设置
+	Route::controller('/pass','Home\PassController');
+
+
 
 	//我的鱼塘
 	Route::controller('/myfishpond','Home\MyfishpondController');
-
 	//鱼塘展示
     Route::controller('/fishpond','Home\FishpondController');

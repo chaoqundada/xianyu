@@ -41,7 +41,7 @@
                     </div>
                     <div class="topMessage my-shangcheng">
                         <div class="menu-hd MyShangcheng">
-                            <a href="{{url('user/detil')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
+                            <a href="{{url('user/index')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
                             <a href="/myfishpond" target="_top"><i class="am-icon-user am-icon-fw"></i>我的鱼塘</a>
                         </div>
                     </div>

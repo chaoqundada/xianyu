@@ -31,11 +31,14 @@ class LoginController extends Controller
     	//查询是否存在
     	$user = DB::table('home_user')->where('uname',$data['uname'])
     			->orwhere('phone',$data['uname'])->first();
-    	// dd($user);
     	//判断用户是否存在
     	if(!$user){
     		return back() -> with('error','用户不存在');
     	}
+        //判断用户是否被封号
+        if($user['static'] == 2){
+            return back() -> with('error','禁止登录');
+        }
     	//验证秘密
     	if(Hash::check($data['upwd'],$user['upwd'])){
     			//用户信息存入session
@@ -56,7 +59,10 @@ class LoginController extends Controller
     *退出登录
     */
     public function getOutlogin()
-    {
-    	echo '退出登录';
+    {   
+        //删除session
+        session() -> forget('user');
+        //返回首页
+    	return redirect('/');
     }
 }

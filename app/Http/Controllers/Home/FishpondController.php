@@ -25,7 +25,7 @@ class FishpondController extends Controller
         if(empty($yt)){
             return redirect('/');
         }
-        return view('home.showfishpond.index',['yt'=>$yt,'ques'=>$ques]);
+        return view('home.showfishpond.index',['yt'=>$yt]);
     }
 
     public function getQueslist(Request $request)

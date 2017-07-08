@@ -46,9 +46,7 @@ class UserController extends Controller
                 'reupwd.same'=>'确认密码必填',
                 'phone.required'=>'手机号必填',
                 'phone.regex'=>'手机号格式不正确',
-            ]);
-
-       
+            ]);       
          //接受验证码
         $phone_code = $request -> input('phone_code');
 
@@ -79,12 +77,39 @@ class UserController extends Controller
         $uid = DB::table('home_user')->insertGetId($data);
         //执行详情的添加
         $res = DB::table('home_user_detil') -> insert(['uid'=>$uid,'ctime'=>time()]);
-        $res1 = DB::table('home_user_addr') -> insert(['uid'=>$uid]);
         //判断是否成功
-        if($uid && $res && $res1){
+        if($uid && $res){
             return redirect('/login/login')->with('assuc','注册成功');
         }else{
             return redirect('/user/add')->with('error','注册失败') -> withInput();
+        }
+    }
+    /**
+    *使用ajax验证用户是否存在
+    */
+    public function postName($uname)
+    {
+        //进行用户查询
+        $res = DB::table('home_user') -> where('uname',$uname) -> first();
+        //判断
+        if($res){
+            echo 1;
+        }else{
+            echo 2;
+        }
+    }
+     /**
+    *使用ajax验证手机号是否存在
+    */
+    public function postTel($tel)
+    {   
+        //进行用户查询
+        $res = DB::table('home_user') -> where('phone',$tel) -> first();
+        //判断
+        if($res){
+            echo 1;
+        }else{
+            echo 2;
         }
     }
     /**
@@ -112,12 +137,19 @@ class UserController extends Controller
         $res = HttpController::get($str);
         return $res;
     } 
-
     /**
-    *用户中心
+    *个人中心
+    */
+    public function getIndex()
+    {
+        return view('home/user/index');
+    }
+    /**
+    *用户详情
     */
     public function getDetil()
     {  
+        
         //获取用户详情
         $data = DB::table('home_user_detil') -> where('uid',session('user')['uid']) -> first();
         //引入视图

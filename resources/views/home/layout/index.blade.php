@@ -26,8 +26,13 @@
         <ul class="message-l">
             <div class="topMessage">
                 <div class="menu-hd">
-                    <a href="{{url('login/login')}}" target="_top" class="h">亲，请登录</a>
-                    <a href="{{url('user/add')}}" target="_top">免费注册</a>
+                    @if(session('user'))
+                        <span class="h">欢迎:{{session('user')['uname']}}登录</span>
+                        <a href="{{url('login/outlogin')}}" target="_top">退出</a>
+                    @else
+                        <a href="{{url('login/login')}}" target="_top" class="h">亲，请登录</a>
+                        <a href="{{url('user/add')}}" target="_top">免费注册</a>
+                    @endif
                 </div>
             </div>
         </ul>

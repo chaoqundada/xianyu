@@ -6,18 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
 
     <title>个人资料</title>
-
     <link href="/homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
     <link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
     <link href="/homes/css/personal.css" rel="stylesheet" type="text/css">
     <link href="/homes/css/infstyle.css" rel="stylesheet" type="text/css">
     <link href="{{url('homes/css/addstyle.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url('homes/css/orstyle.css')}}" rel="stylesheet" type="text/css">
 
     <script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
     <script language="javascript" src="{{url('homes/js/PCASClass.js')}}"></script>
-
-
+    <script language="javascript" src="{{url('layer/layer.js')}}"></script>
+    <link href="{{url('homes/css/stepstyle.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url('homes/css/systyle.css')}}" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -31,8 +32,13 @@
                 <ul class="message-l">
                     <div class="topMessage">
                         <div class="menu-hd">
-                            <a href="{{url('login/login')}}" target="_top" class="h">亲，请登录</a>
-                            <a href="{{url('user/add')}}" target="_top">免费注册</a>
+                            @if(session('user'))
+                                <span class="h">欢迎:{{session('user')['uname']}}登录</span>
+                                <a href="{{url('login/outlogin')}}" target="_top">退出</a>
+                            @else
+                                <a href="{{url('login/login')}}" target="_top" class="h">亲，请登录</a>
+                                <a href="{{url('user/add')}}" target="_top">免费注册</a>
+                            @endif
                         </div>
                     </div>
                 </ul>
@@ -42,7 +48,7 @@
                     </div>
                     <div class="topMessage my-shangcheng">
                         <div class="menu-hd MyShangcheng">
-                            <a href="{{url('user/detil')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
+                            <a href="{{url('user/index')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
                             <a href="/myfishpond" target="_top"><i class="am-icon-user am-icon-fw"></i>我的鱼塘</a>
                         </div>
                     </div>
@@ -69,7 +75,6 @@
                     </form>
                 </div>
             </div>
-
             <div class="clear"></div>
         </div>
         </div>
@@ -127,15 +132,15 @@
     </div>
 
     <aside class="menu">
-        <ul>
+        <ul id='ul'>
             <li class="person">
-                <a href="index.html">个人中心</a>
+                <a href="{{url('user/index')}}">个人中心</a>
             </li>
             <li class="person">
                 <a href="#">个人资料</a>
                 <ul>
-                    <li class="active"> <a href="{{url('user/detil')}}">个人信息</a></li>
-                    <li> <a href="safety.html">安全设置</a></li>
+                    <li class="person"> <a href="{{url('user/detil')}}">个人信息</a></li>
+                    <li> <a href="{{url('pass/security')}}">安全设置</a></li>
                     <li> <a href="{{url('addr/add')}}">收货地址</a></li>
                 </ul>
             </li>
