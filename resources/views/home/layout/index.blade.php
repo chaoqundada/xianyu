@@ -4,8 +4,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <title>首页</title>
+    
+    <title>{{ $title }}</title>
+    <meta name="description"  content="{{ $descr }}">
+    <meta name="keywords" content="{{ $key }}">
 
     <link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
     <link href="/homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
@@ -54,9 +56,9 @@
     <!--悬浮搜索框-->
 
     <div class="nav white">
-        <div class="logo"><img src="/homes/images/logo.png" /></div>
+       <!--  <div class="logo"><img src="/homes/images/logo.png" /></div> -->
         <div class="logoBig">
-            <li><img src="/homes/images/logobig.png" /></li>
+            <li><img src="{{ $logo }}" /></li>
         </div>
 
         <div class="search-bar pr">
@@ -255,6 +257,27 @@
         </div>
     </div>
 </div>
+
+        <div class="footer ">
+            <div class="footer-hd ">
+                <p>
+                    @foreach ($links as $link)
+
+                        <a href="{{ $link['lurl'] }} ">{{ $link['lname'] }}</a><b>|</b>
+
+                    @endforeach
+                <p>  
+            </div>
+            <div class="footer-bd ">
+                <p>
+                    
+                   {!! $footer !!}　　　{!! $dname !!}
+                </p>
+            </div>
+        </div>
+
+    </div>
+    </div>
 <script>
     window.jQuery || document.write('<script src="/homes/basic/js/jquery.min.js "><\/script>');
 </script>
@@ -262,3 +285,4 @@
 </body>
 
 </html>
+
