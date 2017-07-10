@@ -26,21 +26,24 @@ Route::controller('/admin/login','Admin\LoginController');
 Route::get('/code','Model\CodeController@code');
 
 //后台路由组
-Route::group([],function(){
-    //管理员路由
-    Route::controller('/admin/user','Admin\UserController');
-
-
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'login'],function(){
+    //管理员路由 
+    Route::controller('notic','NoticController');
+    //后台首页(登录才能用)
+    Route::get('index/show','IndexController@show');
 });
 
 
-
-
-	//后台主页面
-Route::controller('/admin/index','Admin\IndexController');
-
 //后台鱼塘
 Route::controller('/admin/fishpond','Admin\FishpondController');
+
+
+
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','admin']],function(){
+ 	Route::controller('user','UserController');
+});
+
+
 
 
 

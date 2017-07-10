@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Adminlogin
+class Adminauth
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,10 @@ class Adminlogin
      */
     public function handle($request, Closure $next)
     {
-        if(!session('admin_user'))
+
+        if(session('admin_user')['auth']!=2)
         {
-            return redirect('/admin/login/login')->with('error','请先登录!');
+            return back()->with('error','权限不够哦!');
         }
         return $next($request);
     }

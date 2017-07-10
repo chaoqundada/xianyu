@@ -9,6 +9,14 @@ use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
-
-
+    /**
+     * 显示后台主页
+     *
+     * 
+     */
+    public function Show()
+    {
+          //后台主页面
+        return view('admin.homepage.index');
+    }
 }
