@@ -196,7 +196,7 @@
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="">配置详情</a></li>
+                          <li><a class="" href="{{url('/admin/config')}}">配置详情</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -206,8 +206,7 @@
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="">友情链接列表</a></li>
-                          <li><a class="" href="">添加友情链接</a></li>
+                          <li><a class="" href="{{url('/admin/links')}}">友情链接列表</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
