@@ -15,9 +15,9 @@ class Adminlogin
      */
     public function handle($request, Closure $next)
     {
-        if(!session('user'))
+        if(!session('admin_user'))
         {
-            return redirect('/admin/login/login');
+            return redirect('/admin/login/login')->with('error','请先登录!');
         }
         return $next($request);
     }

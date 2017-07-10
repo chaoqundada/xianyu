@@ -9,15 +9,6 @@ use App\Http\Controllers\Controller;
 use Hash;
 class UserController extends Controller
 {
-    /*
-    *后台主页面
-    */
-    public function getShow()
-    {
-
-        //后台主页面
-        return view('admin.homepage.index');
-    }
 
     /*
     *管理员添加
@@ -28,7 +19,10 @@ class UserController extends Controller
         return view('admin/user/add');
     }
 
-    //处理添加的数据
+    /**
+    *处理添加的数据
+    *
+    */
     public function postDoadd(Request $request)
     {
         //添加自动验证
@@ -50,6 +44,7 @@ class UserController extends Controller
         ]);
 
         $data = $request -> except('_token','reupwd');
+
         $data['upwd'] = Hash::make($data['upwd']);
         $data['ctime'] = time();
         $data['token'] = str_random(50);
@@ -66,27 +61,33 @@ class UserController extends Controller
     }
 
 
-    //显示用户列表页
+    /**
+    *显示用户列表页
+    *
+    */
     public function getIndex(Request $request)
     {
 
 
         $cont = $request->input('sample',5);
-        $search = $request->input('search','');
+        $search = trim($request->input('search',''));
         $all = $request -> all();
-        $all['search'] = $search or '';        
+        $all['search']= $search or '';
          //定义数组
         $arr= [1=>'普通管理员','超级管理员'];
         $brr= [1=>'正常','注销'];
         
         //查询数据
         $data = DB::table('admin_user')->where('uname','like','%'.$search.'%')->paginate($cont,$columns = ['*'], $pageName = 'page', $page =null);
-//其中$cont代表每页显示数目，$columns代表查询字段，$pageName代表页码名称，$page代表第几页
+        //其中$cont代表每页显示数目，$columns代表查询字段，$pageName代表页码名称，$page代表第几页
     
         return view('admin.user.index',['data'=>$data,'arr'=>$arr,'brr'=>$brr,'all'=>$all,'cont'=>$cont]);
     }
 
-    //删除用户
+    /**
+    *删除用户
+    *
+    */
     public function getDel($id)
     {
         $flag = DB::table('admin_user')->where('uid',$id)->delete();
@@ -98,14 +99,20 @@ class UserController extends Controller
         return back()->with('error','删除失败');
     }
 
-    //修改用户
+    /**
+    *修改用户
+    *
+    */
     public function getEdit($id)
     {
         $data = DB::table('admin_user')->where('uid',$id)->first();
         return view('admin.user.edit',['data'=>$data]);    
     }
 
-    //处理修改数据
+    /**
+    *处理修改数据
+    *
+    */
     public function postDoedit(Request $request,$id)
     {
         //处理数据
@@ -120,17 +127,69 @@ class UserController extends Controller
        }
     }
 
-    //退出登录
+    /**
+    *退出登录
+    *
+    */
     public function getOutlogin()
     {
-        $flag = session()->forget('user');
+        $flag = session()->forget('admin_user');
         return redirect('/admin/login/login');
     }
 
+    /**
+    *修改密码
+    *
+    */
+    public function getChangeupwd()
+    {
+        return view('admin.user.changeupwd');
+    }
 
+    /**
+    *验证更改密码
+    *
+    */
+    public function postDochange(Request $request)
+    {
 
+        $res = DB::table('admin_user')->where('uid',session('admin_user')['uid'])->first();
+        if(session('code')!= $request->input('code'))
+        {
+            return back()->with('error','验证码错误');
+        }
 
-    //ajax验证用户
+        if(!Hash::check($request->input('oldupwd'),$res['upwd']))
+        {
+            return back()->with('error','旧密不正确!');
+        }
+         $this->validate($request, [
+            
+            'upwd' => 'required|between:6,18',
+            'reupwd' => 'required|same:upwd',
+            
+        ],[
+            
+            'upwd.required' => '密码必填',
+            'upwd.between' => '密码长度不正确',
+            'reupwd.required' => '确认密码必填',
+            'reupwd.same' => '确认密码不一致',
+        ]);
+         $upwd['upwd'] = Hash::make($request->input('upwd'));
+         $flag = DB::table('admin_user')->where('uid',session('admin_user')['uid'])->update($upwd);
+         if($flag)
+         {
+            session()->forget('admin_user');
+            return redirect('/admin/login/login');
+         }else{
+            return back()->with('error','修改失败');
+         }
+    }
+
+    /**
+    *前台ajax验证用户
+    *
+    */
     public function getAjax(Request $request)
     {
         $uname = $request -> input('uname');

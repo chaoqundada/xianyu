@@ -36,7 +36,6 @@
                   <label for="username">用户名</label>
                   <input type="text"  class="form-control" id="username" placeholder="用户名" name='uname' value="{{old('uname')}}">
                     <span id="foruname"></span>
-
               </div>
               <div class="form-group">
                   <label for="pass">密码</label>
@@ -95,6 +94,8 @@
                     }
                 });
             }
+        }).focus(function(){
+          $('#foruname').html('');
         });
 
 
@@ -117,7 +118,9 @@
       {
           $('#forphone').html('<font style="color:red;font-size:17px;"><i class="icon-remove"></i>请输入正确的手机号</font>');
       }
-    });
+    }).focus(function(){
+          $('#forphone').html('');
+        });
 
     //验证密码
 
@@ -131,6 +134,8 @@
             {
                 $('#forpass').html('<font style="color:red;font-size:17px;"><i class="icon-remove"></i>密码格式不正确</font>');
             }
+        }).focus(function(){
+          $('#forpass').html('');
         });
     //确认密码
         $('#repass').blur(function(){
@@ -150,6 +155,8 @@
 
                 $('#forrepass').html('<font style="color:green;font-size:17px;"><i class="icon-check-sign"></i>确认密码正确</font>');
             }
+        }).focus(function(){
+          $('#forrepass').html('');
         });
 
         //验证邮箱
@@ -163,6 +170,8 @@
 
                     $('#foremail').html('<fqont style="color:green;font-size:17px;"><i class="icon-check-sign"></i>邮箱正确</fqont>');
                 }
+        }).focus(function(){
+          $('#foremail').html('');
         });
 
     </script>

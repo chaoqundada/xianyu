@@ -6,20 +6,20 @@
     <meta name="description" content="">
     <meta name="author" content="Mosaddek">
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, admins, Template, Theme, Responsive, Fluid, Retina">
-    <link rel="shortcut icon" href="/admins/img/favicon.html">
-      <script src="/admins/js/jquery-1.8.3.min.js" ></script>
+    <link rel="shortcut icon" href="{{asset('/admins/img/favicon.html')}}">
+      <script src="{{asset('/admins/js/jquery-1.8.3.min.js')}}" ></script>
     <title>{{ Config::get('app.title') }}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/admins/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/admins/css/bootstrap-reset.css" rel="stylesheet">
+    <link href="{{asset('/admins/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('/admins/css/bootstrap-reset.css')}}" rel="stylesheet">
     <!--external css-->
-    <link href="/admins/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href="/admins/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="/admins/css/owl.carousel.css" type="text/css">
+    <link href="{{asset('/admins/assets/font-awesome/css/font-awesome.css')}}" rel="stylesheet" />
+    <link href="{{asset('/admins/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css')}}" rel="stylesheet" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="{{asset('/admins/css/owl.carousel.css')}}" type="text/css">
     <!-- Custom styles for this template -->
-    <link href="/admins/css/style.css" rel="stylesheet">
-    <link href="/admins/css/style-responsive.css" rel="stylesheet" />
+    <link href="{{asset('/admins/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('/admins/css/style-responsive.css')}}" rel="stylesheet" />
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
@@ -42,156 +42,18 @@
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
                 <ul class="nav top-menu">
-                    <!-- settings start -->
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="/admins/#">
-                            <i class="icon-tasks"></i>
-                            <span class="badge bg-success">6</span>
-                        </a>
-                        <ul class="dropdown-menu extended tasks-bar">
-                            <div class="notify-arrow notify-arrow-green"></div>
-                            <li>
-                                <p class="green">You have 6 pending tasks</p>
-                            </li>
-                            <li>
-                                <a href="/admins/#">
-                                    <div class="task-info">
-                                        <div class="desc">Dashboard v1.3</div>
-                                        <div class="percent">40%</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                            <span class="sr-only">40% Complete (success)</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/admins/#">
-                                    <div class="task-info">
-                                        <div class="desc">Database Update</div>
-                                        <div class="percent">60%</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                            <span class="sr-only">60% Complete (warning)</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/admins/#">
-                                    <div class="task-info">
-                                        <div class="desc">Iphone Development</div>
-                                        <div class="percent">87%</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 87%">
-                                            <span class="sr-only">87% Complete</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/admins/#">
-                                    <div class="task-info">
-                                        <div class="desc">Mobile App</div>
-                                        <div class="percent">33%</div>
-                                    </div>
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 33%">
-                                            <span class="sr-only">33% Complete (danger)</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/admins/#">
-                                    <div class="task-info">
-                                        <div class="desc">Dashboard v1.3</div>
-                                        <div class="percent">45%</div>
-                                    </div>
-                                    <div class="progress progress-striped active">
-                                        <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                                            <span class="sr-only">45% Complete</span>
-                                        </div>
-                                    </div>
-
-                                </a>
-                            </li>
-                            <li class="external">
-                                <a href="/admins/#">See All Tasks</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- settings end -->
+                   
                     <!-- inbox dropdown start-->
                     <li id="header_inbox_bar" class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="/admins/#">
-                            <i class="icon-envelope-alt"></i>
-                            <span class="badge bg-important">5</span>
+                    
+                        <a class="dropdown-toggle" href="{{url('/admin/notic/index')}}">
+                          <i class="icon-envelope-alt"></i>
+                          @if(session('admin_notic')>0)
+                            <span class="badge bg-important">{{session('admin_notic')}}
+                            </span>
+                          @endif
                         </a>
-                        <ul class="dropdown-menu extended inbox">
-                            <div class="notify-arrow notify-arrow-red"></div>
-                            <li>
-                                <p class="red">You have 5 new messages</p>
-                            </li>
-                            <li>
-                                <a href="/admins/#">
-                                    <span class="photo"><img alt="avatar" src="/admins/img/avatar-mini.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Jonathan Smith</span>
-                                    <span class="time">Just now</span>
-                                    </span>
-                                    <span class="message">
-                                        Hello, this is an example msg.
-                                    </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="/admins/#">
-                                    <span class="photo"><img alt="avatar" src="/admins/img/avatar-mini2.jpg"></span>
-                                    <span class="subject">
-
-
-                                    <span class="from">sss</span>
-
-                                    <span class="time">10 mins</span>
-                                    </span>
-                                    <span class="message">
-                                     Hi, Jhon Doe Bhai how are you ?
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/admins/#">
-                                    <span class="photo"><img alt="avatar" src="/admins/img/avatar-mini3.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Jason Stathum</span>
-                                    <span class="time">3 hrs</span>
-                                    </span>
-                                    <span class="message">
-                                        This is awesome dashboard.
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/admins/#">
-                                    <span class="photo"><img alt="avatar" src="/admins/img/avatar-mini4.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Jondi Rose</span>
-                                    <span class="time">Just now</span>
-                                    </span>
-                                    <span class="message">
-                                        Hello, this is metrolab
-                                    </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/admins/#">See all messages</a>
-                            </li>
-                        </ul>
+              
                     </li>
                     <!-- inbox dropdown end -->
                     <!-- notification dropdown start-->
@@ -258,19 +120,19 @@
                     </li>
                     <!-- user login dropdown start-->
                     <li class="dropdown">
-                        @if(session('user'))
+                        @if(session('admin_user'))
                         <a data-toggle="dropdown" class="dropdown-toggle" href="/admins/#">
                             <img alt="" src="/admins/img/avatar1_small.jpg">
 
-                            <span class="username">欢迎!{{session('user')['uname']}}</span>
+                            <span class="username">欢迎!{{session('admin_user')['uname']}}</span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
-                            <li><a href="#"><i class=" icon-suitcase"></i>Profile</a></li>
-                            <li><a href="#"><i class="icon-cog"></i>修改密码</a></li>
-                            <li><a href="#"><i class="icon-bell-alt"></i>我的消息</a></li>
-                            <li >
+                            <li style="width:100%;background-color:#333;">
+                                <a href="{{url('/admin/user/changeupwd')}}"><i class="icon-cog"></i>修改密码</a>
+                            </li>
+                            <li>
                                 <a onclick="return !confirm('帅哥,再逛一会嘛!')" href="{{url('admin/user/outlogin')}}"><i class="icon-key"></i>退出登录</a>
                             </li>
                         </ul>
@@ -288,7 +150,7 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu">
                   <li class="active">
-                      <a class="" href="{{url('admin/user/show')}}">
+                      <a class="" href="{{url('admin/index/show')}}">
                           <i class="icon-dashboard"></i>
                           <span>主页面</span>
                       </a>
@@ -302,7 +164,6 @@
                       <ul class="sub">
                           <li><a class="" href="{{url('admin/user/index')}}">后台用户列表</a></li>
                           <li><a class="" href="{{url('admin/user/add')}}">添加后台用户</a></li>
-
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -476,8 +337,6 @@
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="/admins/js/jquery.js"></script>
-
-    {{--<script src="/admins/js/jquery-1.8.3.min1.js"></script>--}}
     <script src="/admins/js/bootstrap.min.js"></script>
     <script src="/admins/js/jquery.scrollTo.min.js"></script>
     <script src="/admins/js/jquery.nicescroll.js" type="text/javascript"></script>
@@ -485,7 +344,6 @@
     <script src="/admins/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
     <script src="/admins/js/owl.carousel.js" ></script>
     <script src="/admins/js/jquery.customSelect.min.js" ></script>
-
 
     <!--common script for all pages-->
     <script src="/admins/js/common-scripts.js"></script>

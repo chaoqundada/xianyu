@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
-
     <title>我的鱼塘</title>
 
     <link href="/homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
@@ -12,8 +11,12 @@
 
     <link href="/homes/css/personal.css" rel="stylesheet" type="text/css">
     <link href="/homes/css/infstyle.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/homes/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/homes/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
+
+
 
 </head>
 
@@ -27,18 +30,18 @@
                 <ul class="message-l">
                     <div class="topMessage">
                         <div class="menu-hd">
-                            <a href="/homes/#" target="_top" class="h">亲，请登录</a>
-                            <a href="/homes/#" target="_top">免费注册</a>
+                            <a href="{{url('login/login')}}" target="_top" class="h">亲，请登录</a>
+                            <a href="{{url('user/add')}}" target="_top">免费注册</a>
                         </div>
                     </div>
                 </ul>
                 <ul class="message-r">
                     <div class="topMessage home">
-                        <div class="menu-hd"><a href="/homes/#" target="_top" class="h">商城首页</a></div>
+                        <div class="menu-hd"><a href="{{url('/')}}" target="_top" class="h">商城首页</a></div>
                     </div>
                     <div class="topMessage my-shangcheng">
                         <div class="menu-hd MyShangcheng">
-                            <a href="/homes/#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
+                            <a href="{{url('user/detil')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a>
                             <a href="/myfishpond" target="_top"><i class="am-icon-user am-icon-fw"></i>我的鱼塘</a>
                         </div>
                     </div>
@@ -75,7 +78,7 @@
     <div class="long-title"><span class="all-goods">全部分类</span></div>
     <div class="nav-cont">
         <ul>
-            <li class="index"><a href="/homes/#">首页</a></li>
+            <li class="index"><a href="{{url('/')}}">首页</a></li>
             <li class="qc"><a href="/homes/#">闪购</a></li>
             <li class="qc"><a href="/homes/#">限时抢</a></li>
             <li class="qc"><a href="/homes/#">团购</a></li>
@@ -146,12 +149,12 @@
             </li>
 
             <li class="person">
-                <a href="/homes/#">我的小窝</a>
+                <a href="#">我的小窝</a>
                 <ul>
-                    <li> <a href="/homes/collection.html">收藏</a></li>
-                    <li> <a href="/homes/foot.html">足迹</a></li>
-                    <li> <a href="/homes/comment.html">评价</a></li>
-                    <li> <a href="/homes/news.html">消息</a></li>
+                    <li> <a href="collection.html">收藏</a></li>
+                    <li> <a href="foot.html">足迹</a></li>
+                    <li> <a href="comment.html">评价</a></li>
+                    <li> <a href="news.html">消息</a></li>
                 </ul>
             </li>
 
@@ -160,5 +163,4 @@
     </aside>
 </div>
 </body>
-
 </html>

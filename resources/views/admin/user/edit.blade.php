@@ -43,7 +43,7 @@
                   <label for="myemail">邮箱</label>
                   <input type="email" class="form-control" required id="myemail"  name='email' value="{{$data['email']}}">
               </div>
-              @if(session('user')['auth']==2)
+              @if(session('admin_user')['auth']==2)
               <div class="radio">
                   <label>
                       <input type="radio" name="auth" id="optionsRadios1" value="1" @if($data['auth']==1) checked @endif>

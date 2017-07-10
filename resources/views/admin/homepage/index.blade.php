@@ -1,6 +1,17 @@
 @extends('admin.layout.index')
 
 @section('content')
+
+
+
+     @if (session('error'))
+        <div class="alert alert-block alert-danger fade in" id="error">
+        
+            <font size="5"><i class="icon-remove-sign"></i>{{session('error')}}</font>
+           
+        </div>
+    @endif
+
     <div class="crumb_warp">
         <!--<i class="fa fa-bell"></i> 欢迎使用登陆网站后台，建站的首选工具。-->
         <i class="fa fa-home"></i> <a href="{{url('admin/user/show')}}">首页</a> &raquo; 系统基本信息
@@ -57,7 +68,13 @@
             </ul>
         </div>
     </div>
+<script type="text/javascript">
 
+  if($('#error')) {
+        setTimeout(function () {
+            $('#error').slideUp(1000);
+        }, 2000);
+    }
 
-
+</script>
 @endsection

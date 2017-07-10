@@ -12,7 +12,7 @@
      @if (session('error'))
         <div class="alert alert-block alert-danger fade in" id="error">
         
-            <font size="5"><i class="icon-ok-sign"></i>{{session('error')}}</font>
+            <font size="5"><i class="icon-remove-sign"></i>{{session('error')}}</font>
            
         </div>
     @endif
@@ -37,7 +37,8 @@
           </div>
           <div class="col-sm-6" >
             <div class="dataTables_filter" id="sample_1_filter" >搜索:
-              <label style="width:200px;"><input type="text" aria-controls="sample_1" class="form-control" id='search' name='search' style="width:100%" value="{{$all['search']}}">
+              <label style="width:200px;">
+                <input type="text" aria-controls="sample_1" class="form-control" id='search' name='search' style="width:100%" value="{{$all['search']}}" placeholder="用户名">
               </label>
               <input type="submit" class="btn btn-default" value='搜索'>
             </div>
@@ -100,7 +101,12 @@
               <td>{{$arr[$v['auth']]}}</td>
               <td>{{$brr[$v['static']]}}</td>
               <td>{{date('Y-m-d H:i:s',$v['ctime'])}}</td>
-              <td><a href="{{url('admin/user/del/'.$v['uid'])}}" class="btn btn-danger" onclick=" return confirm('您确定要删除吗?')">删除</a>
+              <td>
+              @if($v['uname']!=session('admin_user')['uname'])
+
+              <a href="{{url('admin/user/del/'.$v['uid'])}}" class="btn btn-danger" onclick=" return confirm('您确定要删除吗?')" >删除</a>
+
+              @endif
               <a href="{{url('admin/user/edit/'.$v['uid'])}}" class="btn btn-warning">修改</a>
 
               </td>
