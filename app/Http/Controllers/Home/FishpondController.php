@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Model\Ques;
+use App\Http\Model\Quesspone;
 use App\Http\Model\Sign;
+use App\Http\Model\User;
 use App\Http\Model\Yt;
 use Illuminate\Http\Request;
 
@@ -101,10 +103,30 @@ class FishpondController extends Controller
         }
         //获取问答详情
         $ques= Ques::where('qid',$request->input('qid'))->first();
+        $quesspone= $ques->quesspone()->get();
+        foreach ($quesspone as $v){
+            $users[]= $v->user()->get();
+        };
         //一对多获取对应的鱼塘详情
         $yt= $ques->yt()->first();
-        return view('home.showfishpond.quesshow',['yt'=>$yt,'ques'=>$ques]);
+        return view('home.showfishpond.quesshow',['yt'=>$yt,'ques'=>$ques,'quesspone'=>$quesspone,'users'=>$users]);
+    }
 
+    /*
+     * 问答回复
+     * */
+    public function postQuesreply(Request $request)
+    {
+        if(empty(session('user'))){
+            return 1;//用户要先登录才能回到问题
+        }
+        $data=$request->except('_token');
+        $data['uid']=session('user')['uid'];
+        $data['ftime']=time();
+        $res=Quesspone::insert($data);
+        if($res){
+            return 2;//回答成功
+        }
     }
 
 }

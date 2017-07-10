@@ -14,4 +14,8 @@ class Ques extends Model
     {
         return $this->belongsTo('App\Http\Model\Yt','yid','yid');
     }
+    public function quesspone()
+    {
+        return $this->hasMany('App\Http\Model\Quesspone','qid','qid');
+    }
 }
