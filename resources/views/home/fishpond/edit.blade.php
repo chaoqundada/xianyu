@@ -49,6 +49,14 @@
                                 <label for="yname" class="am-form-label">鱼塘名称</label>
                                 <div class="am-form-content">
                                     <input type="text" value="{{$data['yname']}}" name="yname" id="yname" placeholder="鱼塘名称" style="width:599px">
+                                    <input type="hidden" value="{{$data['yid']}}" name="yid" >
+                                </div>
+                            </div>
+
+                            <div class="am-form-group">
+                                <label for="" class="am-form-label">鱼塘简介</label>
+                                <div class="am-form-content">
+                                    <input type="text" value="{{$data['description']}}" name="description"  placeholder="鱼塘简介" style="width:599px">
                                 </div>
                             </div>
 
