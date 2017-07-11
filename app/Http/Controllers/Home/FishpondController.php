@@ -114,7 +114,8 @@ class FishpondController extends Controller
         };
         //一对多获取对应的鱼塘详情
         $yt= $ques->yt()->first();
-        return view('home.showfishpond.quesshow',['yt'=>$yt,'ques'=>$ques,'quesspone'=>$quesspone,'users'=>$users]);
+        $ytnotic=Ytnotic::where('yid',$yt->yid)->get();
+        return view('home.showfishpond.quesshow',['yt'=>$yt,'ques'=>$ques,'quesspone'=>$quesspone,'users'=>$users,'ytnotic'=>$ytnotic]);
     }
 
     /*
