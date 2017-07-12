@@ -47,7 +47,7 @@
                     <!-- inbox dropdown start-->
                     <li id="header_inbox_bar" class="dropdown">
                     
-                        <a class="dropdown-toggle" href="{{url('/admin/notic/index')}}">
+                        <a class="dropdown-toggle" href="{{url('/admin/notic/index')}}" title="后台邮件">
                           <i class="icon-envelope-alt"></i>
                           @if(session('admin_notic')>0)
                             <span class="badge bg-important">{{session('admin_notic')}}

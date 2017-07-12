@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Redis;
 use Mail;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -14,7 +15,14 @@ class LoginController extends Controller
     *   
     */
     public function getLogin()
-      {
+    {
+        //判断用户是否登录
+        if(session('admin_user'))
+        {
+            return redirect('/admin/index/show');
+        }
+        // Redis::set('name','zhangsan');
+     
         return view('admin.login.login');
     }
 

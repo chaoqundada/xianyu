@@ -108,7 +108,7 @@
 
     //判断手机
 
-    var preg_phone = /^1[3|4|5|8][0-9]\d{8}$/;
+    var preg_phone = /^1[3|5|8|7][0-9]\d{8}$/;
     $('#myphone').blur(function(){
       if(preg_phone.test($(this).val()))
       {
