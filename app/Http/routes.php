@@ -42,11 +42,15 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'login'],func
 //后台鱼塘
 Route::controller('/admin/fishpond','Admin\FishpondController');
 
-
+//后台商品分类路由
+	Route::controller('/admin/tgoods','Admin\TgoodsController');
+	//后台商品路由
+	Route::controller('/admin/goods','Admin\GoodsController');
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','admin']],function(){
  	Route::controller('user','UserController');
 });
+
 
 
 
@@ -75,3 +79,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','adm
 	Route::controller('/myfishpond','Home\MyfishpondController');
 	//鱼塘展示
     Route::controller('/fishpond','Home\FishpondController');
+
+    //前台商品路由
+	Route::controller('/goods','Home\GoodsController');

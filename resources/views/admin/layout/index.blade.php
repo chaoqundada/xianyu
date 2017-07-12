@@ -21,7 +21,6 @@
     <link href="{{asset('/admins/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('/admins/css/style-responsive.css')}}" rel="stylesheet" />
 
-
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
       <script src="/admins/js/html5shiv.js"></script>
@@ -39,6 +38,7 @@
             </div>
             <!--logo start-->
             <a href="#" class="logo"><span>管理列表</span></a>
+
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
@@ -55,6 +55,7 @@
                           @endif
                         </a>
               
+
                     </li>
                     <!-- inbox dropdown end -->
                     <!-- notification dropdown start-->
@@ -126,6 +127,7 @@
                             <img alt="" src="/admins/img/avatar1_small.jpg">
 
                             <span class="username">欢迎!{{session('admin_user')['uname']}}</span>
+
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
@@ -152,6 +154,7 @@
               <ul class="sidebar-menu">
                   <li class="active">
                       <a class="" href="{{url('admin/index/show')}}">
+
                           <i class="icon-dashboard"></i>
                           <span>主页面</span>
                       </a>
@@ -165,17 +168,18 @@
                       <ul class="sub">
                           <li><a class="" href="{{url('admin/user/index')}}">后台用户列表</a></li>
                           <li><a class="xxxx" href="{{url('admin/user/add')}}">添加后台用户</a></li>
+
                       </ul>
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon-book"></i>
-                          <span>分类管理</span>
+                          <i class="icon-cogs"></i>
+                          <span>商品分类管理</span>
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="">分类列表</a></li>
-                          <li><a class="" href="">添加分类</a></li>
+                          <li><a class="" href="/admin/tgoods/index">分类列表</a></li>
+                          <li><a class="" href="/admin/tgoods/add">添加分类</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -185,8 +189,7 @@
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="">商品列表</a></li>
-                          <li><a class="" href="">添加商品</a></li>
+                          <li><a class="" href="/admin/goods/index">商品列表</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -325,6 +328,7 @@
             @section('content')
 
             @show
+
           </section>
           <!-- 内容结束 -->
       </section>
@@ -333,6 +337,7 @@
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="/admins/js/jquery.js"></script>
+
     <script src="/admins/js/bootstrap.min.js"></script>
     <script src="/admins/js/jquery.scrollTo.min.js"></script>
     <script src="/admins/js/jquery.nicescroll.js" type="text/javascript"></script>
@@ -377,6 +382,7 @@
             }
         })
     })
+
 
   </script>
 
