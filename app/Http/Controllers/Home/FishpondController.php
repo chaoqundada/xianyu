@@ -7,6 +7,7 @@ use App\Http\Model\Quesspone;
 use App\Http\Model\Sign;
 use App\Http\Model\User;
 use App\Http\Model\Yt;
+use App\Http\Model\Ytnotic;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -27,7 +28,8 @@ class FishpondController extends Controller
         if(empty($yt)){
             return redirect('/');
         }
-        return view('home.showfishpond.index',['yt'=>$yt]);
+        $ytnotic=Ytnotic::where('yid',$request->input('yid'))->get();
+        return view('home.showfishpond.index',['yt'=>$yt,'ytnotic'=>$ytnotic]);
     }
 
     public function getQueslist(Request $request)
@@ -36,8 +38,9 @@ class FishpondController extends Controller
         if(empty($yt)){
             return redirect('/');
         }
+        $ytnotic=Ytnotic::where('yid',$request->input('yid'))->get();
         $ques=$yt->ques()->paginate(2);
-        return view('home.showfishpond.ques',['yt'=>$yt,'ques'=>$ques]);
+        return view('home.showfishpond.ques',['yt'=>$yt,'ques'=>$ques,'ytnotic'=>$ytnotic]);
     }
 
     /*
@@ -78,6 +81,7 @@ class FishpondController extends Controller
             $data['ytime']=time();
             $res= Sign::insert($data);
             if($res){
+                Yt::where('yid',$request->input('yid'))->increment('yatt');
                 return 1;//签到成功
             }
         }else{
@@ -104,12 +108,14 @@ class FishpondController extends Controller
         //获取问答详情
         $ques= Ques::where('qid',$request->input('qid'))->first();
         $quesspone= $ques->quesspone()->get();
+        $users=[];
         foreach ($quesspone as $v){
             $users[]= $v->user()->get();
         };
         //一对多获取对应的鱼塘详情
         $yt= $ques->yt()->first();
-        return view('home.showfishpond.quesshow',['yt'=>$yt,'ques'=>$ques,'quesspone'=>$quesspone,'users'=>$users]);
+        $ytnotic=Ytnotic::where('yid',$yt->yid)->get();
+        return view('home.showfishpond.quesshow',['yt'=>$yt,'ques'=>$ques,'quesspone'=>$quesspone,'users'=>$users,'ytnotic'=>$ytnotic]);
     }
 
     /*
@@ -128,5 +134,18 @@ class FishpondController extends Controller
             return 2;//回答成功
         }
     }
+
+    /*
+     * 公告显示
+     * */
+    public function getYtnoticshow(Request $request)
+    {
+        $nid=$request->input('nid');
+        $ytnotic=Ytnotic::find($nid);
+        $yt= $ytnotic->yt()->first();
+        return view('home.showfishpond.ytnoticshow',['yt'=>$yt,'ytnotic'=>$ytnotic]);
+    }
+
+
 
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Model\Yt;
+use App\Http\Model\Ytnotic;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -12,8 +14,12 @@ class MyfishpondController extends Controller
 {
     public function getIndex()
     {
-        //如果没有鱼塘就去创建鱼塘,如果有就去管理鱼塘
-        return view('home.fishpond.index');
+        $res= DB::table('yt')->where('uid','=',session('user')['uid'])->get();
+        if(empty($res)){
+            return redirect('/myfishpond/add');
+        }else{
+            return redirect('/myfishpond/list');
+        }
     }
     public function getAdd()
     {
@@ -31,6 +37,7 @@ class MyfishpondController extends Controller
             return redirect('/myfishpond/add')->with('error','请上传鱼塘封面');
         }
         $data['yname']=$request->input('yname');
+        $data['description']=$request->input('description');
         $data['ytpic']=$request->input('ytpic');
         $data['uid']=session('user')['uid'];
         $data['sheng']=$request->input('sheng');
@@ -114,10 +121,11 @@ class MyfishpondController extends Controller
         if(empty($request->input('yname'))){
             return back()->with('error','鱼塘名称必填');
         }
-        if(DB::table('yt')->where('yname','=',$request->input('yname'))->first()){
+        if(DB::table('yt')->where('yname','=',$request->input('yname'))->where('yid','!=',$request->input('yid'))->first()){
             return back()->with('error','鱼塘名称已经存在');
         }
         $data['yname']=$request->input('yname');
+        $data['description']=$request->input('description');
         $data['ytpic']=$request->input('ytpic');
         $data['sheng']=$request->input('sheng');
         $data['shi']=$request->input('shi');
@@ -128,4 +136,80 @@ class MyfishpondController extends Controller
             return back()->with('error','修改失败');
         }
     }
+
+    public function getManage(Request $request)
+    {
+        if(empty(session('user'))){
+            return redirect('/login/login');
+        }
+        $uid=session('user')['uid'];
+        $yid=$request->input('yid');
+        $yt= Yt::where('uid', $uid)->where('yid',$yid)->first();
+        if(empty($yt)){
+            return redirect('/');
+        }
+        $ytnotic=$yt->ytnotic()->paginate(2);
+        return view('home.fishpond.managenotice',['yt'=>$yt,'ytnotic'=>$ytnotic]);
+    }
+
+    /*
+     * 公告添加
+     * */
+    public function postAddnotice(Request $request)
+    {
+        $this->validate($request, [
+            'title'    =>'required',
+            'content'    =>'required'
+        ],[
+            'title.required'      =>'标题必填',
+            'content.required'      =>'内容必填',
+        ]);
+        $data=$request->except('_token');
+        $data['fctime']=time();
+        $res= Ytnotic::insert($data);
+        if($res){
+            return 1;
+        }else{
+            return 2;
+        }
+    }
+
+    /*修改公告页面
+     * */
+    public function getYtnoticedit(Request $request)
+    {
+        $ytnotic= Ytnotic::find($request->input('nid'));
+        $yt=$ytnotic->yt()->first();
+        return view('home.fishpond.ytnoticedit',['ytnotic'=>$ytnotic,'yt'=>$yt]);
+    }
+
+    /*
+     * 公告修改处理
+     * */
+    public function postDoytnoticedit(Request $request)
+    {
+        $data['content']=$request->input('content');
+        $data['title']=$request->input('title');
+        $nid=$request->input('nid');
+        $res= Ytnotic::where('nid',$nid)->update($data);
+        if($res){
+            return 2;
+        }
+    }
+
+    public function postYtnoticdel(Request $request)
+    {
+        $nid=$request->input('nid');
+        $res= Ytnotic::where('nid',$nid)->delete();
+        $data=[];
+        if($res){
+            $data['status']=0;
+            $data['msg']='删除成功';
+        }else{
+            $data['status']=1;
+            $data['msg']='删除失败';
+        }
+        return $data;
+    }
+
 }

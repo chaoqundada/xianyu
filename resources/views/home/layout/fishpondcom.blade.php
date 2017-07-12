@@ -12,8 +12,8 @@
     <link href="/homes/css/personal.css" rel="stylesheet" type="text/css">
     <link href="/homes/css/infstyle.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/homes/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <script src="/homes/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
+    <script src="/homes/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
 
 
@@ -130,31 +130,6 @@
                 <ul>
                     <li class="active"> <a href="{{url('/myfishpond/list')}}">鱼塘列表</a></li>
                     <li> <a href="{{url('/myfishpond/add')}}">添加鱼塘</a></li>
-                </ul>
-            </li>
-            <li class="person">
-                <a href="/homes/#">我的交易</a>
-                <ul>
-                    <li><a href="/homes/order.html">订单管理</a></li>
-                    <li> <a href="/homes/change.html">退款售后</a></li>
-                </ul>
-            </li>
-            <li class="person">
-                <a href="/homes/#">我的资产</a>
-                <ul>
-                    <li> <a href="/homes/coupon.html">优惠券 </a></li>
-                    <li> <a href="/homes/bonus.html">红包</a></li>
-                    <li> <a href="/homes/bill.html">账单明细</a></li>
-                </ul>
-            </li>
-
-            <li class="person">
-                <a href="#">我的小窝</a>
-                <ul>
-                    <li> <a href="collection.html">收藏</a></li>
-                    <li> <a href="foot.html">足迹</a></li>
-                    <li> <a href="comment.html">评价</a></li>
-                    <li> <a href="news.html">消息</a></li>
                 </ul>
             </li>
 

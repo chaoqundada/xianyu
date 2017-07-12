@@ -20,6 +20,7 @@ Route::get('/admin',function()
 	{
 		return redirect('/admin/login/login');
 	});
+
 //后台登录路由
 Route::controller('/admin/login','Admin\LoginController');
 //验证码路由
@@ -31,17 +32,26 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'login'],func
     Route::controller('notic','NoticController');
     //后台首页(登录才能用)
     Route::get('index/show','IndexController@show');
+    //config 配置页面
+	Route::controller('config','ConfigController');
+	//links 友情链接
+	Route::controller('links','LinksController');
 });
 
 
 //后台鱼塘
 Route::controller('/admin/fishpond','Admin\FishpondController');
 
-
+//后台商品分类路由
+	Route::controller('/admin/tgoods','Admin\TgoodsController');
+	//后台商品路由
+	Route::controller('/admin/goods','Admin\GoodsController');
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','admin']],function(){
  	Route::controller('user','UserController');
 });
+
+
 
 
 
@@ -69,3 +79,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','adm
 	Route::controller('/myfishpond','Home\MyfishpondController');
 	//鱼塘展示
     Route::controller('/fishpond','Home\FishpondController');
+
+    //前台商品路由
+	Route::controller('/goods','Home\GoodsController');

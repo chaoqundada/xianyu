@@ -15,4 +15,8 @@ class Yt extends Model
     {
         return $this->hasMany('App\Http\Model\Ques','yid','yid');
     }
+    public function ytnotic()
+    {
+        return $this->hasMany('App\Http\Model\Ytnotic','yid','yid');
+    }
 }
