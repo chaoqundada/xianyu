@@ -29,6 +29,8 @@ class UserController extends Controller
     */
     public function postInsert(Request $request)
     {
+        $str = \Redis::get('phone_code');
+        dd($str);
     	//自动验证
         $this -> validate($request,[
                 //必填
@@ -130,7 +132,8 @@ class UserController extends Controller
         //验证码的随机数
         $phone_code = rand(1000,9999);
         //存入session
-        session(['phone_code'=>$phone_code]);
+        // session(['phone_code'=>$phone_code]);
+        \Redis::set('phone_code',$phone_code);
         //执行发送
         $str = 'http://106.ihuyi.com/webservice/sms.php?method=Submit&account=C59933801&password=0808facc111416683d2ea903f063ef5a&format=json&mobile='.$phone.'&content=您的验证码是：'.$phone_code.'。请不要把验证码泄露给其他人。';
         //返回值
@@ -141,15 +144,24 @@ class UserController extends Controller
     *个人中心
     */
     public function getIndex()
-    {
-        return view('home/user/index');
+    {   
+        //个人中心的标识
+        session(['detil'=>true]);
+        //判断是否登录
+        if(!session('user')){
+            // return redirect('/login/login') -> with('error','请先登录');
+            return view('home/password/password',['status'=>'没有登录','url'=>'/login/login','addr'=>'请先登录']);
+        }
+        //获取用户详情
+        $data = DB::table('home_user_detil') -> where('uid',session('user')['uid']) -> first();
+        //引入视图
+        return view('home/user/index',['data'=>$data]);
     }
     /**
     *用户详情
     */
     public function getDetil()
-    {  
-        
+    {      
         //获取用户详情
         $data = DB::table('home_user_detil') -> where('uid',session('user')['uid']) -> first();
         //引入视图

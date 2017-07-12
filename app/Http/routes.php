@@ -36,12 +36,12 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'login'],func
 	Route::controller('config','ConfigController');
 	//links 友情链接
 	Route::controller('links','LinksController');
+	//前台用户
+	Route::controller('homeuser','HomeuserController');
 });
-
 
 //后台鱼塘
 Route::controller('/admin/fishpond','Admin\FishpondController');
-
 
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','admin']],function(){
@@ -49,13 +49,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','adm
 });
 
 
-
-
-
-
-
 //前台操作
-
 	//主页面
 	Route::get('/','Home\IndexController@index');
 	//注册
@@ -63,13 +57,12 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','adm
 	//登录
 	Route::controller('/login','Home\LoginController');
 
-	
 	//地址
 	Route::controller('/addr','Home\AddrController');
 	//安全设置
 	Route::controller('/pass','Home\PassController');
-
-
+	//订单操作
+	Route::controller('/order','Home\OrderController');
 
 	//我的鱼塘
 	Route::controller('/myfishpond','Home\MyfishpondController');
