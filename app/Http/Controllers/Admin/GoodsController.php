@@ -13,15 +13,25 @@ class GoodsController extends Controller
      * 商品列表
      * author: 王武杰
      */
-    public function getIndex()
+    public function getIndex(Request $request)
     {	
-    	// 查询商品所有数据
-    	$data = DB::table('goods') -> orderBy('gtime','desc') -> paginate(5);;
-    	
-    	// 把数据发送到视图
+      if($request -> has('gids')){
+        // 根据提交的ID查询商品数据
+        $res = $request -> input('gids');
+        $data = DB::table('goods') -> where('gid',$res) -> paginate(1);
+
+        // 把数据发送到视图
         return view('admin.goods.index',['data'=>$data]);
+      }else{
+        // 查询商品所有数据
+        $data = DB::table('goods') -> orderBy('gtime','desc') -> paginate(5);
+      
+        // 把数据发送到视图
+        return view('admin.goods.index',['data'=>$data]);
+      }
     }
 
+    
     /**
      * 商品列表
      * author: 王武杰

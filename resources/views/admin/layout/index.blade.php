@@ -20,7 +20,7 @@
     <!-- Custom styles for this template -->
     <link href="{{asset('/admins/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('/admins/css/style-responsive.css')}}" rel="stylesheet" />
-
+    <script type="text/javascript" src="{{asset('layer/layer.js')}}"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
       <script src="/admins/js/html5shiv.js"></script>
