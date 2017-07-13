@@ -239,6 +239,7 @@
                       </a>
                       <ul class="sub">
                           <li><a class="xxxx" href="{{url('/admin/fishpond/index')}}">鱼塘列表</a></li>
+                          <li><a class="xxxx" href="{{url('/admin/fishpond/recommend')}}">鱼塘推荐</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">

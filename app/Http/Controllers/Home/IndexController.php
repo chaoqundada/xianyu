@@ -14,15 +14,24 @@ class IndexController extends Controller
 
     	$str = DB::table('dll')->first();
     	$links = DB::table('links')->get();
-    	
-			 return view('home.homepage.index',['title' =>$str['title'],
-												'logo'=>  $str['logo'],
-												'key' =>  $str['key'],
-												'descr'=>$str['descr'],
-												'dname' => $str['dname'],
-												'footer'=>$str['footer'],
-												'links' =>$links,
+        $keylist = 'LIST:YT';
+        $keyhash = 'HASH:YT:';
+    	$ytlist =\Redis::lrange($keylist,0,-1);
+    	if($ytlist){
+            foreach ($ytlist as $v){
+                $yts[]=\Redis::hgetall($keyhash.$v);
+            }
+        }
+			 return view('home.homepage.index',['title' => $str['title'],
+												'logo'  =>  $str['logo'],
+												'key'   =>  $str['key'],
+												'descr' =>  $str['descr'],
+												'dname' =>  $str['dname'],
+												'footer'=>  $str['footer'],
+												'links' =>  $links,
+                                                'yts'   =>  $yts,
 												]);
+
     	
     }
 

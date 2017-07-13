@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Model\Yt;
+use App\Http\Model\Ytnotic;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -47,6 +48,52 @@ class FishpondController extends Controller
         if($res){
             return url('admin/fishpond/index?keywords='.$keywords.'&count='.$count.'&page='.$page);
         }
+    }
+
+    /*
+     * 推荐鱼塘页面
+     * */
+    public function getRecommend()
+    {
+
+        return view('admin.fishpond.recommend');
+    }
+
+    /*
+     * 推荐鱼塘处理
+     * */
+    public function getDorecommend(Request $request)
+    {
+        $order=$request->input('ytorder');
+        if($order == 1){
+            $yts=Yt::orderBy('yid','desc')->where('ystatic',2)->take(6)->get();
+            $arr= $yts->toarray();
+            $keylist = 'LIST:YT';
+            $keyhash = 'HASH:YT:';
+            \Redis::del($keylist);
+            foreach ($arr as $v){
+                \Redis::rpush($keylist,$v['yid']);
+                \Redis::hMset($keyhash.$v['yid'],$v);
+            }
+        }else{
+            $yts=Yt::orderBy('yatt','desc')->where('ystatic',2)->take(6)->get();
+            $arr= $yts->toarray();
+            $keylist = 'LIST:YT';
+            $keyhash = 'HASH:YT:';
+            \Redis::del($keylist);
+            foreach ($arr as $v){
+                \Redis::rpush($keylist,$v['yid']);
+                \Redis::hMset($keyhash.$v['yid'],$v);
+            }
+        }
+    }
+
+    /*
+     * 测试redis list数据
+     * */
+    public function getXxxo()
+    {
+        dd(\Redis::lrange('LIST:YT',0,-1));
     }
 
 }
