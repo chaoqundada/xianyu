@@ -61,13 +61,18 @@
                 @foreach ($yts as $yt)
                     <tr>
                         <th scope="row">{{$yt['yid']}}</th>
-                        <td>{{$yt['yname']}}</td>
+                        <td><a href="{{url('/fishpond/index?yid='.$yt['yid'])}}">{{$yt['yname']}}</a></td>
                         <td>{{$yt['yrank']}}</td>
                         <td><img src="{{url('/uploads/fishpond/')}}/{{$yt['ytpic']}}" alt="" name="pic" id="pic" style="height: 40px" ></td>
                         <td>{{$yt['yatt']}}</td>
                         <td>{{$status[$yt['ystatic']]}}</td>
                         <td>{{$yt['sheng']}} {{$yt['shi']}}</td>
-                        <td><a href="{{url('/myfishpond/edit?yid='.$yt['yid'])}}">编辑</a></td>
+                        <td>
+                            <a href="{{url('/myfishpond/edit?yid='.$yt['yid'])}}">编辑</a>
+                            @if($yt['ystatic'] ==2)
+                                <a href="{{url('/myfishpond/manage?yid='.$yt['yid'])}}">管理</a>
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

@@ -3,11 +3,11 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">  
     <title>{{ $title }}</title>
     <meta name="description"  content="{{ $descr }}">
     <meta name="keywords" content="{{ $key }}">
+
 
     <link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
     <link href="/homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
@@ -45,9 +45,11 @@
             <div class="topMessage my-shangcheng">
                 <div class="menu-hd MyShangcheng"><a href="{{url('user/index')}}" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
             </div>
+            @if(session('user'))
             <div class="topMessage mini-cart">
-                <div class="menu-hd"><a id="mc-menu-hd" href="/homes/#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
+                <div class="menu-hd"><a id="mc-menu-hd" href="{{url('myfishpond/')}}" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>我的鱼塘</span><strong id="J_MiniCartNum" class="h"></strong></a></div>
             </div>
+            @endif
             <div class="topMessage favorite">
                 <div class="menu-hd"><a href="/homes/#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
         </ul>

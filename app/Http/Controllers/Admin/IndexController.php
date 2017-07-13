@@ -19,4 +19,5 @@ class IndexController extends Controller
           //后台主页面
         return view('admin.homepage.index');
     }
+
 }

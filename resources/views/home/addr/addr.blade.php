@@ -111,7 +111,7 @@
 <script type="text/javascript">
 	var s1 = s2 = s3 = false;
 	//收货人
-	var uname = $('input[name="name"');
+	var uname = $('input[name="name"]');
 	//失去焦点
 	uname.blur(function()
 	{
@@ -125,7 +125,7 @@
 	});	
 	
 	//手机号
-	var tel = $('input[name="phone"');
+	var tel = $('input[name="phone"]');
 	//失去焦点
 	tel.blur(function()
 	{
@@ -153,7 +153,6 @@
 			s3 = false;
 		}
 	});	
-
 	$('form').submit(function()
 		{
 			if(s1 && s2 && s3){
@@ -161,9 +160,6 @@
 			}
 			return false;
 		});
-
-
-
 	//省/市下拉列表
 	new PCAS("P2","C2","北京市");
 	$(document).ready(function() 
