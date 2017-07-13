@@ -9,7 +9,7 @@
                 <ul>
                     <li class="index"><a href="/">首页</a></li>
                     <li class="qc"><a href="/homes/#">鱼塘</a></li>
-                    <li class="qc"><a href="/homes/#">发布闲置</a></li>
+                    <li class="qc"><a href="{{url('/goods/index')}}">发布闲置</a></li>
                     <li class="qc"><a href="/homes/#">团购</a></li>
                     <li class="qc last"><a href="/homes/#">大包装</a></li>
                 </ul>

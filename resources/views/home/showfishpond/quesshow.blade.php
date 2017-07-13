@@ -14,11 +14,17 @@
                     <article class="media">
                         <div class="media-body">
                             <br>
-                            楼层{{$v['spid']}}&nbsp;&nbsp;&nbsp;&nbsp;回答者 <span class=" p-head uname">{{$users[$k][0]['uname']}}</span>
+                            楼层{{$k+1}}&nbsp;&nbsp;&nbsp;&nbsp;回答者 <span class=" p-head uname">{{$users[$k][0]['uname']}}</span>
                             <br>
                             <br>
                             @if($v['tospid'])
-                                <div id="towho" style="color: #0000C2">回复楼层{{$v['tospid']}}<br>
+                                <div id="towho" style="color: #0000C2">回复楼层
+                                                        @for($i=0;$i<count($quesspone);$i++)
+                                                            @if( $quesspone[$i]['spid'] == $v['tospid'] )
+                                                                {{$i+1}}
+                                                            @endif
+                                                         @endfor
+                                                        <br>
                                         {{substr(strip_tags(\App\Http\Model\Quesspone::where('spid',$v['tospid'])->first()['content']),0,30)}}...
                                 </div>
                             @endif
