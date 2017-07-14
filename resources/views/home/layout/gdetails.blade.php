@@ -10,12 +10,14 @@
     <link href="/homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
     <link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
     <link href="/homes/css/personal.css" rel="stylesheet" type="text/css">
+    <link href="{{asset('/homes/css/refstyle.css')}}" rel="stylesheet" type="text/css">
     <link href="/homes/css/infstyle.css" rel="stylesheet" type="text/css">
     <link href="{{url('homes/css/addstyle.css')}}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/homes/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link href="/homes/basic/css/demo.css" rel="stylesheet" type="text/css" />
     <link type="text/css" href="/homes/css/optstyle.css" rel="stylesheet" />
     <link type="text/css" href="/homes/css/style.css" rel="stylesheet" />
+    <link type="text/css" href="/homes/css/report.css" rel="stylesheet" />
 
 
     <script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>  
@@ -28,6 +30,7 @@
     <script type="text/javascript" src="/homes/js/jquery.imagezoom.min.js"></script>
     <script type="text/javascript" src="/homes/js/jquery.flexslider.js"></script>
     <script type="text/javascript" src="/homes/js/list.js"></script>
+    <script type="text/javascript" src="{{asset('/homes/js/jquery-1.7.2.min.js')}}"></script>
 
 </head>
 

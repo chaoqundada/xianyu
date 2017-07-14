@@ -207,6 +207,8 @@
                       </a>
                       <ul class="sub">
                           <li><a class="" href="{{url('/admin/config')}}">配置详情</a></li>
+                          <li><a class="" href="{{url('/admin/config/report')}}">举报类别配置</a></li>
+                          <li><a class="" href="{{url('/admin/config/show')}}">举报类别详情</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">

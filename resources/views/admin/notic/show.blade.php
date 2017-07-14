@@ -22,7 +22,8 @@
       <div class="form-group">
           <label class="col-lg-2 control-label">商品描述</label>
           <div class="col-lg-10">
-              <textarea name="" id="" class="form-control" cols="30" rows="10">{{$goods['gdesc']}}</textarea>
+              {!! $goods['gdesc']!!}
+
           </div>
       </div>
       <div class="form-group">

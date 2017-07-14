@@ -87,6 +87,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','adm
 	Route::controller('/pass','Home\PassController');
 	//订单操作
 	Route::controller('/order','Home\OrderController');
+	//举报显示
+	Route::controller('/report','Home\ReportController');
 
 	//我的鱼塘
 	Route::controller('/myfishpond','Home\MyfishpondController');

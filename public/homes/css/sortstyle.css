@@ -50,7 +50,7 @@ img{width:100%;}
 .menu-srot .sort-side{ overflow:hidden }
 .sort-side .dl-sort{ float:left; width:100%; }
 .sort-side dt { margin-top: 5px; font-size: 14px; font-weight: bold; color: #db3e54; text-align: left;padding-left:10px ;}
-.sort-side dd { float:left; padding:6px; width: 33.33%;}
+.sort-side dd { float:left; padding:6px;}
 .sort-side dd a{ float:left; width:100%; letter-spacing:0.5px;  line-height: 14px;  color:#888; white-space:nowrap; overflow: hidden; text-overflow:ellipsis; padding: 3px 10px; border:1px solid #e6e6e6;text-align: center; }
 .sort-side dd a span.red{ color:#DB3E54; }
 
@@ -65,7 +65,7 @@ img{width:100%;}
 
 @media only screen and (min-width: 640px) {
 #nav{margin-top:0px ;}
-.sort-side .dl-sort {float: left;width:50%;font-size:16px ;}
+.sort-side .dl-sort {float: left;width:100%;font-size:16px ;}
 .category-content .category {width: 180px;}
 .category-content .category-info {width:176px;overflow: hidden;}
 .category-content .category-list li {height:80px;text-align: center;}

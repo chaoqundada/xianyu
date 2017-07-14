@@ -13,6 +13,10 @@
     <link href="/homes/css/infstyle.css" rel="stylesheet" type="text/css">
     <link href="{{url('homes/css/addstyle.css')}}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/homes/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link href="/homes/css/report.css" rel="stylesheet" type="text/css">
+  <!--   <link href="/homes/basic/css/demo.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" href="/homes/css/optstyle.css" rel="stylesheet" />
+    <link type="text/css" href="/homes/css/style.css" rel="stylesheet" /> -->
 
 
     <script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>  

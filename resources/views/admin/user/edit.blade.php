@@ -4,7 +4,7 @@
   @if (session('error'))
         <div class="alert alert-block alert-danger fade in" id="error">
         
-            <font size="5"><i class="icon-ok-sign"></i>{{session('error')}}</font>
+            <font size="5"><i class="icon-remove-sign"></i>{{session('error')}}</font>
            
         </div>
     @endif
@@ -12,7 +12,7 @@
     @if (session('succee'))
         <div class="alert alert-block alert-success fade in" id="error">
         
-            <font size="5"><i class="icon-ok-sign"></i>添加成功</font>
+            <font size="5"><i class="icon-ok-sign"></i>session('succee')</font>
         </div>
     @endif
    
