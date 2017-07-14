@@ -117,14 +117,14 @@
 											</div>
 										</li>
 										<li class="td td-change">
-											@if($v['ostatic'] == 4)
+											@if($v['ostatic'] == 3)
 												<div  onclick="receipts({{$v['oid']}})"  class="am-btn am-btn-danger anniu">
 												确认收货</div>
 											@elseif($v['ostatic'] == 1)
 												 <button type="button" class="btn btn-primary" style="margin-bottom:10px" data-toggle="modal" data-target="#createAlbum">
 												  付款
 												</button>
-											@elseif($v['ostatic'] == 3)
+											@elseif($v['ostatic'] == 2)
 												<div class="am-btn am-btn-danger anniu">
 												提醒发货</div>
 											@endif
@@ -516,7 +516,6 @@
 	//申请退货
 	function fund(oid)
 	{
-		// {{url('order/refund')}}/{{$v['oid']}}
 		$.post("{{url('order/fund')}}/"+oid,{'_token':"{{csrf_token()}}"},function(msg)
 			{
 				//判断结果
