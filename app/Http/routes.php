@@ -46,9 +46,9 @@ Route::controller('/admin/fishpond','Admin\FishpondController');
 	Route::controller('/admin/tgoods','Admin\TgoodsController');
 	//后台商品路由
 	Route::controller('/admin/goods','Admin\GoodsController');
-
+//后台权限管理组
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','admin']],function(){
- 	Route::controller('user','UserController');
+	Route::controller('user','UserController');
 });
 
 
