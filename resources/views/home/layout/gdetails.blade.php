@@ -30,7 +30,9 @@
     <script type="text/javascript" src="/homes/js/jquery.imagezoom.min.js"></script>
     <script type="text/javascript" src="/homes/js/jquery.flexslider.js"></script>
     <script type="text/javascript" src="/homes/js/list.js"></script>
-    <script type="text/javascript" src="{{asset('/homes/js/jquery-1.7.2.min.js')}}"></script>
+
+    <script src="/layer/layer.js" type="text/javascript"></script>
+
 
 </head>
 
