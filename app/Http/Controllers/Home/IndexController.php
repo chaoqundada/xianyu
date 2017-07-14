@@ -17,6 +17,7 @@ class IndexController extends Controller
         $keylist = 'LIST:YT';
         $keyhash = 'HASH:YT:';
     	$ytlist =\Redis::lrange($keylist,0,-1);
+        $yts=[];
     	if($ytlist){
             foreach ($ytlist as $v){
                 $yts[]=\Redis::hgetall($keyhash.$v);
