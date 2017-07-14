@@ -126,9 +126,65 @@
 				</li>
 			
 				
-				<div style="float:left; margin-top:58px; margin-left:-265px;">
-						<a><span class="glyphicon glyphicon-heart" aria-hidden="">收藏</span></a>
+				<div style="float:left; margin-top:58px; margin-left:-265px;" id="coll" >
+						<a href="javascript:;"  id="collGood" ><span class="glyphicon glyphicon-heart"  id="coll" aria-hidden="">收藏</span></a>
 				</div>
+
+		<script>
+			$(function(){
+				$('#collGood').click(function(){
+
+					$.get("{{url('home/user_coll/coll/'.$data['gid'])}}",{},function(data){
+						if(data.status == 1){
+							// alert(1);
+							layer.msg(data.msg,{icon:1});
+						
+						}
+						if(data.status == 2){
+							// alert(3);
+							layer.msg(data.msg,{icon:2});
+							location.href='{{url("login/login")}}';
+						}
+						if(data.status == 3){
+							// alert(3);
+							layer.msg(data.msg,{icon:2});
+						}
+						
+					})
+				})
+			})
+			// function CollGood(gid){
+    			// onclick="CollGood({{$data['gid']}})"
+    		// layer.confirm('您确定要收藏吗？',{
+     	// 		 btn: ['确定','取消'] //按钮
+      // 		}, function(){
+        
+      //  		 $.post("{{url('home/user_coll/coll')}}/"+gid,{'_token':"{{csrf_token()}}"},function(data){
+
+
+
+      //     		if(data.status == 1){
+		    //         location.href = location.href;
+		    //         // $('#coll').css('color','red');
+		    //         layer.msg(data.msg,{icon:0});
+		            
+		    //       }else if(data.status == 2){
+
+		    //       	layer.msg(data.msg,{icon:2});
+		    //       	location.href ='{{url('/login/login')}}';
+		    //       }else{
+		    //       	layer.msg(data.msg,{icon:1});
+
+		    //       }
+		    //       });
+
+        
+		    // },function(){
+
+
+		    // });
+  		   // }	
+		</script>		
 				
 			</div>
 			

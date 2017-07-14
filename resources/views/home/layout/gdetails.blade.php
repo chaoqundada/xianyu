@@ -29,6 +29,8 @@
     <script type="text/javascript" src="/homes/js/jquery.flexslider.js"></script>
     <script type="text/javascript" src="/homes/js/list.js"></script>
 
+    <script src="/layer/layer.js" type="text/javascript"></script>
+
 
 
 
