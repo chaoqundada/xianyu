@@ -1087,7 +1087,7 @@
                         </div>
                         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                     </div>
-                    <a href="/homes/# "><img src="{{url('/uploads/fishpond/'.$yts[0]['ytpic'])}}" /></a>
+                    <a href="{{url('fishpond/index?yid='.$yts[0]['yid'])}}"><img src="{{url('/uploads/fishpond/'.$yts[0]['ytpic'])}}" /></a>
                 </div>
                 @else
                 <div class="am-u-sm-7 am-u-md-4 text-two sug">
@@ -1115,7 +1115,7 @@
                             </div>
                             <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                         </div>
-                        <a href="/homes/# "><img src="{{url('/uploads/fishpond/'.$yts[1]['ytpic'])}}" /></a>
+                        <a href="{{url('fishpond/index?yid='.$yts[1]['yid'])}}"><img src="{{url('/uploads/fishpond/'.$yts[1]['ytpic'])}}" /></a>
                     </div>
                 @else
                 <div class="am-u-sm-7 am-u-md-4 text-two">
@@ -1143,7 +1143,7 @@
                         </div>
                         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                     </div>
-                    <a href="/homes/# "><img src="{{url('/uploads/fishpond/'.$yts[2]['ytpic'])}}" /></a>
+                    <a href="{{url('fishpond/index?yid='.$yts[2]['yid'])}}"><img src="{{url('/uploads/fishpond/'.$yts[2]['ytpic'])}}" /></a>
                 </div>
                 @else
                 <div class="am-u-sm-3 am-u-md-2 text-three big">
@@ -1171,7 +1171,7 @@
                         </div>
                         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                     </div>
-                    <a href="/homes/# "><img src="{{url('/uploads/fishpond/'.$yts[3]['ytpic'])}}" /></a>
+                    <a href="{{url('fishpond/index?yid='.$yts[3]['yid'])}}"><img src="{{url('/uploads/fishpond/'.$yts[3]['ytpic'])}}" /></a>
                 </div>
                 @else
                 <div class="am-u-sm-3 am-u-md-2 text-three sug">
@@ -1199,7 +1199,7 @@
                         </div>
                         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                     </div>
-                    <a href="/homes/# "><img src="{{url('/uploads/fishpond/'.$yts[4]['ytpic'])}}" /></a>
+                    <a href="{{url('fishpond/index?yid='.$yts[4]['yid'])}}"><img src="{{url('/uploads/fishpond/'.$yts[4]['ytpic'])}}" /></a>
                 </div>
                 @else
                 <div class="am-u-sm-3 am-u-md-2 text-three ">
@@ -1227,7 +1227,7 @@
                         </div>
                         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                     </div>
-                    <a href="/homes/# "><img src="{{url('/uploads/fishpond/'.$yts[5]['ytpic'])}}" /></a>
+                    <a href="{{url('fishpond/index?yid='.$yts[5]['yid'])}}"><img src="{{url('/uploads/fishpond/'.$yts[5]['ytpic'])}}" /></a>
                 </div>
                 @else
                 <div class="am-u-sm-3 am-u-md-2 text-three last big ">

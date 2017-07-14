@@ -160,12 +160,22 @@
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon-book"></i>
-                          <span>后台户管理</span>
+                          <span>后台用户管理</span>
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
                           <li><a class="" href="{{url('admin/user/index')}}">后台用户列表</a></li>
                           <li><a class="xxxx" href="{{url('admin/user/add')}}">添加后台用户</a></li>
+                      </ul>
+                  </li>
+                   <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>前台用户管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{url('admin/homeuser/index')}}">前台用户列表</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">

@@ -12,6 +12,7 @@
     <link href="/homes/css/infstyle.css" rel="stylesheet" type="text/css">
     <link href="{{url('homes/css/addstyle.css')}}" rel="stylesheet" type="text/css">
     <link href="{{url('homes/css/orstyle.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/homes/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 
     <script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
@@ -19,9 +20,8 @@
     <script language="javascript" src="{{url('layer/layer.js')}}"></script>
     <link href="{{url('homes/css/stepstyle.css')}}" rel="stylesheet" type="text/css">
     <link href="{{url('homes/css/systyle.css')}}" rel="stylesheet" type="text/css">
-
+    <script src="/homes/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
-
 <body>
 <!--头 -->
 <header>
@@ -147,8 +147,8 @@
             <li class="person">
                 <a href="#">我的交易</a>
                 <ul>
-                    <li><a href="order.html">订单管理</a></li>
-                    <li> <a href="change.html">退款售后</a></li>
+                    <li><a href="{{url('order/index')}}">订单管理</a></li>
+                    <li> <a href="{{url('order/refund')}}">退款售后</a></li>
                 </ul>
             </li>
             <li class="person">

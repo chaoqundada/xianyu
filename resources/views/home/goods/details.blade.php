@@ -112,28 +112,37 @@
 			</div>
 			
 			<div class="pay">
-
-				
 				<li>
 					<div class="clearfix tb-btn tb-btn-buy theme-login">
-						<a id="LikBuy" title="点此按钮到下一步确认购买信息" href="#">立即购买</a>
+						<a id="LikBuy" onclick="buy({{$data['gid']}})" title="点此按钮到下一步确认购买信息" href="javascript:;">我想要</a>
 					</div>
 				</li>
 				<li>
 					<div class="clearfix tb-btn tb-btn-basket theme-login">
-						<a id="LikBasket" title="加入购物车" href="#"><i></i>联系卖家</a>
+						<a id="LikBasket" title="联系卖家" href="#"><i></i>联系卖家</a>
 					</div>
-				</li>
-			
-				
+				</li>				
 				<div style="float:left; margin-top:58px; margin-left:-265px;">
 						<a><span class="glyphicon glyphicon-heart" aria-hidden="">收藏</span></a>
 				</div>
-				
-			</div>
-			
+			</div>			
 		</div>
-		
+		<script>
+			function buy(gid)
+			{
+				//付款生成订单
+				$.post("{{url('order/buy')}}/"+gid,{'_token':"{{csrf_token()}}"},function(msg)
+					{
+						//判断结果
+						if(msg == 1){
+							location.href= "{{url('order/add')}}/"+gid;
+						}else{
+							location.href = location.href;
+							layer.msg('商品下架或已售出', {icon: 5});
+						}
+					});
+			}
+		</script>
 
 		<div class="clear"></div>
 

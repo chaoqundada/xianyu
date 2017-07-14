@@ -11,7 +11,6 @@
 	<div class="user-infoPic">
 
 		<div class="filePic">
-			<input type="file" class="inputPic" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
 			<img class="am-circle am-img-thumbnail" src="{{url($data['upic'])}}" alt="">
 		</div>
 		<p class="am-form-help">头像</p>
@@ -45,7 +44,7 @@
 			<!-- 头像 -->
 			<div class="am-form-group">
 				<label for="user-email" class="am-form-label">用户头像</label>
-				<div class="am-form-content">
+				<div class="filePic">
 					<input id="user-email" name='upic' value="{{$data['upic']}}" placeholder="Email" type="file">
 				</div>
 			</div>
@@ -92,7 +91,7 @@
 			</div>
 			{{csrf_field()}}
 			<div class="info-btn" >
-					<input type="submit"  value="保存修改">
+					<input class="am-btn am-btn-danger" type="submit"  value="保存修改">
 			</div>
 		</form>
 	</div>

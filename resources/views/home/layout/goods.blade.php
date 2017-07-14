@@ -13,9 +13,6 @@
     <link href="/homes/css/infstyle.css" rel="stylesheet" type="text/css">
     <link href="{{url('homes/css/addstyle.css')}}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/homes/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-  <!--   <link href="/homes/basic/css/demo.css" rel="stylesheet" type="text/css" />
-    <link type="text/css" href="/homes/css/optstyle.css" rel="stylesheet" />
-    <link type="text/css" href="/homes/css/style.css" rel="stylesheet" /> -->
 
 
     <script src="/homes/AmazeUI-2.4.2/assets/js/jquery.min.js" type="text/javascript"></script>  
@@ -23,15 +20,6 @@
     <script src="/homes/AmazeUI-2.4.2/assets/js/amazeui.js" type="text/javascript"></script>
     <script language="javascript" src="{{url('homes/js/PCASClass.js')}}"></script>
     <script type="text/javascript" src="{{asset('layer/layer.js')}}"></script>
-   <!--  // <script type="text/javascript" src="/homes/basic/js/jquery-1.7.min.js"></script>
-    // <script type="text/javascript" src="/homes/basic/js/quick_links.js"></script>
-    // <script type="text/javascript" src="/homes/js/jquery.imagezoom.min.js"></script>
-    // <script type="text/javascript" src="/homes/js/jquery.flexslider.js"></script>
-    // <script type="text/javascript" src="/homes/js/list.js"></script> -->
-
-
-
-
 </head>
 
 <body>
@@ -43,10 +31,15 @@
             <div class="am-container header">
                 <ul class="message-l">
                     <div class="topMessage">
-                        <div class="menu-hd">
+                       <div class="menu-hd">
+                        @if(session('user'))
+                            <span class="h">欢迎:{{session('user')['uname']}}登录</span>
+                            <a href="{{url('login/outlogin')}}" target="_top">退出</a>
+                        @else
                             <a href="{{url('login/login')}}" target="_top" class="h">亲，请登录</a>
                             <a href="{{url('user/add')}}" target="_top">免费注册</a>
-                        </div>
+                        @endif
+                    </div>
                     </div>
                 </ul>
                 <ul class="message-r">

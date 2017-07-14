@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
      @if (session('error'))
         <div class="alert alert-block alert-danger fade in" id="error">
         

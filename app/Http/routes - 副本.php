@@ -34,6 +34,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'login'],func
 	Route::controller('config','ConfigController');
 	//links 友情链接
 	Route::controller('links','LinksController');
+<<<<<<< HEAD
 
 	// 后台轮播图片上传
 	Route::post('upload','UplodaController@upload');
@@ -44,8 +45,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'login'],func
 
 	//后台导航路由
 	Route::controller('nav','NavController');
-	//后台管理前台用户
+=======
+	//前台用户
 	Route::controller('homeuser','HomeuserController');
+>>>>>>> origin/yanyushuang
 });
 
 //后台鱼塘
@@ -56,7 +59,10 @@ Route::controller('/admin/fishpond','Admin\FishpondController');
 	Route::controller('/admin/goods','Admin\GoodsController');
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/yanyushuang
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','admin']],function(){
  	Route::controller('user','UserController');
 });
@@ -73,6 +79,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','adm
 	//前台商品路由
 	Route::controller('/goods','Home\GoodsController');
 
+<<<<<<< HEAD
 	
 
 	//导航
@@ -81,6 +88,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','adm
 	// 轮播
 	//Route::controller('slide','Home\SlideController');
 
+=======
+>>>>>>> origin/yanyushuang
 	//地址
 	Route::controller('/addr','Home\AddrController');
 	//安全设置
@@ -93,5 +102,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','adm
 	//鱼塘展示
     Route::controller('/fishpond','Home\FishpondController');
 
+<<<<<<< HEAD
 
+    //前台商品路由
+	Route::controller('/goods','Home\GoodsController');
 
+=======
+    
+>>>>>>> origin/yanyushuang

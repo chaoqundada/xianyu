@@ -37,6 +37,7 @@ class GoodsController extends Controller
     {   
         // 把商品类别查询出来
         $res = DB::table('type') -> orderBy('npath') -> get();
+        $newarr = [];
         if(!empty($res)){
             foreach($res as $k=>$v){
                 $n = substr_count($v['npath'], '-')-2;
@@ -100,6 +101,7 @@ class GoodsController extends Controller
     {   
         // 把商品类别查询出来
         $res = DB::table('type') -> orderBy('npath') -> get();
+        $newarr = [];
         if(!empty($res)){
             foreach($res as $k=>$v){
                 $n = substr_count($v['npath'], '-')-2;

@@ -141,15 +141,24 @@ class UserController extends Controller
     *个人中心
     */
     public function getIndex()
-    {
-        return view('home/user/index');
+    {   
+        //个人中心的标识
+        session(['detil'=>true]);
+        //判断是否登录
+        if(!session('user')){
+            // return redirect('/login/login') -> with('error','请先登录');
+            return view('home/password/password',['status'=>'没有登录','url'=>'/login/login','addr'=>'请先登录']);
+        }
+        //获取用户详情
+        $data = DB::table('home_user_detil') -> where('uid',session('user')['uid']) -> first();
+        //引入视图
+        return view('home/user/index',['data'=>$data]);
     }
     /**
     *用户详情
     */
     public function getDetil()
-    {  
-        
+    {      
         //获取用户详情
         $data = DB::table('home_user_detil') -> where('uid',session('user')['uid']) -> first();
         //引入视图
