@@ -17,7 +17,7 @@ class NoticController extends Controller
     {
         if(session('admin_notic'))
         {
-            session(['admin_notic'=>nll]);
+            session(['admin_notic'=>null]);
         }
         
         if($request->has('a'))

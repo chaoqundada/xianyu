@@ -72,7 +72,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','adm
 	Route::controller('/addr','Home\AddrController');
 	//安全设置
 	Route::controller('/pass','Home\PassController');
-
+	//举报显示
+	Route::controller('/report','Home\ReportController');
 
 
 	//我的鱼塘
