@@ -47,6 +47,9 @@ class LoginController extends Controller
                 $arr['dtime'] = time(); 
                 $res = DB::table('home_user') -> where('uid',$user['uid'])->update($arr);
                 if($res){
+                    if(session('detil')){
+                        return redirect('/user/index');
+                    }
                 	return redirect('/');
                 }
                 
@@ -62,6 +65,7 @@ class LoginController extends Controller
     {   
         //删除session
         session() -> forget('user');
+        session() -> forget('detil');
         //返回首页
     	return redirect('/');
     }

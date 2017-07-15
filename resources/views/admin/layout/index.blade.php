@@ -20,7 +20,7 @@
     <!-- Custom styles for this template -->
     <link href="{{asset('/admins/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('/admins/css/style-responsive.css')}}" rel="stylesheet" />
-
+    <script type="text/javascript" src="{{asset('layer/layer.js')}}"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
     <!--[if lt IE 9]>
       <script src="/admins/js/html5shiv.js"></script>
@@ -38,7 +38,6 @@
             </div>
             <!--logo start-->
             <a href="#" class="logo"><span>管理列表</span></a>
-
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
@@ -55,7 +54,6 @@
                           @endif
                         </a>
               
-
                     </li>
                     <!-- inbox dropdown end -->
                     <!-- notification dropdown start-->
@@ -162,13 +160,22 @@
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon-book"></i>
-                          <span>后台户管理</span>
+                          <span>后台用户管理</span>
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
                           <li><a class="" href="{{url('admin/user/index')}}">后台用户列表</a></li>
                           <li><a class="xxxx" href="{{url('admin/user/add')}}">添加后台用户</a></li>
-
+                      </ul>
+                  </li>
+                   <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>前台用户管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{url('admin/homeuser/index')}}">前台用户列表</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -221,8 +228,8 @@
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="">导航列表</a></li>
-                          <li><a class="" href="">添加导航</a></li>
+                          <li><a class="" href="{{url('admin/nav/index')}}">导航列表</a></li>
+                          <li><a class="" href="{{url('admin/nav/add')}}">添加导航</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -232,8 +239,8 @@
                           <span class="arrow"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" href="">轮播列表</a></li>
-                          <li><a class="" href="">添加轮播</a></li>
+                          <li><a class="" href="{{url('admin/slide/index')}}">轮播列表</a></li>
+                          <li><a class="" href="{{url('admin/slide/add')}}">添加轮播</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -244,6 +251,7 @@
                       </a>
                       <ul class="sub">
                           <li><a class="xxxx" href="{{url('/admin/fishpond/index')}}">鱼塘列表</a></li>
+                          <li><a class="xxxx" href="{{url('/admin/fishpond/recommend')}}">鱼塘推荐</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -330,7 +338,6 @@
             @section('content')
 
             @show
-
           </section>
           <!-- 内容结束 -->
       </section>
@@ -339,7 +346,6 @@
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="/admins/js/jquery.js"></script>
-
     <script src="/admins/js/bootstrap.min.js"></script>
     <script src="/admins/js/jquery.scrollTo.min.js"></script>
     <script src="/admins/js/jquery.nicescroll.js" type="text/javascript"></script>
@@ -384,7 +390,6 @@
             }
         })
     })
-
 
   </script>
 

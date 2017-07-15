@@ -7,10 +7,10 @@
 			<div class="m-bg"></div>
 			<div class="m-userinfo">
 				<div class="m-baseinfo">
-					<a href="information.html">
-						<img src="/homes/images/getAvatar.do.jpg">
+					<a href="javascript:;">
+						<img src="{{url($data['upic'])}}">
 					</a>
-					<em class="s-name">(小叮当)<span class="vip1"></em>
+					<em class="s-name">({{session('user')['uname']}})<span class="vip1"></em>
 					<div class="s-prestige am-btn am-round">
 						</span>会员福利</div>
 				</div>
@@ -19,7 +19,7 @@
 						<a href="news.html"><i class="am-icon-bell-o"></i>消息</a>
 					</div>
 					<div class="m-address">
-						<a href="address.html" class="i-trigger">我的收货地址</a>
+						<a href="{{url('addr/add')}}" class="i-trigger">我的收货地址</a>
 					</div>
 				</div>
 			</div>
@@ -73,11 +73,11 @@
 				<a class="i-load-more-item-shadow" href="order.html">全部订单</a>
 			</div>
 			<ul>
-				<li><a href="order.html"><i><img src="/homes/images/pay.png"/></i><span>待付款</span></a></li>
-				<li><a href="order.html"><i><img src="/homes/images/send.png"/></i><span>待发货<em class="m-num">1</em></span></a></li>
-				<li><a href="order.html"><i><img src="/homes/images/receive.png"/></i><span>待收货</span></a></li>
-				<li><a href="order.html"><i><img src="/homes/images/comment.png"/></i><span>待评价<em class="m-num">3</em></span></a></li>
-				<li><a href="change.html"><i><img src="/homes/images/refund.png"/></i><span>退换货</span></a></li>
+				<li><a href="{{url('order/index')}}"><i><img src="/homes/images/pay.png"/></i><span>待付款</span></a></li>
+				<li><a href="{{url('order/index')}}"><i><img src="/homes/images/send.png"/></i><span>待发货<em class="m-num">1</em></span></a></li>
+				<li><a href="{{url('order/index')}}"><i><img src="/homes/images/receive.png"/></i><span>待收货</span></a></li>
+				<li><a href="{{url('order/index')}}"><i><img src="/homes/images/comment.png"/></i><span>待评价<em class="m-num">3</em></span></a></li>
+				<li><a href="{{url('order/index')}}"><i><img src="/homes/images/refund.png"/></i><span>退换货</span></a></li>
 			</ul>
 		</div>
 		<!--九宫格-->
@@ -314,12 +314,51 @@
 		</div>
 		<div class="s-care s-care-noweather">
 			<div class="s-date">
-				<em>21</em>
-				<span>星期一</span>
-				<span>2015.12</span>
+				<em id="em"></em>
+				<span id="span1"></span>
+				<span id="span2"></span>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		$(function()
+			{
+				var date = new Date();
+				//获取几号
+				var hao = date.getDate();
+				
+				$('#em').text(hao);
+				//获取星期
+				switch(date.getDay()){
+					case 0:
+						$('#span1').text('星期日');
+						break;
+					case 1:
+						$('#span1').text('星期一');
+						break;
+					case 2:
+						$('#span1').text('星期二');
+						break;
+					case 3:
+						$('#span1').text('星期三');
+						break;
+					case 4:
+						$('#span1').text('星期四');
+						break;
+					case 5:
+						$('#span1').text('星期五');
+						break;
+					case 6:
+						$('#span1').text('星期六');
+						break;
+				}
+				//获取月份
+				var month = date.getMonth()+1;
+				//获取年份
+				var year = date.getFullYear();
+				$('#span2').text(year+'.'+month);
+ 			});
+	</script>
 	<!--新品 -->
 	<div class="new-goods">
 		<div class="s-bar">

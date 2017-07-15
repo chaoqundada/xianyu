@@ -29,29 +29,37 @@
       </tr>
       @endforeach
   </table>
-    <div class="container" style="margin-left:-15px">
+    <div class="container" style="margin-left:-15px;float:left;">
       {!! $data->render() !!}
+    </div>
+    <div style="float:right;margin-top:18px;margin-right:30px;">
+        <form class="form-inline" action="/admin/goods/index" method="get">
+          <div class="form-group">
+            <input type="text" name="gids"class="form-control"  placeholder="请输入ID">
+          </div>
+          <button type="submit" class="btn btn-primary">搜索</button>
+      </form>
     </div>
 </section>
 <script>
-
+   
         function fun(gid){
             //询问框
             layer.confirm('是否确认删除？', {
                 btn: ['确定','取消'] //按钮
             }, function(){
                 $.post("/admin/goods/delete/"+gid,{'_method':'post','_token':"{{csrf_token()}}"},function(data){
-                if(data.status == 0){
-                    
-                    layer.msg(data.msg, {icon: 6});
-                    location.href = "{{url('admin/goods/index')}}";
-                }else{
-                    location.href = location.href;
-                    layer.msg(data.msg, {icon: 5});
-                }
+                    if(data.status == 0){
+                        
+                        layer.msg(data.msg, {icon: 6});
+                        location.href = "{{url('admin/goods/index')}}";
+                    }else{
+                        location.href = location.href;
+                        layer.msg(data.msg, {icon: 5});
+                    }
                 });
 
-            }
+            });
 
         }
 

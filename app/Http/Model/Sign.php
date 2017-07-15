@@ -10,4 +10,8 @@ class Sign extends Model
     protected $primaryKey='husid';
     public $timestamps = false;
     protected $guarded = [];
+    public function yt()
+    {
+        return $this->belongsTo('App\Http\Model\Yt','yid','yid');
+    }
 }

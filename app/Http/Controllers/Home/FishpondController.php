@@ -29,7 +29,8 @@ class FishpondController extends Controller
             return redirect('/');
         }
         $ytnotic=Ytnotic::where('yid',$request->input('yid'))->get();
-        return view('home.showfishpond.index',['yt'=>$yt,'ytnotic'=>$ytnotic]);
+        $goods= $yt->good()->paginate(2);
+        return view('home.showfishpond.index',['yt'=>$yt,'ytnotic'=>$ytnotic,'goods'=>$goods]);
     }
 
     public function getQueslist(Request $request)

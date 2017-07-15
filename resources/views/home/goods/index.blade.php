@@ -19,11 +19,11 @@
 				<th class="action">操作</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody >
 			@foreach($data as $k=>$v)
 			<tr>
 				<td class="img">
-					<a href="/goods/details/{{$v['gid']}}"><i><img  src="/{{$v['gsmallpic']}}" style="width:100px"></i></a>
+					<a href="/goods/details/{{$v['gid']}}"><i><img  src="/{{$v['gsmallpic']}}" style="width:100px;height:100px;"></i></a>
 					<input type="hidden" name="gsmallpic" value="{{$v['gsmallpic']}}">
 				</td>
 				<td class="time" style="width:150px">
@@ -47,26 +47,17 @@
 				</td>
 				<td class="operation">
 					@if($v['gstatic'] == 1)
-
 						<a href="/goods/lower/{{$v['gid']}}">下架</a>
-					
 					@endif
-
 					@if($v['gstatic'] == 2)
-
 						<a href="/goods/upper/{{$v['gid']}}">上架</a>
-					
 					@endif
-					
 					<a href="/goods/edit/{{$v['gid']}}">修改</a>
 					<a href="javascript:;" onclick="DelGoods({{$v['gid']}})">删除</a>
 				</td>
 			</tr>
 			@endforeach
-
 		</tbody>
-		
-		
 	</table>
 		<div class="container" style="margin-left:-15px">
 			{!! $data->render() !!}

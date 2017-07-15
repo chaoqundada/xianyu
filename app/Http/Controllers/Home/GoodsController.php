@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Model\Sign;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -36,6 +37,7 @@ class GoodsController extends Controller
     {   
         // 把商品类别查询出来
         $res = DB::table('type') -> orderBy('npath') -> get();
+        $newarr = [];
         if(!empty($res)){
             foreach($res as $k=>$v){
                 $n = substr_count($v['npath'], '-')-2;
@@ -43,23 +45,35 @@ class GoodsController extends Controller
                 $newarr[$k]['tname'] = str_repeat('&nbsp;',$n*8).$v['tname'];
             }                                                           
         }
+        $sign= Sign::where('uid',session('user')['uid'])->get();
+        $yt=[];
+        if ($sign){
+            foreach ($sign as $k=>$v){
+                $yt[]= $v->yt()->get();
+            }
+        }
         // 引入视图 分配信息到视图展示页
-        return view('home.goods.add',['res'=>$newarr]);
+        return view('home.goods.add',['res'=>$newarr,'yt'=>$yt]);
     }
 
     public function postInsert(Request $request)
     {       
         // 接收数据 除了_token  gsmall
-        $data = $request -> except('_token','gsmall');
+        $data = $request -> except('_token','gsmall','yid');
         $data['gtime'] = time();
+        $data['uid']=session('user')['uid'];
         // dd($data);
        
-        // 将数据插入数据库
-        $res = DB::table('goods') -> insert(['gname'=>$data['gname'],'gpic'=>$data['gpic'],'tid'=>$data['tid'],'gdesc'=>$data['gdesc'],'gtime'=>$data['gtime'],'gsmallpic'=>$data['gsmallpic']]);
-        // 判断是否插入成功
-        //dd($res);
-        if($res){
-            return redirect('goods/index');
+        // 将数据插入商品表
+        $gid = DB::table('goods') -> insertGetId($data);
+        if($gid){
+            //将数据插入商品鱼塘关联表
+            $res=DB::table('yt_good') -> insert(['yid'=>$request->input('yid'),'gid'=>$gid]);
+            if($res){
+                return redirect('goods/index');
+            }else{
+                return back() -> with('error','发布失败');
+            }
         }else{
             return back() -> with('error','发布失败');
         }
@@ -88,6 +102,7 @@ class GoodsController extends Controller
     {   
         // 把商品类别查询出来
         $res = DB::table('type') -> orderBy('npath') -> get();
+        $newarr = [];
         if(!empty($res)){
             foreach($res as $k=>$v){
                 $n = substr_count($v['npath'], '-')-2;
