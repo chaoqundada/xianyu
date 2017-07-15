@@ -23,12 +23,21 @@
 				height: 445px;
 
 			}
+			div .a_a{
+		    width: 122px;
+		    height: 30px;
+		    margin-top: 15px;
+		    float: right;
+		    margin-right: -130px;
+		    color: #3bcc0e;
+			}
 		</style>
 	</head>
 	<body>
 
 		<div class="login-boxtitle" >
-			<a href="home/demo.html"><img alt="" src="/homes/images/logobig.png" /></a>
+			<a href="/"><img alt="" src="/homes/images/logobig.png" /></a>
+			<a href="{{url('/login/login')}}" class="a_a"><span>已有账号?登录</span></a>
 		</div>
 
 		<div class="res-banner">
