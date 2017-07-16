@@ -77,7 +77,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','adm
 	//前台商品路由
 	Route::controller('/goods','Home\GoodsController');
 
-	
+	// 收藏
+	Route::controller('/home/user_coll','Home\User_collController');
 
 	//导航
 	Route::controller('/nav','Home\NavController');

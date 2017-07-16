@@ -88,7 +88,7 @@ class GoodsController extends Controller
 
         $arr = [1=>'上架','下架','售出'];
         // 查询商品
-        $data = DB::table('goods') -> where('gstatic','<',3) -> orderBy('gtime','desc') -> paginate(5);
+        $data = DB::table('goods') -> where('uid',session('user')['uid']) -> where('gstatic','<',3) -> orderBy('gtime','desc') -> paginate(5);
         // dd($data);
         // 引入视图
         return view('home.goods.index',['data'=>$data,'arr'=>$arr]);
