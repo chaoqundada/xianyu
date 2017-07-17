@@ -189,7 +189,7 @@
 			});
 
 		//手机号
-		var tel = $('input[name="phone"');
+		var tel = $('input[name="phone"]');
 		//用户聚焦
 		tel.focus(function()
 		{
