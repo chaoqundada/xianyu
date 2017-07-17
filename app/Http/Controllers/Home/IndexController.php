@@ -36,5 +36,30 @@ class IndexController extends Controller
     	
     }
 
+    /**
+    *前台搜索功能
+    *--hby
+    */
+    public function search(Request $request)
+    {
+        // dd($request->has('search'));
+        //判断如果为空则返回
+        if(!$request->has('search'))
+        {
+            return back();
+        }
+        //不为空则开始查询
+        $data =  DB::table('goods')
+                ->where('gname','like','%'.$request->input('search').'%')
+                ->orwhere('gdesc','like','%'.$request->input('search').'%')
+                ->orderBy('gpic','asc')
+                ->paginate(8);
+        // dd($data);
+        $cnt = count($data,true);
+        
+        $arr = ['search'=>$request->input('search')];
+        return view('home.goods.search',['data'=>$data,'arr'=>$arr,'cnt'=>$cnt]);
+    }
+
 
 }
