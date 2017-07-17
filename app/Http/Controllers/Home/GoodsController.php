@@ -8,9 +8,14 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use DB;
+use Validator;
 
 class GoodsController extends Controller
 {   
+    /**
+    * 上传缩略图
+    * author 王武杰
+    */
     public function postUpload()
     {   
 
@@ -47,22 +52,62 @@ class GoodsController extends Controller
         return view('home.goods.add',['res'=>$newarr]);
     }
 
+    /**
+    * 保存商品数据
+    * author 王武杰
+    */
     public function postInsert(Request $request)
-    {       
-        // 接收数据 除了_token  gsmall
-        $data = $request -> except('_token','gsmall');
+    {      
+        // 获取数据
+        $data = $request -> except('_token','gsmall','good_pics');
         $data['gtime'] = time();
-        // dd($data);
-       
-        // 将数据插入数据库
-        $res = DB::table('goods') -> insert(['gname'=>$data['gname'],'gpic'=>$data['gpic'],'tid'=>$data['tid'],'gdesc'=>$data['gdesc'],'gtime'=>$data['gtime'],'gsmallpic'=>$data['gsmallpic']]);
-        // 判断是否插入成功
-        //dd($res);
-        if($res){
+        $data['uid'] = session('user')['uid'];
+        //验证规则
+        $role =[
+           'gname'=>'required|between:2,30',
+           'gpic'=>'required|between:1,8',
+           'gsmallpic'=>'required',
+           'gdesc'=>'required|between:10,2000'
+        ];
+        //提示信息
+        $mess=[
+            'gname.required'=>'商品名称不能为空',
+            'gname.between'=>'商品名称在2到20个字符之间',
+            'gpic.required'=>'商品价格不能为空',
+            'gpic.between'=>'商品价格不得超过8位',
+            'gsmallpic.required'=>'必须上传商品缩略图',
+            'gdesc.required'=>'必须填写商品描述',
+            'gdesc.between'=>'商品描述在10到2000字符之间'
+        ];
+        //表单验证
+        $validator =  Validator::make($data,$role,$mess);
+        
+        if($validator->passes()){
+            // 将数据插入数据库
+            $res = DB::table('goods') -> insertGetId($data);
+            // 将上传文件移动到指定目录，并以新文件名命名
+            $file = Input::file('good_pics');
+          
+            foreach($file as $v){
+               
+                if($v->isValid()) {
+                    $entension = $v->getClientOriginalExtension();//上传文件的后缀名
+                    $newName = date('YmdHis') . mt_rand(1000, 9999) . '.' . $entension;
+
+                    // 将图片上传到本地服务器
+                    $path = $v->move(public_path() . '/uploads/small', $newName);
+                    // 返回文件的上传路径
+                    $filepath = 'uploads/small/' . $newName;
+                    
+                }
+                $tmp = DB::table('gpic') -> insert(['gpath'=>$filepath,'gid'=>$res]);
+            }
             return redirect('goods/index');
         }else{
-            return back() -> with('error','发布失败');
+            return back() -> withInput() -> withErrors($validator);
         }
+
+      
     }
 
     /**
@@ -74,7 +119,7 @@ class GoodsController extends Controller
 
         $arr = [1=>'上架','下架','售出'];
         // 查询商品
-        $data = DB::table('goods') -> where('gstatic','<',3) -> orderBy('gtime','desc') -> paginate(5);
+        $data = DB::table('goods') -> where('gstatic','<',3) -> where('uid',session('user')['uid']) -> orderBy('gtime','desc') -> paginate(5);
         // dd($data);
         // 引入视图
         return view('home.goods.index',['data'=>$data,'arr'=>$arr]);
@@ -95,14 +140,18 @@ class GoodsController extends Controller
                 $newarr[$k]['tname'] = str_repeat('&nbsp;',$n*8).$v['tname'];
             }                                                           
         }
-        // dd($res);
+        
         // 根据传入的ID 获取要修改的商品
         $data = DB::table('goods') -> where('gid',$id) ->first();
-        // dd($data);
+        
         // 将数据分配到视图
         return view('home.goods.doedit',['res'=>$newarr,'data'=>$data]);
     }
 
+    /**
+    * 保存修改数据
+    * author 王武杰
+    */
     public function postDoedit(Request $request,$id)
     {
         // 接收数据 除了_token  gsmall
