@@ -511,10 +511,6 @@
 	//申请退货
 	function fund(oid)
 	{
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/yanyushuang
 		$.post("{{url('order/fund')}}/"+oid,{'_token':"{{csrf_token()}}"},function(msg)
 			{
 				//判断结果

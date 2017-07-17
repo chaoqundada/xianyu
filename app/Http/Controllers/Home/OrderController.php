@@ -25,7 +25,7 @@ class OrderController extends Controller
         }else if($data['gstatic'] == 2){
             return 2;
         }else{
-            echo 1;
+            return 1;
         }
     }
     /**
@@ -58,6 +58,23 @@ class OrderController extends Controller
         $data['xtime'] = time();
         //获取地址ID
         $data['huaid'] = $request -> input('huaid');
+        //判断是否购买过
+        $goods = DB::table('order')
+            -> join('goods','order.gid','=','goods.gid')
+            -> where('order.uid',session('user')['uid'])
+            -> get();
+        //判断
+        if($goods){
+             //修改商品状态
+            $res2 = DB::table('goods') -> where('gid',$gid) -> update(['gstatic'=>3]);
+            //修改订单状态
+            $res3 = DB::table('order') -> where('gid',$gid) -> update(['ostatic'=>1]);
+            if($res2 && $res3){
+                return 1;
+            }else{
+                return 2;
+            }
+        }
         //存入数据
         $res = DB::table('order') -> insert($data);
         //修改商品状态
@@ -152,10 +169,11 @@ class OrderController extends Controller
     public function getRefund()
     {
         //查询出退款的商品
-        $data = DB::table('order')
-            -> join('goods','order.gid','=','goods.gid') 
+        $data = DB::table('goods')
+            -> join('order','goods.gid','=','order.gid') 
             -> where('order.ostatic',5)
             -> orwhere('order.ostatic',6)
+            -> where('order.uid','=',session('user')['uid'])  
             -> get();
         //申请退货
         $data5 = [];
@@ -171,13 +189,6 @@ class OrderController extends Controller
         }
     	//引入视图
     	return view('home/order/refund',['data5'=>$data5,'data6'=>$data6]);
-    }
-    /**
-    *退款完成
-    */
-    public function getWfund()
-    {
-
     }
     /**
     *取消订单

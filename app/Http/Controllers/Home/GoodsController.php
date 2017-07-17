@@ -270,6 +270,7 @@ class GoodsController extends Controller
             -> join('order','goods.gid','=','order.gid')
             -> where('goods.uid',session('user')['uid'])
             -> where('goods.gstatic',3)
+            -> where('order.ostatic','<',5)
             -> paginate(5);
         //引入视图
         return view('home.goods.out',['data'=>$data,'arr'=>$arr]);
@@ -298,11 +299,10 @@ class GoodsController extends Controller
             -> join('goods','order.gid','=','goods.gid') 
             -> join('home_user_addr','order.huaid','=','home_user_addr.huaid') 
             -> join('home_user','order.uid','=','home_user.uid') 
-            -> where('order.uid','=',session('user')['uid'])
             -> where('order.ostatic','=',5)
+            -> where('goods.uid','=',session('user')['uid'])            
             -> orderBy('order.rtime','desc')
             -> get();
-        // dd($data);
         //引入视图
         return view('home.goods.service',['data'=>$data]);
     }
