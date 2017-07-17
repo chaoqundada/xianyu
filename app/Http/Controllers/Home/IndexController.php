@@ -11,7 +11,6 @@ class IndexController extends Controller
 {
     public function index()
     {
-
     	$str = DB::table('dll')->first();
     	$links = DB::table('links')->get();
         $keylist = 'LIST:YT';
