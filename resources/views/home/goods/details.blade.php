@@ -48,24 +48,23 @@
 				</script>
 
 				<div class="tb-booth tb-pic tb-s310">
-					<a href="images/01.jpg"><img src="/homes/images/01_mid.jpg" alt="细节展示放大镜特效" rel="images/01.jpg" class="jqzoom" /></a>
+					<a href="{{url($data['gsmallpic'])}}"><img src="{{url($data['gsmallpic'])}}" alt="细节展示放大镜特效" rel="{{url($data['gsmallpic'])}}" class="jqzoom" /></a>
 				</div>
 				<ul class="tb-thumb" id="thumblist">
 					<li class="tb-selected">
 						<div class="tb-pic tb-s40">
-							<a href="#"><img src="/homes/images/01_small.jpg" mid="images/01_mid.jpg" big="images/01.jpg"></a>
+							<a href="#"><img src="{{url($data['gsmallpic'])}}" mid="{{url($data['gsmallpic'])}}" big="{{url($data['gsmallpic'])}}"></a>
 						</div>
 					</li>
+					@if($gpic)
+					@foreach($gpic as $k=>$v)
 					<li>
 						<div class="tb-pic tb-s40">
-							<a href="#"><img src="/homes/images/02_small.jpg" mid="images/02_mid.jpg" big="images/02.jpg"></a>
+							<a href="#"><img src="{{url($v['gpath'])}}" mid="{{url($v['gpath'])}}" big="{{url($v['gpath'])}}"></a>
 						</div>
 					</li>
-					<li>
-						<div class="tb-pic tb-s40">
-							<a href="#"><img src="/homes/images/03_small.jpg" mid="images/03_mid.jpg" big="images/03.jpg"></a>
-						</div>
-					</li>
+					@endforeach
+					@endif
 				</ul>
 			</div>
 
@@ -101,12 +100,9 @@
 					</li>
 				</ul>
 				<div class="clear"></div>
-				<div style="height:30px">
-					<div>所在地: &nbsp; &nbsp;  {{$data['gpic']}}</div>
-				</div>
 				
 				<div>
-					<div>发布者: &nbsp; &nbsp;  {{$data['gpic']}}</div>
+					<div>发布者: &nbsp; &nbsp;  {{$user['uname']}}</div>
 				</div>
 			
 			</div>
@@ -196,9 +192,12 @@
 						//判断结果
 						if(msg == 1){
 							location.href= "{{url('order/add')}}/"+gid;
-						}else{
+						}else if(msg == 2){
 							location.href = location.href;
 							layer.msg('商品下架或已售出', {icon: 5});
+						}else{
+							location.href = location.href;
+							layer.msg('无法购买自己的商品', {icon: 5});
 						}
 					});
 			}

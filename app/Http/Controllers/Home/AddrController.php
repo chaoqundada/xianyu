@@ -15,7 +15,20 @@ class AddrController extends Controller
     *用户收货地址
     */
     public function getAdd()
-    {
+    {   
+        //删除跳转地址的标识
+        session() -> forget('addr');
+        session() -> forget('gid');
+        //获取信息
+        $data = DB::table('home_user_addr') -> where('uid',session('user')['uid']) -> get();
+        // dd($data);
+        return view('home/addr/addr',['data'=>$data]);
+    }
+    /**
+    *付款跳转添加地址
+    */
+    public function getOadd()
+    {   
         //获取信息
         $data = DB::table('home_user_addr') -> where('uid',session('user')['uid']) -> get();
         // dd($data);
@@ -52,6 +65,9 @@ class AddrController extends Controller
         $res = DB::table('home_user_addr') -> insert($data);
         //判断
         if($res){
+            if(session('addr')){
+                return redirect('/order/add/'.session('gid'));
+            }
             return redirect('/addr/add')->with('assuc','注册成功');
          }else{
             return redirect('/addr/add')->with('error','注册失败') -> withInput();

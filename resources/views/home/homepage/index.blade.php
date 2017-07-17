@@ -815,84 +815,96 @@
                     <div class="triangle-topright"></div>
                 </div>
 
+                @if(count($goods)>0)
                 <div class="am-u-sm-7 am-u-md-4 text-two sug">
                     <div class="outer-con ">
                         <div class="title ">
-                            雪之恋和风大福
+                            {{$goods[0]['gname']}}
                         </div>
                         <div class="sub-title ">
-                            ¥13.8
+                            ¥{{$goods[0]['gpic']}}
                         </div>
                         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                     </div>
-                    <a href="/homes/# "><img src="/homes/images/2.jpg" /></a>
+                    <a href="{{url('goods/details/'.$goods[0]['gid'])}}"><img src="{{url($goods[0]['gsmallpic'])}}" /></a>
                 </div>
+                @endif
 
+                @if(count($goods)>1)
                 <div class="am-u-sm-7 am-u-md-4 text-two">
                     <div class="outer-con ">
                         <div class="title ">
-                            雪之恋和风大福
+                            {{$goods[1]['gname']}}
                         </div>
                         <div class="sub-title ">
-                            ¥13.8
+                            ¥{{$goods[1]['gpic']}}
                         </div>
                         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                     </div>
-                    <a href="/homes/# "><img src="/homes/images/1.jpg" /></a>
+                    <a href="{{url('goods/details/'.$goods[1]['gid'])}}"><img src="{{url($goods[1]['gsmallpic'])}}" /></a>
                 </div>
+                @endif
 
 
+                @if(count($goods)>2)
                 <div class="am-u-sm-3 am-u-md-2 text-three big">
                     <div class="outer-con ">
                         <div class="title ">
-                            小优布丁
+                            {{$goods[2]['gname']}}
                         </div>
                         <div class="sub-title ">
-                            ¥4.8
+                            ¥{{$goods[2]['gpic']}}
                         </div>
                         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                     </div>
-                    <a href="/homes/# "><img src="/homes/images/5.jpg" /></a>
+                    <a href="{{url('goods/details/'.$goods[2]['gid'])}}"><img src="{{url($goods[2]['gsmallpic'])}}" /></a>
                 </div>
+                @endif
 
+                @if(count($goods)>3)
                 <div class="am-u-sm-3 am-u-md-2 text-three sug">
                     <div class="outer-con ">
                         <div class="title ">
-                            小优布丁
+                            {{$goods[3]['gname']}}
                         </div>
                         <div class="sub-title ">
-                            ¥4.8
+                            ¥{{$goods[3]['gpic']}}
                         </div>
                         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                     </div>
-                    <a href="/homes/# "><img src="/homes/images/3.jpg" /></a>
+                    <a href="{{url('goods/details/'.$goods[3]['gid'])}}"><img src="{{url($goods[3]['gsmallpic'])}}" /></a>
                 </div>
+                @endif
 
+                @if(count($goods)>4)
                 <div class="am-u-sm-3 am-u-md-2 text-three ">
                     <div class="outer-con ">
                         <div class="title ">
-                            小优布丁
+                            {{$goods[4]['gname']}}
                         </div>
                         <div class="sub-title ">
-                            ¥4.8
+                            ¥{{$goods[4]['gpic']}}
                         </div>
                         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                     </div>
-                    <a href="/homes/# "><img src="/homes/images/4.jpg" /></a>
+                    <a href="{{url('goods/details/'.$goods[4]['gid'])}}"><img src="{{url($goods[4]['gsmallpic'])}}" /></a>
                 </div>
+                @endif
 
+                @if(count($goods)>5)
                 <div class="am-u-sm-3 am-u-md-2 text-three last big ">
                     <div class="outer-con ">
                         <div class="title ">
-                            小优布丁
+                            {{$goods[5]['gname']}}
                         </div>
                         <div class="sub-title ">
-                            ¥4.8
+                            ¥{{$goods[5]['gpic']}}
                         </div>
                         <i class="am-icon-shopping-basket am-icon-md  seprate"></i>
                     </div>
-                    <a href="/homes/# "><img src="/homes/images/5.jpg" /></a>
+                    <a href="{{url('goods/details/'.$goods[5]['gid'])}}"><img src="{{url($goods[5]['gsmallpic'])}}" /></a>
                 </div>
+                @endif
 
             </div>
             <div class="clear "></div>

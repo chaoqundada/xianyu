@@ -18,7 +18,9 @@ class OrderController extends Controller
     {
         //获取商品的信息
         $data = DB::table('goods') -> where('gid',$gid) -> first();
-        if($data['gstatic'] == 3){
+        if($data['uid'] == session('user')['uid']){
+            return 3;
+        }else if($data['gstatic'] == 3){
             return 2;
         }else if($data['gstatic'] == 2){
             return 2;
@@ -30,7 +32,9 @@ class OrderController extends Controller
     *想要并交易前聊聊
     */
     public function getAdd($gid)
-    {         
+    {    
+        //跳转地址的标识
+        session(['addr'=>true,'gid'=>$gid]);
         //获取商品的信息
         $data = DB::table('goods') -> where('gid',$gid) -> first();
         //获取用户收货地址
@@ -143,7 +147,7 @@ class OrderController extends Controller
         }
     }
     /**
-    *退款
+    *退款中
     */
     public function getRefund()
     {
@@ -151,9 +155,29 @@ class OrderController extends Controller
         $data = DB::table('order')
             -> join('goods','order.gid','=','goods.gid') 
             -> where('order.ostatic',5)
+            -> orwhere('order.ostatic',6)
             -> get();
+        //申请退货
+        $data5 = [];
+        //退货完成
+        $data6 = [];
+         //遍历判断分别赋值
+        foreach($data as $k => $v){
+            if($v['ostatic'] == 5){
+                $data5[] = $v;
+            }else if($v['ostatic'] == 6){
+                $data6[] = $v;
+            }
+        }
     	//引入视图
-    	return view('home/order/refund',['data'=>$data]);
+    	return view('home/order/refund',['data5'=>$data5,'data6'=>$data6]);
+    }
+    /**
+    *退款完成
+    */
+    public function getWfund()
+    {
+
     }
     /**
     *取消订单

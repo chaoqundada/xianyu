@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Model\Good;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Requests;
@@ -22,6 +23,8 @@ class IndexController extends Controller
                 $yts[]=\Redis::hgetall($keyhash.$v);
             }
         }
+        $goods=[];
+        $goods=Good::where('gstatic',1)->orderBy('gid','desc')->take(6)->get();;
 			 return view('home.homepage.index',['title' => $str['title'],
 												'logo'  =>  $str['logo'],
 												'key'   =>  $str['key'],
@@ -30,6 +33,7 @@ class IndexController extends Controller
 												'footer'=>  $str['footer'],
 												'links' =>  $links,
                                                 'yts'   =>  $yts,
+                                                'goods'   =>  $goods,
 												]);
 
     	

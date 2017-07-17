@@ -41,7 +41,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'login'],func
 	Route::controller('slide','SlideController');
 	// 后台排序
 	Route::any('changeorder/{id}','ChangeorderController@changeOrder');
-
 	//后台导航路由
 	Route::controller('nav','NavController');
 	//后台管理前台用户
@@ -56,16 +55,9 @@ Route::controller('/admin/fishpond','Admin\FishpondController');
 	Route::controller('/admin/goods','Admin\GoodsController');
 
 //后台权限管理组
-
-
-
-
-
 Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','admin']],function(){
 	Route::controller('user','UserController');
 });
-
-
 
 //前台操作
 	//主页面
@@ -76,13 +68,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','adm
 	Route::controller('/login','Home\LoginController');
 	//前台商品路由
 	Route::controller('/goods','Home\GoodsController');
-
 	// 收藏
 	Route::controller('/home/user_coll','Home\User_collController');
-
 	//导航
 	Route::controller('/nav','Home\NavController');
-	
 	// 轮播
 	//Route::controller('slide','Home\SlideController');
 
@@ -99,6 +88,4 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','adm
 	Route::controller('/myfishpond','Home\MyfishpondController');
 	//鱼塘展示
     Route::controller('/fishpond','Home\FishpondController');
-
-
 

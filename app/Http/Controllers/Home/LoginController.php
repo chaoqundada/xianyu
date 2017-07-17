@@ -54,7 +54,7 @@ class LoginController extends Controller
                 }
                 
             }else{
-                return back() -> withinput() -> with('error','用户或密码错误');
+                return redirect('/login/login') -> withinput() -> with('error','用户或密码错误');
             }
     }
 

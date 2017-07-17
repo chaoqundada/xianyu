@@ -117,7 +117,7 @@
 			gname.blur(function()
 			{
 				//判断长度
-				var preg = /^[\W]{2,20}$/;
+				var preg = /^.{2,20}$/;
 				//判断
 				if(gname.val() && preg.test(gname.val())){
 					$('#font1').text('  ' );
