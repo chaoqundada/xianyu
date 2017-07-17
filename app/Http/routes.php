@@ -89,3 +89,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','adm
 	//鱼塘展示
     Route::controller('/fishpond','Home\FishpondController');
 
+    //前台搜索功能
+    Route::get('/search','Home\IndexController@search');
+
+

@@ -22,6 +22,7 @@
 
 <body>
 @include('home.layout.header')
+
 <div class="banner">
     <!--轮播 -->
     <div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
