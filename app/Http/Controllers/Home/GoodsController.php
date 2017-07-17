@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Model\Sign;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -11,9 +12,11 @@ use DB;
 
 class GoodsController extends Controller
 {   
+    /**
+    *上传缩略图
+    */
     public function postUpload()
     {   
-
         // 将上传文件移动到指定目录，并以新文件名命名
         $file = Input::file('gsmall');
         if($file->isValid()) {
@@ -44,39 +47,48 @@ class GoodsController extends Controller
                 $newarr[$k]['tname'] = str_repeat('&nbsp;',$n*8).$v['tname'];
             }                                                           
         }
+        $sign= Sign::where('uid',session('user')['uid'])->get();
+        $yt=[];
+        if ($sign){
+            foreach ($sign as $k=>$v){
+                $yt[]= $v->yt()->get();
+            }
+        }
         // 引入视图 分配信息到视图展示页
-        return view('home.goods.add',['res'=>$newarr]);
+        return view('home.goods.add',['res'=>$newarr,'yt'=>$yt]);
     }
-
+    /**
+    *保存商品
+    */
     public function postInsert(Request $request)
     {       
         // 接收数据 除了_token  gsmall
-        $data = $request -> except('_token','gsmall');
+        $data = $request -> except('_token','gsmall','yid');
         $data['gtime'] = time();
-        // dd($data);
-       
-        // 将数据插入数据库
-        $res = DB::table('goods') -> insert(['gname'=>$data['gname'],'gpic'=>$data['gpic'],'tid'=>$data['tid'],'gdesc'=>$data['gdesc'],'gtime'=>$data['gtime'],'gsmallpic'=>$data['gsmallpic']]);
-        // 判断是否插入成功
-        //dd($res);
-        if($res){
-            return redirect('goods/index');
+        $data['uid']=session('user')['uid'];
+        // 将数据插入商品表
+        $gid = DB::table('goods') -> insertGetId($data);
+        if($gid){
+            //将数据插入商品鱼塘关联表
+            $res=DB::table('yt_good') -> insert(['yid'=>$request->input('yid'),'gid'=>$gid]);
+            if($res){
+                return redirect('goods/index');
+            }else{
+                return back() -> with('error','发布失败');
+            }
         }else{
             return back() -> with('error','发布失败');
         }
     }
-
     /**
     * 商品列表展示
     * author 王武杰
     */
     public function getIndex()
     {   
-
         $arr = [1=>'上架','下架','售出'];
         // 查询商品
-        $data = DB::table('goods') -> where('gstatic','<',3) -> orderBy('gtime','desc') -> paginate(5);
-        // dd($data);
+        $data = DB::table('goods') -> where('uid',session('user')['uid']) -> where('gstatic','<',3) -> orderBy('gtime','desc') -> paginate(5);
         // 引入视图
         return view('home.goods.index',['data'=>$data,'arr'=>$arr]);
     }
@@ -104,7 +116,9 @@ class GoodsController extends Controller
         // 将数据分配到视图
         return view('home.goods.doedit',['res'=>$newarr,'data'=>$data]);
     }
-
+    /**
+    *保存修改
+    */
     public function postDoedit(Request $request,$id)
     {
         // 接收数据 除了_token  gsmall
@@ -192,5 +206,69 @@ class GoodsController extends Controller
 
         // 引入视图
         return view('home.goods.details',['data'=>$data]);
+    }
+    /**
+    * 卖出的商品
+    */
+    public function getOut()
+    {
+        //商品状态
+        $arr = [1=>'上架','下架','售出'];
+        //查出所有卖出的商品
+        $data = DB::table('goods')
+            -> join('order','goods.gid','=','order.gid')
+            -> where('goods.uid',session('user')['uid'])
+            -> where('goods.gstatic',3)
+            -> paginate(5);
+        //引入视图
+        return view('home.goods.out',['data'=>$data,'arr'=>$arr]);
+    }
+    /**
+    *商品发货
+    */
+    public function postDeliver($oid)
+    {
+        //修改订单状态
+        $res = DB::table('order') -> where('oid',$oid) -> update(['ostatic'=>3]);
+        //判断
+        if($res){
+            echo 1;
+        }else{
+            echo 2;
+        }
+    }
+    /**
+    *退款管理
+    */
+    public function getService()
+    {
+        //查出所有退货商品
+        $data = DB::table('order')
+            -> join('goods','order.gid','=','goods.gid') 
+            -> join('home_user_addr','order.huaid','=','home_user_addr.huaid') 
+            -> join('home_user','order.uid','=','home_user.uid') 
+            -> where('order.uid','=',session('user')['uid'])
+            -> where('order.ostatic','=',5)
+            -> orderBy('order.rtime','desc')
+            -> get();
+        // dd($data);
+        //引入视图
+        return view('home.goods.service',['data'=>$data]);
+    }
+    /**
+    *退款
+    */
+    public function postAgree(Request $request,$oid)
+    {
+        //修改为确认退款
+        $res = DB::table('order') -> where('oid',$oid) -> update(['ostatic'=>6,'ttime'=>time()]);
+        //修改商品状态
+        $res1 = DB::table('goods') -> where('gid',$request -> input('gid')) -> update(['gstatic'=>1]);
+        //判断
+        if($res && $res1){
+            echo 1;
+        }else{
+            echo 2;
+        }
     }
 }

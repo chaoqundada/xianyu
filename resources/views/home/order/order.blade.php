@@ -63,7 +63,6 @@
 							<div class="order-title">
 								<div class="dd-num">订单编号：<a href="javascript:;">{{$v['ocode']}}</a></div>
 								<span>下单时间：{{date('Y-m-d',$v['xtime'])}}</span>
-								<!--    <em>店铺：小桔灯</em>-->
 							</div>
 							<div class="order-content">
 								<div class="order-left">
@@ -121,9 +120,9 @@
 												<div  onclick="receipts({{$v['oid']}})"  class="am-btn am-btn-danger anniu">
 												确认收货</div>
 											@elseif($v['ostatic'] == 1)
-												 <button type="button" class="btn btn-primary" style="margin-bottom:10px" data-toggle="modal" data-target="#createAlbum">
-												  付款
-												</button>
+												 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteAlbum">
+										          付款
+										        </button>
 											@elseif($v['ostatic'] == 2)
 												<div class="am-btn am-btn-danger anniu">
 												提醒发货</div>
@@ -135,17 +134,16 @@
 						</div>
 					</div>
 				</div>
-				<div class="modal fade"  id="createAlbum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-					
-				  <div class="modal-dialog" role="document" style="width:200px;">
-				    <div class="modal-content">
+				<div class="modal fade" id="deleteAlbum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog modal-sm" role="document" style="width:200px;">
+				    <div class="modal-content" style="text-align:center">
 				      <div class="modal-header">
 				        <h4 class="modal-title" id="myModalLabel">是否付款</h4>
 				      </div>
 				      <div class="modal-body">
-				           <a class="btn btn-primary" href="{{url('order/payment')}}/{{$v['gid']}}">确认</a>
-					      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					      	<a class="btn btn-danger" href="/order/index">取消</a>
+				      	<a class="btn btn-primary" href="{{url('order/payment')}}/{{$v['gid']}}">确认</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a class="btn btn-danger" href="/order/index">取消</a>
 				      </div>
 				    </div>
 				  </div>
@@ -425,16 +423,13 @@
 						商品
 					</div>
 					<div class="th th-price">
-						单价
+						名称
 					</div>
 					<div class="th th-number">
-						数量
+						价格
 					</div>
 					<div class="th th-operation">
 						商品操作
-					</div>
-					<div class="th th-amount">
-						合计
 					</div>
 					<div class="th th-status">
 						交易状态
@@ -466,7 +461,7 @@
 											<p style="margin-top:30px;">收货人:{{$v['name']}}&nbsp;&nbsp; 手机号:{{$v['phone']}}</p>
 											<p>地址:{{$v['P2']}}&nbsp;&nbsp;{{$v['C2']}}&nbsp;&nbsp;{{$v['uaddr']}}</p>
 										</li>
-										<li class="td td-price">
+										<li class="td td-price" >
 											<div class="item-price" style="margin-top:23px;">
 												{{$v['gname']}}
 											</div>

@@ -96,14 +96,19 @@
 			        var ue = UE.getEditor('container');
 			    </script>
 		    </div>
+			@if($yt)
 			<div class="checkbox">
 				<span>同步商品到鱼塘:</span>
-				<label class="bg-info"><input type="checkbox" >华文学院</label>
-				<label class="bg-info"><input type="checkbox">爱陶瓷鱼塘</label>
+				@foreach($yt as $k=>$v)
+				<label class="bg-info"><input type="radio" name="yid" value="{{$v[0]['yid']}}" >{{$v[0]['yname']}}</label>
+				@endforeach
 			</div>
+			@endif
 			 
 				<button type="submit" class="btn btn-primary">发布闲置</button>
 		</form>
 	</body>
 	</html>
+
+	
 @endsection

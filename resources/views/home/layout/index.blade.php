@@ -8,7 +8,6 @@
     <meta name="description"  content="{{ $descr }}">
     <meta name="keywords" content="{{ $key }}">
 
-
     <link href="/homes/AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
     <link href="/homes/AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css" />
 

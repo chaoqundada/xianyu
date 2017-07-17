@@ -19,4 +19,12 @@ class Yt extends Model
     {
         return $this->hasMany('App\Http\Model\Ytnotic','yid','yid');
     }
+    public function sign()
+    {
+        return $this->hasMany('App\Http\Model\Sign','yid','yid');
+    }
+    public function good()
+    {
+        return $this->belongsToMany('App\Http\Model\Good', 'yt_good','yid','gid');
+    }
 }

@@ -146,10 +146,10 @@
                 <a href="{{url('goods/index')}}">我发布的</a>
             </li>
             <li class="person">
-                <a href="{{url('goods/add')}}">我卖出的</a>
+                <a href="{{url('goods/out')}}">我卖出的</a>
             </li>
             <li class="person">
-                <a href="{{url('goods/add')}}">我买到的</a>
+                <a href="{{url('goods/service')}}">退款管理</a>
             </li>
             <li class="person">
                 <a href="{{url('goods/add')}}">我的拍卖</a>

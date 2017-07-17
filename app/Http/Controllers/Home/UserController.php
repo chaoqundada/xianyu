@@ -146,7 +146,6 @@ class UserController extends Controller
         session(['detil'=>true]);
         //判断是否登录
         if(!session('user')){
-            // return redirect('/login/login') -> with('error','请先登录');
             return view('home/password/password',['status'=>'没有登录','url'=>'/login/login','addr'=>'请先登录']);
         }
         //获取用户详情

@@ -136,9 +136,12 @@
 						//判断结果
 						if(msg == 1){
 							location.href= "{{url('order/add')}}/"+gid;
-						}else{
+						}else if(msg == 2){
 							location.href = location.href;
 							layer.msg('商品下架或已售出', {icon: 5});
+						}else{
+							location.href = location.href;
+							layer.msg('无法购买自己的商品', {icon: 5});
 						}
 					});
 			}
