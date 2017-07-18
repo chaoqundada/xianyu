@@ -14,14 +14,35 @@ class ConfigController extends Controller
     {
         
        
-        $str = DB::table('dll')->first();
+        $config = DB::table('dll')->first();
     	
-			return view('admin.config.index',['title' =>$str['title'],'logo'=>$str['logo'],'key'=>$str['key'],'descr'=>$str['descr'],'dname' => $str['dname'],'footer'=>$str['footer']]);
+			return view('admin.config.index',['config' =>$config]);
+    }
+
+    //LOGO上传
+    public function postUpload(Request $request)
+    {
+        if($request->hasFile('file_upload')) {
+            // 上传 管理
+            // 文件夹  文件名
+            // uploads/20170622/1.jpg
+            // 拼接文件夹
+            $dirname = './uploads/logo/';
+            // 拼接文件名
+            $tmp_name = md5(time() + rand(100000, 999999));
+
+            // 获取文件的后缀名
+            $hz = $request->file('file_upload')->getClientOriginalExtension();
+            // 拼接完整的文件名
+            $filename = $tmp_name . '.' . $hz;
+            $request->file('file_upload')->move($dirname, $filename);
+            return $filename;
+        }
     }
     
     public function postReceive(Request $request)
     {
-        $data  = $request->except("_token");
+        $data  = $request->except('_token','file_upload');
         $dll   = DB::table('dll')->get();
         if(empty($dll)){
             $arr   = DB::table('dll')->insert($data);
@@ -31,8 +52,19 @@ class ConfigController extends Controller
   		if(!$arr){
   			return redirect('admin/config/index')->with('success','提示：修改网站信息失败');
 		}else{
+            $configs= DB::table('dll')->first();
+            $str="<?php
+                        return [
+                            'DNAME'=>'".$configs['dname']."',
+                            'TITLE'=>'".$configs['title']."',
+                            'LOGO'=>'/uploads/logo/".$configs['logo']."',
+                            'DESCR'=>'".$configs['descr']." ',
+                            'KEY'=>'".$configs['key']."',
+                            'FOOTER'=>'".$configs['footer']."',
+                        ];
+                        ";
+            file_put_contents(base_path('config').'/dll.php',$str);
 			return redirect('admin/config/index')->with('success','提示：修改网站信息成功');
-       
     	}
  	
     

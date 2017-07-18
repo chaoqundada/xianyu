@@ -1,8 +1,8 @@
 <div class="footer ">
     <div class="footer-hd ">
         <p>
-        @if(config('dll.LINKS'))
-        @foreach(config('dll.LINKS') as $k=>$v)
+        @if(config('links.LINKS'))
+        @foreach(config('links.LINKS') as $k=>$v)
                     <a href="http://{{$v['lurl']}}">{{$v['lname']}}</a>&nbsp;&nbsp;&nbsp;&nbsp;
         @endforeach
         @endif
