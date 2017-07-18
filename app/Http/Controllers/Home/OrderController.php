@@ -61,7 +61,7 @@ class OrderController extends Controller
         //判断是否购买过
         $goods = DB::table('order')
             -> join('goods','order.gid','=','goods.gid')
-            -> where('order.uid',session('user')['uid'])
+            -> where('order.gid',$gid)
             -> get();
         //判断
         if($goods){
@@ -74,16 +74,17 @@ class OrderController extends Controller
             }else{
                 return 2;
             }
-        }
-        //存入数据
-        $res = DB::table('order') -> insert($data);
-        //修改商品状态
-        $res1 = DB::table('goods') -> where('gid',$gid) -> update(['gstatic'=>3]);
-        //判断
-        if($res && $res1){
-            echo 1;
         }else{
-            echo 2;
+            //存入数据
+            $res = DB::table('order') -> insert($data);
+            //修改商品状态
+            $res1 = DB::table('goods') -> where('gid',$gid) -> update(['gstatic'=>3]);
+            //判断
+            if($res && $res1){
+                return 1;
+            }else{
+                return 2;
+            }
         }
     }
     /**
@@ -169,11 +170,12 @@ class OrderController extends Controller
     public function getRefund()
     {
         //查询出退款的商品
-        $data = DB::table('goods')
-            -> join('order','goods.gid','=','order.gid') 
-            -> where('order.ostatic',5)
-            -> orwhere('order.ostatic',6)
-            -> where('order.uid','=',session('user')['uid'])  
+        $data = DB::table('order')
+            -> join('goods','order.gid','=','goods.gid') 
+            -> join('home_user_addr','order.huaid','=','home_user_addr.huaid') 
+            -> where('order.uid','=',session('user')['uid'])
+            -> where('order.ostatic','>',4)
+            -> orderBy('order.ostatic')
             -> get();
         //申请退货
         $data5 = [];
@@ -187,6 +189,7 @@ class OrderController extends Controller
                 $data6[] = $v;
             }
         }
+        // dd($data6);
     	//引入视图
     	return view('home/order/refund',['data5'=>$data5,'data6'=>$data6]);
     }
@@ -205,5 +208,18 @@ class OrderController extends Controller
         }else{
             echo 2;
         }
+    }
+    /**
+    *收藏
+    */
+    public function getColl()
+    {
+        //获取用户的收藏
+        $coll =  DB::table('goods') 
+            -> join('user_coll','user_coll.gid','=','goods.gid')
+            -> where('user_coll.uid',session('user')['uid'])
+            -> get();
+        //引入视图
+        return view('home/user_coll/index',['coll'=>$coll]);
     }
 }

@@ -33,7 +33,7 @@
 	
 			<div class="am-tab-panel am-fade am-active am-in" id="tab1">
 				
-			
+				@if($data)
 				<div class="order-top">
 					<div class="th th-item">
 						商品
@@ -54,7 +54,7 @@
 						交易操作
 					</div>
 				</div>
-				@if($data)
+				
 				@foreach($data as $k => $v)
 				<div class="order-main">
 					<div class="order-list">
@@ -70,7 +70,7 @@
 									<ul class="item-list">
 										<li class="td td-item">
 											<div class="item-pic">
-												<a href="#" class="J_MakePoint">
+												<a href="/goods/details/{{$v['gid']}}" class="J_MakePoint">
 													<img src="{{url($v['gsmallpic'])}}" class="itempic J_ItemImg">
 												</a>
 											</div>
@@ -89,7 +89,11 @@
 										</li>
 										<li class="td td-operation">
 											<div class="item-operation" style="margin-top:25px;">
+											@if($v['ostatic'] == 1)
+												<p class="order-info"><a href="javascript:;" onClick="delClick({{$v['gid']}});" >取消订单</a></p>
+											@else
 												<a href="javascript:;" onclick="fund({{$v['oid']}})">退款/退货</a>
+											@endif
 											</div>
 										</li>
 									</ul>
@@ -153,6 +157,7 @@
 			</div>
 <!-- 待付款 -->
 			<div class="am-tab-panel am-fade" id="tab2">
+			@if($data1)
 				<div class="order-top">
 					<div class="th th-item">
 						商品
@@ -173,7 +178,7 @@
 						交易操作
 					</div>
 				</div>
-			@if($data1)
+			
 				@foreach($data1 as $k => $v)
 				<div class="order-main">
 					<div class="order-list">
@@ -187,7 +192,7 @@
 									<ul class="item-list">
 										<li class="td td-item">
 											<div class="item-pic">
-												<a href="#" class="J_MakePoint">
+												<a href="/goods/details/{{$v['gid']}}" class="J_MakePoint">
 													<img src="{{url($v['gsmallpic'])}}" class="itempic J_ItemImg">
 												</a>
 											</div>
@@ -255,6 +260,7 @@
 
 <!-- 待发货 -->
 			<div class="am-tab-panel am-fade" id="tab3">
+			@if($data2)
 				<div class="order-top">
 					<div class="th th-item">
 						商品
@@ -275,7 +281,7 @@
 						交易操作
 					</div>
 				</div>
-			@if($data2)
+			
 				@foreach($data2 as $k => $v)
 				<div class="order-main">
 					<div class="order-list">
@@ -290,7 +296,7 @@
 									<ul class="item-list">
 										<li class="td td-item">
 											<div class="item-pic">
-												<a href="#" class="J_MakePoint">
+												<a href="/goods/details/{{$v['gid']}}" class="J_MakePoint">
 													<img src="{{url($v['gsmallpic'])}}" class="itempic J_ItemImg">
 												</a>
 											</div>
@@ -337,6 +343,7 @@
 			</div>
 <!-- 待收货 -->
 			<div class="am-tab-panel am-fade" id="tab4">
+			@if($data3)
 				<div class="order-top">
 					<div class="th th-item">
 						商品
@@ -357,7 +364,7 @@
 						交易操作
 					</div>
 				</div>
-			@if($data3)
+			
 				@foreach($data3 as $k => $v)
 				<div class="order-main">
 					<div class="order-list">
@@ -372,7 +379,7 @@
 									<ul class="item-list">
 										<li class="td td-item">
 											<div class="item-pic">
-												<a href="#" class="J_MakePoint">
+												<a href="/goods/details/{{$v['gid']}}" class="J_MakePoint">
 													<img src="{{url($v['gsmallpic'])}}" class="itempic J_ItemImg">
 												</a>
 											</div>
@@ -418,6 +425,7 @@
 			</div>
 <!-- 待评价 -->
 			<div class="am-tab-panel am-fade" id="tab5">
+			@if($data4)
 				<div class="order-top">
 					<div class="th th-item">
 						商品
@@ -438,7 +446,7 @@
 						交易操作
 					</div>
 				</div>
-			@if($data4)
+			
 				@foreach($data4 as $k => $v)
 				<div class="order-main">
 					<div class="order-list">
@@ -454,7 +462,7 @@
 									<ul class="item-list">
 										<li class="td td-item">
 											<div class="item-pic">
-												<a href="#" class="J_MakePoint">
+												<a href="/goods/details/{{$v['gid']}}" class="J_MakePoint">
 													<img src="{{url($v['gsmallpic'])}}" class="itempic J_ItemImg">
 												</a>
 											</div>
@@ -541,7 +549,7 @@
 	function delClick(huaid)
 	{
 		//确认框
-		layer.confirm('确认删除？', {
+		layer.confirm('确认取消？', {
 			btn: ['确认','取消'] //按钮
 		}, function(){
 			//发送删除信息

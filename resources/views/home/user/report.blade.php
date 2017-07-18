@@ -58,8 +58,9 @@
 	<div class="clear"></div>
 </div>
 <script type="text/javascript">
+	var v = '';
 	$('.li_li').click(function(){
-		var v = $(this).val();
+		v = $(this).val();
 
 		layer.confirm('确认要举报该商品吗？', {
                 btn: ['确定','取消'] //按钮
