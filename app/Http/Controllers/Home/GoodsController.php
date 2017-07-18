@@ -255,8 +255,10 @@ class GoodsController extends Controller
         $gpic = DB::table('gpic') -> where('gid',$gid) -> get();
         //发布者
         $user=  DB::table('home_user') ->where('uid',$data['uid'])->first();
+        //收藏
+        $coll = DB::table('user_coll') -> where('gid',$gid) -> where('uid',session('user')['uid']) -> first();
         // 引入视图
-        return view('home.goods.details',['data'=>$data,'user'=>$user,'gpic'=>$gpic]);
+        return view('home.goods.details',['data'=>$data,'user'=>$user,'gpic'=>$gpic,'coll'=>$coll]);
     }
     /**
     * 卖出的商品
@@ -270,6 +272,7 @@ class GoodsController extends Controller
             -> join('order','goods.gid','=','order.gid')
             -> where('goods.uid',session('user')['uid'])
             -> where('goods.gstatic',3)
+            -> where('order.ostatic','<',5)
             -> paginate(5);
         //引入视图
         return view('home.goods.out',['data'=>$data,'arr'=>$arr]);
@@ -295,14 +298,13 @@ class GoodsController extends Controller
     {
         //查出所有退货商品
         $data = DB::table('order')
-            -> join('goods','order.gid','=','goods.gid') 
+            -> join('goosds','order.gid','=','goods.gid') 
             -> join('home_user_addr','order.huaid','=','home_user_addr.huaid') 
             -> join('home_user','order.uid','=','home_user.uid') 
-            -> where('order.uid','=',session('user')['uid'])
             -> where('order.ostatic','=',5)
+            -> where('goods.uid','=',session('user')['uid'])            
             -> orderBy('order.rtime','desc')
             -> get();
-        // dd($data);
         //引入视图
         return view('home.goods.service',['data'=>$data]);
     }

@@ -42,6 +42,8 @@
 							已发货
 						@elseif($v['ostatic'] == 4)
 							已收货
+						@elseif($v['ostatic'] == 1)
+							未付款
 						@endif
 					</span>
 				</td>
@@ -57,7 +59,7 @@
         //确认发货
         function DelGoods(oid){
             //询问框
-            layer.confirm('是否确认退款？', {
+            layer.confirm('是否确认发货？', {
                 btn: ['确定','取消'] 
             }, function(){
                 $.post("{{url('goods/deliver/')}}/"+oid,{'_token':"{{csrf_token()}}"},function(data){
