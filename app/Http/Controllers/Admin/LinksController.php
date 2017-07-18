@@ -29,6 +29,20 @@ class LinksController extends Controller
         $data  = $request->except("_token");
         $arr   = DB::table('links')->insert($data);
         if ($arr) {
+            $strOne="<?php
+                    return [
+                        'LINKS'=>[";
+            $strTwo='';
+            $strThree="
+                        ],
+                    ];";
+            $links= DB::table('links')->get();
+            foreach ($links as $k=>$v){
+                $strTwo.="['lname'=>'".$v['lname']."','lurl'=>'".$v['lurl']."'],";
+            }
+            $str=$strOne.$strTwo.$strThree;
+            file_put_contents(base_path('config').'/links.php', $str);
+
             return redirect('/admin/links/') -> with('success','添加成功');
         }else{
             return back() -> with('error','添加失败');
@@ -40,6 +54,19 @@ class LinksController extends Controller
         
         $arr = DB::table('links')->where('lid', '=', $data['lid'])->delete();
         if ($arr) {
+            $strOne="<?php
+                    return [
+                        'LINKS'=>[";
+            $strTwo='';
+            $strThree="
+                        ],
+                    ];";
+            $links= DB::table('links')->get();
+            foreach ($links as $k=>$v){
+                $strTwo.="['lname'=>'".$v['lname']."','lurl'=>'".$v['lurl']."'],";
+            }
+            $str=$strOne.$strTwo.$strThree;
+            file_put_contents(base_path('config').'/links.php', $str);
           return redirect('/admin/links/') -> with('success','删除成功');
         }else{
             return back() -> with('error','删除失败');
@@ -62,6 +89,19 @@ class LinksController extends Controller
        
          $arr  =  DB::table('links')->where('lid','=',$id)->update($data);
        if ($arr) {
+           $strOne="<?php
+                    return [
+                        'LINKS'=>[";
+           $strTwo='';
+           $strThree="
+                        ],
+                    ];";
+           $links= DB::table('links')->get();
+           foreach ($links as $k=>$v){
+               $strTwo.="['lname'=>'".$v['lname']."','lurl'=>'".$v['lurl']."'],";
+           }
+           $str=$strOne.$strTwo.$strThree;
+           file_put_contents(base_path('config').'/links.php', $str);
           return redirect('/admin/links/') -> with('success','修改成功');
         }else{
            return redirect('admin/links/alter/?id='.$id)->with('success','提示：修改失败');

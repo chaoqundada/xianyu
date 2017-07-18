@@ -59,7 +59,7 @@
     <ul id="myTab" class="nav nav-tabs">
         <a style="padding-left: 24px;padding-right: 30px;" class="active glyphicon glyphicon-home" href="/"></a>
         <a class="glyphicon" href="{{url('/myfishpond/manage?yid=').$yt['yid']}}">公</a>
-        <a class="glyphicon glyphicon-align-left" href="{{url('/myfishpond/manage?yid=').$yt['yid']}}"></a>
+        <a class="glyphicon glyphicon-align-left" href="{{url('/myfishpond/managegoods?yid=').$yt['yid']}}"></a>
     </ul>
     @section('content')
     @show
