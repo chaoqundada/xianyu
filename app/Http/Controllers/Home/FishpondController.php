@@ -17,7 +17,11 @@ use Illuminate\Support\Facades\DB;
 class FishpondController extends Controller
 {
 
-
+    public function getXxx()
+    {
+        $count= DB::table('yt')->selectRaw(' ystatic,count(*) ')->groupBy('ystatic')->get();
+        dd($count);
+    }
     /*
      *前台鱼塘展示
      * */

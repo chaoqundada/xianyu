@@ -38,7 +38,7 @@
 		</tbody>
 	</table>
 	<font style="float:right;">
-		<a class="btn btn-primary" href="{{url('addr/add')}}">添加地址</a>
+		<a class="btn btn-primary" href="{{url('addr/oadd')}}">添加地址</a>
 	</font>
 	<table  class="table table-bordered" style="margin-top:30px;">
 			<tr>
@@ -52,7 +52,7 @@
 					<tr>
 						<td>{{$v['name']}}</td>
 						<td class="time" style="width:400px">
-							{{$v['P2']}} {{$v['C2']}}{{$v['uaddr']}} 
+							{{$v['P2']}}&nbsp;&nbsp;{{$v['C2']}}&nbsp;&nbsp;{{$v['uaddr']}} 
 						</td>
 						<td class="amount" style="width:200px">
 							<p class="content">{{$v['phone']}}</p>

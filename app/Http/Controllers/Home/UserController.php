@@ -146,13 +146,59 @@ class UserController extends Controller
         session(['detil'=>true]);
         //判断是否登录
         if(!session('user')){
-            // return redirect('/login/login') -> with('error','请先登录');
             return view('home/password/password',['status'=>'没有登录','url'=>'/login/login','addr'=>'请先登录']);
         }
+        //获取用户的订单
+        $order =  DB::table('order') -> selectRaw(' ostatic,count(*) ') -> groupBy('ostatic') -> where('uid',session('user')['uid']) -> get();
+        //代付款 的个数
+        $order1 = '';
+        //待发货 的个数
+        $order2 = '';
+        //待收货 的个数
+        $order3 = '';
+        //待评价 的个数
+        $order4 = '';
+        //退款的个数
+        $order5 = '';
+        $order6 = '';
+        //遍历
+        foreach($order as $k => $v){
+            switch ($v['ostatic']) {
+                case 1:
+                    $order1 = $v['count(*)'];
+                    break;
+                 case 2:
+                    $order2 = $v['count(*)'];
+                    break;
+                case 3:
+                    $order3 = $v['count(*)'];
+                    break;
+                case 4:
+                    $order4 = $v['count(*)'];
+                    break;
+                case 5:
+                    $order5 = $v['count(*)'];
+                    break;
+                 case 6:
+                    $order6 = $v['count(*)'];
+                    break;
+            }
+        }
+        $order5 = $order5 + $order6;
+        if($order5 == 0){
+            $order5 = '';
+        }
+        $arr = [ 1=>$order1,$order2,$order3,$order4,$order5];
+        //获取用户的收藏
+        $coll =  DB::table('goods') 
+            -> join('user_coll','user_coll.gid','=','goods.gid')
+            -> where('user_coll.uid',session('user')['uid'])
+            -> get();
+        // dd($coll);
         //获取用户详情
         $data = DB::table('home_user_detil') -> where('uid',session('user')['uid']) -> first();
         //引入视图
-        return view('home/user/index',['data'=>$data]);
+        return view('home/user/index',['data'=>$data,'order'=>$arr,'coll'=>$coll]);
     }
     /**
     *用户详情

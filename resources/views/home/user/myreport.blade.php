@@ -64,7 +64,9 @@
                 btn: ['确定','取消'] //按钮
             }, function(){
                 //           url ==> admin/user/{user}   http://project182.com/admin/user/2
-                $.post("{{url('/report/del')}}",{"anid":"{{isset($v) ? $v['anid'] : ''}}","_token":"{{csrf_token()}}"},function(data){
+
+                $.post("{{url('/report/del')}}",{"anid":"{{isset($v) ? $v['anid'] : '' }}","_token":"{{csrf_token()}}"},function(data){
+
                 if(data.status == 1){
                     
                     layer.msg(data.msg);

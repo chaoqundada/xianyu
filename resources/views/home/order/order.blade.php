@@ -33,7 +33,7 @@
 	
 			<div class="am-tab-panel am-fade am-active am-in" id="tab1">
 				
-			
+				@if($data)
 				<div class="order-top">
 					<div class="th th-item">
 						商品
@@ -54,7 +54,7 @@
 						交易操作
 					</div>
 				</div>
-				@if($data)
+				
 				@foreach($data as $k => $v)
 				<div class="order-main">
 					<div class="order-list">
@@ -63,7 +63,6 @@
 							<div class="order-title">
 								<div class="dd-num">订单编号：<a href="javascript:;">{{$v['ocode']}}</a></div>
 								<span>下单时间：{{date('Y-m-d',$v['xtime'])}}</span>
-								<!--    <em>店铺：小桔灯</em>-->
 							</div>
 							<div class="order-content">
 								<div class="order-left">
@@ -71,7 +70,7 @@
 									<ul class="item-list">
 										<li class="td td-item">
 											<div class="item-pic">
-												<a href="#" class="J_MakePoint">
+												<a href="/goods/details/{{$v['gid']}}" class="J_MakePoint">
 													<img src="{{url($v['gsmallpic'])}}" class="itempic J_ItemImg">
 												</a>
 											</div>
@@ -90,7 +89,11 @@
 										</li>
 										<li class="td td-operation">
 											<div class="item-operation" style="margin-top:25px;">
+											@if($v['ostatic'] == 1)
+												<p class="order-info"><a href="javascript:;" onClick="delClick({{$v['gid']}});" >取消订单</a></p>
+											@else
 												<a href="javascript:;" onclick="fund({{$v['oid']}})">退款/退货</a>
+											@endif
 											</div>
 										</li>
 									</ul>
@@ -121,9 +124,9 @@
 												<div  onclick="receipts({{$v['oid']}})"  class="am-btn am-btn-danger anniu">
 												确认收货</div>
 											@elseif($v['ostatic'] == 1)
-												 <button type="button" class="btn btn-primary" style="margin-bottom:10px" data-toggle="modal" data-target="#createAlbum">
-												  付款
-												</button>
+												 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteAlbum">
+										          付款
+										        </button>
 											@elseif($v['ostatic'] == 2)
 												<div class="am-btn am-btn-danger anniu">
 												提醒发货</div>
@@ -135,17 +138,16 @@
 						</div>
 					</div>
 				</div>
-				<div class="modal fade"  id="createAlbum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-					
-				  <div class="modal-dialog" role="document" style="width:200px;">
-				    <div class="modal-content">
+				<div class="modal fade" id="deleteAlbum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog modal-sm" role="document" style="width:200px;">
+				    <div class="modal-content" style="text-align:center">
 				      <div class="modal-header">
 				        <h4 class="modal-title" id="myModalLabel">是否付款</h4>
 				      </div>
 				      <div class="modal-body">
-				           <a class="btn btn-primary" href="{{url('order/payment')}}/{{$v['gid']}}">确认</a>
-					      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					      	<a class="btn btn-danger" href="/order/index">取消</a>
+				      	<a class="btn btn-primary" href="{{url('order/payment')}}/{{$v['gid']}}">确认</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a class="btn btn-danger" href="/order/index">取消</a>
 				      </div>
 				    </div>
 				  </div>
@@ -155,6 +157,7 @@
 			</div>
 <!-- 待付款 -->
 			<div class="am-tab-panel am-fade" id="tab2">
+			@if($data1)
 				<div class="order-top">
 					<div class="th th-item">
 						商品
@@ -175,7 +178,7 @@
 						交易操作
 					</div>
 				</div>
-			@if($data1)
+			
 				@foreach($data1 as $k => $v)
 				<div class="order-main">
 					<div class="order-list">
@@ -189,7 +192,7 @@
 									<ul class="item-list">
 										<li class="td td-item">
 											<div class="item-pic">
-												<a href="#" class="J_MakePoint">
+												<a href="/goods/details/{{$v['gid']}}" class="J_MakePoint">
 													<img src="{{url($v['gsmallpic'])}}" class="itempic J_ItemImg">
 												</a>
 											</div>
@@ -257,6 +260,7 @@
 
 <!-- 待发货 -->
 			<div class="am-tab-panel am-fade" id="tab3">
+			@if($data2)
 				<div class="order-top">
 					<div class="th th-item">
 						商品
@@ -277,7 +281,7 @@
 						交易操作
 					</div>
 				</div>
-			@if($data2)
+			
 				@foreach($data2 as $k => $v)
 				<div class="order-main">
 					<div class="order-list">
@@ -292,7 +296,7 @@
 									<ul class="item-list">
 										<li class="td td-item">
 											<div class="item-pic">
-												<a href="#" class="J_MakePoint">
+												<a href="/goods/details/{{$v['gid']}}" class="J_MakePoint">
 													<img src="{{url($v['gsmallpic'])}}" class="itempic J_ItemImg">
 												</a>
 											</div>
@@ -339,6 +343,7 @@
 			</div>
 <!-- 待收货 -->
 			<div class="am-tab-panel am-fade" id="tab4">
+			@if($data3)
 				<div class="order-top">
 					<div class="th th-item">
 						商品
@@ -359,7 +364,7 @@
 						交易操作
 					</div>
 				</div>
-			@if($data3)
+			
 				@foreach($data3 as $k => $v)
 				<div class="order-main">
 					<div class="order-list">
@@ -374,7 +379,7 @@
 									<ul class="item-list">
 										<li class="td td-item">
 											<div class="item-pic">
-												<a href="#" class="J_MakePoint">
+												<a href="/goods/details/{{$v['gid']}}" class="J_MakePoint">
 													<img src="{{url($v['gsmallpic'])}}" class="itempic J_ItemImg">
 												</a>
 											</div>
@@ -420,21 +425,19 @@
 			</div>
 <!-- 待评价 -->
 			<div class="am-tab-panel am-fade" id="tab5">
+			@if($data4)
 				<div class="order-top">
 					<div class="th th-item">
 						商品
 					</div>
 					<div class="th th-price">
-						单价
+						名称
 					</div>
 					<div class="th th-number">
-						数量
+						价格
 					</div>
 					<div class="th th-operation">
 						商品操作
-					</div>
-					<div class="th th-amount">
-						合计
 					</div>
 					<div class="th th-status">
 						交易状态
@@ -443,7 +446,7 @@
 						交易操作
 					</div>
 				</div>
-			@if($data4)
+			
 				@foreach($data4 as $k => $v)
 				<div class="order-main">
 					<div class="order-list">
@@ -459,14 +462,14 @@
 									<ul class="item-list">
 										<li class="td td-item">
 											<div class="item-pic">
-												<a href="#" class="J_MakePoint">
+												<a href="/goods/details/{{$v['gid']}}" class="J_MakePoint">
 													<img src="{{url($v['gsmallpic'])}}" class="itempic J_ItemImg">
 												</a>
 											</div>
 											<p style="margin-top:30px;">收货人:{{$v['name']}}&nbsp;&nbsp; 手机号:{{$v['phone']}}</p>
 											<p>地址:{{$v['P2']}}&nbsp;&nbsp;{{$v['C2']}}&nbsp;&nbsp;{{$v['uaddr']}}</p>
 										</li>
-										<li class="td td-price">
+										<li class="td td-price" >
 											<div class="item-price" style="margin-top:23px;">
 												{{$v['gname']}}
 											</div>
@@ -516,7 +519,6 @@
 	//申请退货
 	function fund(oid)
 	{
-
 		$.post("{{url('order/fund')}}/"+oid,{'_token':"{{csrf_token()}}"},function(msg)
 			{
 				//判断结果
@@ -547,7 +549,7 @@
 	function delClick(huaid)
 	{
 		//确认框
-		layer.confirm('确认删除？', {
+		layer.confirm('确认取消？', {
 			btn: ['确认','取消'] //按钮
 		}, function(){
 			//发送删除信息

@@ -152,6 +152,21 @@ class MyfishpondController extends Controller
         return view('home.fishpond.managenotice',['yt'=>$yt,'ytnotic'=>$ytnotic]);
     }
 
+    public function getManagegoods(Request $request)
+    {
+        if(empty(session('user'))){
+            return redirect('/login/login');
+        }
+        $uid=session('user')['uid'];
+        $yid=$request->input('yid');
+        $yt= Yt::where('uid', $uid)->where('yid',$yid)->first();
+        if(empty($yt)){
+            return redirect('/');
+        }
+        $goods=$yt->good()->paginate(2);
+        return view('home.fishpond.managegoods',['yt'=>$yt,'goods'=>$goods]);
+    }
+
     /*
      * 公告添加
      * */
@@ -197,6 +212,9 @@ class MyfishpondController extends Controller
         }
     }
 
+    /*
+     * 删除公告
+     * */
     public function postYtnoticdel(Request $request)
     {
         $nid=$request->input('nid');
@@ -211,5 +229,25 @@ class MyfishpondController extends Controller
         }
         return $data;
     }
+
+    /*
+     * 上传关联商品
+     * */
+    public function postYtgoodsdel(Request $request)
+    {
+        $gid=$request->input('nid');
+        $yid=$request->input('yid');
+        $res= DB::table('yt_good')->where('gid',$gid)->where('yid',$yid)->delete();
+        $data=[];
+        if($res){
+            $data['status']=0;
+            $data['msg']='删除成功';
+        }else{
+            $data['status']=1;
+            $data['msg']='删除失败';
+        }
+        return $data;
+    }
+
 
 }
