@@ -298,7 +298,7 @@ class GoodsController extends Controller
     {
         //查出所有退货商品
         $data = DB::table('order')
-            -> join('goosds','order.gid','=','goods.gid') 
+            -> join('goods','order.gid','=','goods.gid')
             -> join('home_user_addr','order.huaid','=','home_user_addr.huaid') 
             -> join('home_user','order.uid','=','home_user.uid') 
             -> where('order.ostatic','=',5)

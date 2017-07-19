@@ -29,13 +29,7 @@
 		<div class="nav-table">
 				   <div class="long-title"><span class="all-goods">全部分类</span></div>
 				   <div class="nav-cont">
-						<ul>
-							<li class="index"><a href="#">首页</a></li>
-                            <li class="qc"><a href="#">闪购</a></li>
-                            <li class="qc"><a href="#">限时抢</a></li>
-                            <li class="qc"><a href="#">团购</a></li>
-                            <li class="qc last"><a href="#">大包装</a></li>
-						</ul>
+						@include('home.layout.nav')
 					    <div class="nav-extra">
 					    	<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
 					    	<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
@@ -68,13 +62,12 @@
 								@foreach($data as $v)
 								<li><a href="{{url('/goods/details/').'/'.$v['gid']}}">									<div class="i-pic limit">
 										<img src="{{$v['gsmallpic']}}" />
-										<p class="title fl"><span>{{ $v['gname'] }}</span>{!! $v['gdesc'] !!}</p>
+										<p class="title fl"><span>{{ $v['gname'] }}</span></p>
 										<p class="price fl">
 											<b>¥</b>
 											<strong>{{$v['gpic']}}</strong>
 										</p>
 										<p class="number fl">
-											销量<span>1110</span>
 										</p>
 									</div>
 									</a>

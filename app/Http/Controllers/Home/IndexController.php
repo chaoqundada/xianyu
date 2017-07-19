@@ -24,16 +24,13 @@ class IndexController extends Controller
             }
         }
         $goods=[];
-        $goods=Good::where('gstatic',1)->orderBy('gid','desc')->take(6)->get();;
-			 return view('home.homepage.index',['title' => $str['title'],
-												'logo'  =>  $str['logo'],
-												'key'   =>  $str['key'],
-												'descr' =>  $str['descr'],
-												'dname' =>  $str['dname'],
-												'footer'=>  $str['footer'],
+        $goods=Good::where('gstatic',1)->orderBy('gid','desc')->take(6)->get();
+        $collgoods=Good::where('gstatic',1)->orderBy('gcoll','desc')->take(6)->get();
+			 return view('home.homepage.index',[
 												'links' =>  $links,
                                                 'yts'   =>  $yts,
                                                 'goods'   =>  $goods,
+                                                'collgoods'   =>  $collgoods,
 												]);
 
     	
