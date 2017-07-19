@@ -150,7 +150,25 @@ class FishpondController extends Controller
         $yt= $ytnotic->yt()->first();
         return view('home.showfishpond.ytnoticshow',['yt'=>$yt,'ytnotic'=>$ytnotic]);
     }
-
-
+    /**
+    *鱼塘列表页
+    *--hby
+    */
+    public function getList(Request $request)
+    {
+        $arr=[];
+        if($request->has('search'))
+        {
+            $data = DB::table('yt')
+                        ->where('yname','like','%'.$request->input('search').'%')
+                        ->orwhere('description','like','%'.$request->input('search').'%')
+                        ->paginate(3);
+            $arr = ['search'=>$request->input('search')];
+        }else{
+            $data = DB::table('yt')->paginate(3);
+        }
+        
+        return view('home.fishpond.showyt',['data'=>$data,'arr'=>$arr]);
+    }
 
 }
