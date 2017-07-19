@@ -33,6 +33,7 @@ class IndexController extends Controller
         }
         $collgoods=Good::where('gstatic',1)->orderBy('gcoll','desc')->take(6)->get();
         $slides = DB::table('slide')->orderBy('sort','asc')->get();
+        $ads = DB::table('ad')->orderBy('aid','asc')->get();
         //获取二级分类
         return view('home.homepage.index',[
 										'links'       =>  $links,
@@ -41,6 +42,7 @@ class IndexController extends Controller
                                         'types'       =>  $types,
                                         'collgoods'   =>  $collgoods,
                                         'slides'      =>  $slides,
+                                        'ads'      =>  $ads,
 										]);
     	
     }

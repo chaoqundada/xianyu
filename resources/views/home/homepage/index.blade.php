@@ -130,15 +130,13 @@
                 <div class="demo">
 
                     <ul>
-                        <li class="title-first"><a target="_blank" href="/homes/#">
-                                <img src="/homes/images/TJ2.jpg"></img>
-                                <span>[特惠]</span>商城爆品1分秒
-                            </a></li>
-                        <li class="title-first"><a target="_blank" href="/homes/#">
-                                <span>[公告]</span>商城与广州市签署战略合作协议
-                                <img src="/homes/images/TJ.jpg"></img>
-                                <p>XXXXXXXXXXXXXXXXXX</p>
-                            </a></li>
+                        @if(count($ads)>0)
+                        <li class="title-first"><a target="_blank" href="{{url('blog?aid='.$ads[0]['aid'])}}">{{$ads[0]['atitle']}}</a></li>
+                        @endif
+
+                        @if(count($ads)>1)
+                            <li class="title-first"><a target="_blank" href="{{url('blog?aid='.$ads[1]['aid'])}}">{{$ads[1]['atitle']}}</a></li>
+                        @endif
 
                         <div class="mod-vip">
                             <div class="m-baseinfo">
@@ -163,9 +161,15 @@
                             <div class="clear"></div>
                         </div>
 
-                        <li><a target="_blank" href="/homes/#"><span>[特惠]</span>洋河年末大促，低至两件五折</a></li>
-                        <li><a target="_blank" href="/homes/#"><span>[公告]</span>华北、华中部分地区配送延迟</a></li>
-                        <li><a target="_blank" href="/homes/#"><span>[特惠]</span>家电狂欢千亿礼券 买1送1！</a></li>
+                        @if(count($ads)>2)
+                            <li class="title-first"><a target="_blank" href="{{url('blog?aid='.$ads[2]['aid'])}}">{{$ads[2]['atitle']}}</a></li>
+                        @endif
+                        @if(count($ads)>3)
+                            <li class="title-first"><a target="_blank" href="{{url('blog?aid='.$ads[3]['aid'])}}">{{$ads[3]['atitle']}}</a></li>
+                        @endif
+                        @if(count($ads)>4)
+                            <li class="title-first"><a target="_blank" href="{{url('blog?aid='.$ads[4]['aid'])}}">{{$ads[4]['atitle']}}</a></li>
+                        @endif
 
                     </ul>
                     <div class="advTip"><img src="/homes/images/advTip.jpg"/></div>
@@ -597,7 +601,7 @@
                         <a href="/homes/# ">东莞市</a>
                     </div>
                     <span class="more ">
-                    <a href="/homes/# ">更多鱼塘<i class="am-icon-angle-right" style="padding-left:10px ;" ></i></a>
+                    <a href="{{url('/fishpond/list')}}">更多鱼塘<i class="am-icon-angle-right" style="padding-left:10px ;" ></i></a>
                         </span>
                 </div>
             </div>

@@ -221,6 +221,17 @@
                           <li><a class="" href="{{url('/admin/links')}}">友情链接列表</a></li>
                       </ul>
                   </li>
+                   <li class="sub-menu">
+                      <a href="javascript:;" class="">
+                          <i class="icon-book"></i>
+                          <span>广告管理</span>
+                          <span class="arrow"></span>
+                      </a>
+                      <ul class="sub">
+                          <li><a class="" href="{{url('/admin/ad/add')}}">广告添加</a></li>
+                          <li><a class="" href="{{url('/admin/ad')}}">广告列表</a></li>
+                      </ul>
+                  </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon-book"></i>

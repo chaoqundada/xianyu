@@ -34,6 +34,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'login'],func
 	Route::controller('config','ConfigController');
 	//links 友情链接
 	Route::controller('links','LinksController');
+	// Ad广告设置
+	Route::controller('ad','AdController');
 
 	// 后台轮播图片上传
 	Route::post('upload','UplodaController@upload');
