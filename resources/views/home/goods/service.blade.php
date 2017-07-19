@@ -7,6 +7,7 @@
 		</div>
 	</div>
 	<table width="100%">
+		@if($data)
 		<thead>
 			<tr>
 				<th class="memo"></th>
@@ -19,7 +20,7 @@
 			</tr>
 		</thead>
 		<tbody >
-		@if($data)
+
 			@foreach($data as $k=>$v)
 			<tr>
 				<td class="img">
@@ -65,11 +66,10 @@
 		                });
 		            }, function(){
 		            });
-
 		        }
 		    </script>
 			@endforeach
-		@endif
 		</tbody>
+		@endif
 	</table>
 @endsection

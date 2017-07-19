@@ -117,6 +117,7 @@
 	{
 		//判断是否有值结果
 		if(uname.val()){
+            $('.span1').text(' ').css('color','red');
 			s1 = true;
 		}else{
 			$('.span1').text('收货人必填').css('color','red');
@@ -133,6 +134,7 @@
 		var preg = /^1[3,4,5,7,8]\d{9}$/;
 		//判断验证结果
 		if(preg.test(tel.val())){
+            $('.span2').text(' ').css('color','red');
 			s2 = true;
 		}else{
 			$('.span2').text('手机号不正确').css('color','red');
@@ -147,6 +149,7 @@
 	{	
 		//判断是否有值结果
 		if(uaddr.val()){
+            $('.span3').text(' ').css('color','red');
 			s3 = true;
 		}else{
 			$('.span3').text('收货地址必填').css('color','red');

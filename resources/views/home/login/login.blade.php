@@ -22,7 +22,7 @@
 	<body>
 
 		<div class="login-boxtitle">
-			<a href="{{url('/')}}"><img alt="logo" src="{{url('homes/images/logobig.png')}}" /></a>
+			<a href="{{url('/')}}"><img src="{{config('dll.LOGO')}}" /></a>
 		</div>
 
 		<div class="login-banner">
