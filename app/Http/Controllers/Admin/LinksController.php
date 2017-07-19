@@ -28,11 +28,7 @@ class LinksController extends Controller
         ]);
         $data  = $request->except("_token");
         $arr   = DB::table('links')->insert($data);
-        if ($arr) {
-            return redirect('/admin/links/') -> with('success','添加成功');
-        }else{
-            return back() -> with('error','添加失败');
-        }
+         
     }
     //删除
     public function postDel(Request $request)
