@@ -143,7 +143,7 @@
 						}else if(data == 3){
 							location.href = location.href;
 							layer.msg('已收藏',{icon:1});
-						}else if(data ==4){
+						}else if(data == 4){
 							layer.msg('请先登录',{icon:2});
 							location.href = '{{url("login/login")}}';
 						}												
@@ -155,10 +155,10 @@
 					$.get("{{url('home/user_coll/delcoll/'.$data['gid'])}}",{},function(data){
 						if(data == 1){
 							location.href = location.href;
-							layer.msg('取消收藏成功',{icon:1});
+							layer.msg('取消收藏',{icon:1});
 						}else if(data == 2){
 							location.href = location.href;
-							layer.msg('取消收藏失败',{icon:2});
+							layer.msg('取消收藏',{icon:2});
 						}					
 					});
 				});
@@ -180,10 +180,13 @@
 						}else if(msg == 2){
 							location.href = location.href;
 							layer.msg('商品下架或已售出', {icon: 5});
+						}else if(msg == 4){
+							location.href = "{{url('login/login')}}";
+							layer.msg('请先登录', {icon: 5});
 						}else{
 							location.href = location.href;
 							layer.msg('无法购买自己的商品', {icon: 5});
-						}
+						} 
 					});
 			}
 		</script>

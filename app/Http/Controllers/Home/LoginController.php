@@ -49,8 +49,13 @@ class LoginController extends Controller
                 if($res){
                     if(session('detil')){
                         return redirect('/user/index');
+                    }elseif(session('goods')){
+                        return redirect('/goods/add');
+                    }elseif(session('buy')){
+                        return redirect('/goods/details/'.session('gid'));
+                    }else{
+                	    return redirect('/');
                     }
-                	return redirect('/');
                 }
                 
             }else{
@@ -66,6 +71,9 @@ class LoginController extends Controller
         //删除session
         session() -> forget('user');
         session() -> forget('detil');
+        session() -> forget('goods');
+        session() -> forget('buy');
+        session() -> forget('gid');
         //返回首页
     	return redirect('/');
     }
