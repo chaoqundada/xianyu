@@ -264,68 +264,6 @@
                           <li><a class="" href="">信息列表</a></li>
                       </ul>
                   </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="icon-cogs"></i>
-                          <span>Components</span>
-                          <span class="arrow"></span>
-                      </a>
-                      <ul class="sub">
-                          <li><a class="" href="/admins/grids.html">Grids</a></li>
-                          <li><a class="" href="/admins/calendar.html">Calendar</a></li>
-                          <li><a class="" href="/admins/charts.html">Charts</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="icon-tasks"></i>
-                          <span>Form Stuff</span>
-                          <span class="arrow"></span>
-                      </a>
-                      <ul class="sub">
-                          <li><a class="" href="/admins/form_component.html">Form Components</a></li>
-                          <li><a class="" href="/admins/form_wizard.html">Form Wizard</a></li>
-                          <li><a class="" href="/admins/form_validation.html">Form Validation</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="icon-th"></i>
-                          <span>Data Tables</span>
-                          <span class="arrow"></span>
-                      </a>
-                      <ul class="sub">
-                          <li><a class="" href="/admins/basic_table.html">Basic Table</a></li>
-                          <li><a class="" href="/admins/dynamic_table.html">Dynamic Table</a></li>
-                      </ul>
-                  </li>
-                  <li>
-                      <a class="" href="/admins/inbox.html">
-                          <i class="icon-envelope"></i>
-                          <span>Mail </span>
-                          <span class="label label-danger pull-right mail-info">2</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="/admins/javascript:;" class="">
-                          <i class="icon-glass"></i>
-                          <span>Extra</span>
-                          <span class="arrow"></span>
-                      </a>
-                      <ul class="sub">
-                          <li><a class="" href="/admins/blank.html">Blank Page</a></li>
-                          <li><a class="" href="/admins/profile.html">Profile</a></li>
-                          <li><a class="" href="/admins/invoice.html">Invoice</a></li>
-                          <li><a class="" href="/admins/404.html">404 Error</a></li>
-                          <li><a class="" href="/admins/500.html">500 Error</a></li>
-                      </ul>
-                  </li>
-                  <li>
-                      <a class="" href="/admins/login.html">
-                          <i class="icon-user"></i>
-                          <span>Login Page</span>
-                      </a>
-                  </li>
               </ul>
               <!-- sidebar menu end-->
           </div>

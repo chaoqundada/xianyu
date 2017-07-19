@@ -12,7 +12,6 @@ class IndexController extends Controller
 {
     public function index()
     {
-    	$str = DB::table('dll')->first();
     	$links = DB::table('links')->get();
         $keylist = 'LIST:YT';
         $keyhash = 'HASH:YT:';
@@ -25,14 +24,24 @@ class IndexController extends Controller
         }
         $goods=[];
         $goods=Good::where('gstatic',1)->orderBy('gid','desc')->take(6)->get();
+        //类别显示
+        $types = DB::table('type')->where('pid','0')->get();
+         $types_2 = [];
+        foreach($types as $k => $v)
+        {
+            $types_2[]=DB::table('type')->where('pid',$v['tid'])->get();
+        }
         $collgoods=Good::where('gstatic',1)->orderBy('gcoll','desc')->take(6)->get();
-			 return view('home.homepage.index',[
-												'links' =>  $links,
-                                                'yts'   =>  $yts,
-                                                'goods'   =>  $goods,
-                                                'collgoods'   =>  $collgoods,
-												]);
-
+        $slides = DB::table('slide')->orderBy('sort','asc')->get();
+        //获取二级分类
+        return view('home.homepage.index',[
+										'links'       =>  $links,
+                                        'yts'         =>  $yts,
+                                        'goods'       =>  $goods,
+                                        'types'       =>  $types,
+                                        'collgoods'   =>  $collgoods,
+                                        'slides'      =>  $slides,
+										]);
     	
     }
 
@@ -44,16 +53,26 @@ class IndexController extends Controller
     {
         // dd($request->has('search'));
         //判断如果为空则返回
-        if(!$request->has('search'))
+
+        if($request->has('tid'))
         {
-            return back();
-        }
-        //不为空则开始查询
-        $data =  DB::table('goods')
-                ->where('gname','like','%'.$request->input('search').'%')
-                ->orwhere('gdesc','like','%'.$request->input('search').'%')
+
+            $data = DB::table('goods')
+                ->where('tid',$request->input('tid'))
                 ->orderBy('gpic','asc')
                 ->paginate(8);
+        }else{
+            if(!$request->has('search'))
+            {
+                return back();
+            }
+            //不为空则开始查询
+            $data =  DB::table('goods')
+                    ->where('gname','like','%'.$request->input('search').'%')
+                    ->orwhere('gdesc','like','%'.$request->input('search').'%')
+                    ->orderBy('gpic','asc')
+                    ->paginate(8);
+        }
         // dd($data);
         $cnt = count($data,true);
         
