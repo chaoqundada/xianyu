@@ -27,7 +27,7 @@
             </div>
             @endif
             <div class="topMessage favorite">
-                <div class="menu-hd"><a href="/homes/#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
+                <div class="menu-hd"><a href="{{url('order/coll')}}" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
         </ul>
     </div>
 

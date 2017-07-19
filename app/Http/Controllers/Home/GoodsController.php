@@ -39,6 +39,12 @@ class GoodsController extends Controller
     */
     public function getAdd()
     {   
+        //发布闲置的标识
+        session(['goods'=>true]);
+        //判断是否登录
+        if(!session('user')){
+            return view('home/password/password',['status'=>'没有登录','url'=>'/login/login','addr'=>'请先登录']);
+        }
         // 把商品类别查询出来
         $res = DB::table('type') -> orderBy('npath') -> get();
         $newarr = [];
@@ -248,7 +254,6 @@ class GoodsController extends Controller
     */
     public function getDetails($gid)
     {   
-
         // 查询商品
         $data = DB::table('goods') -> where('gid',$gid) -> first();
         //商品相册
@@ -298,7 +303,7 @@ class GoodsController extends Controller
     {
         //查出所有退货商品
         $data = DB::table('order')
-            -> join('goosds','order.gid','=','goods.gid') 
+            -> join('goods','order.gid','=','goods.gid') 
             -> join('home_user_addr','order.huaid','=','home_user_addr.huaid') 
             -> join('home_user','order.uid','=','home_user.uid') 
             -> where('order.ostatic','=',5)

@@ -15,7 +15,14 @@ class OrderController extends Controller
     *验证商品是否售出
     */
     public function postBuy($gid)
-    {
+    {   
+        //购买的标识
+        session(['buy'=>true]);
+        session(['gid'=>$gid]);
+        //判断是否登录
+        if(!session('user')){
+            return 4;
+        }
         //获取商品的信息
         $data = DB::table('goods') -> where('gid',$gid) -> first();
         if($data['uid'] == session('user')['uid']){
