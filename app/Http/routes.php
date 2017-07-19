@@ -94,4 +94,5 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','adm
     //前台搜索功能
     Route::get('/search','Home\IndexController@search');
 
-
+    //前台搜索功能
+    Route::controller('/blog','Home\BlogController');

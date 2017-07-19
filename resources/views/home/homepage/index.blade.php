@@ -149,8 +149,13 @@
                                 </em>
                             </div>
                             <div class="member-logout">
-                                <a class="am-btn-warning btn" href="/home/login/login">登录</a>
-                                <a class="am-btn-warning btn" href="/homes/register.html">注册</a>
+                                @if(session('user'))
+                                    <a class="h">欢迎:{{session('user')['uname']}}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="{{url('login/outlogin')}}" target="_top">退出</a>
+                                @else
+                                    <a href="{{url('login/login')}}" target="_top" class="h">亲，请登录</a>
+                                    <a href="{{url('user/add')}}" target="_top">免费注册</a>
+                                @endif
                             </div>
                             <div class="member-login">
                                 <a href="/homes/#"><strong>0</strong>待收货</a>

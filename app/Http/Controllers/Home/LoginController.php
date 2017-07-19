@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Http\Model\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -21,46 +22,35 @@ class LoginController extends Controller
         return view('home/login/login');
     }
 
-    /**
-    * 验证用户
-    */
+
+
     public function postDologin(Request $request)
     {
-    	//获取登录信息
-    	$data = $request -> all();
-    	//查询是否存在
-    	$user = DB::table('home_user')->where('uname',$data['uname'])
-    			->orwhere('phone',$data['uname'])->first();
-    	//判断用户是否存在
-    	if(!$user){
-    		return back() -> with('error','用户不存在');
-    	}
-        //判断用户是否被封号
-        if($user['static'] == 2){
-            return back() -> with('error','禁止登录');
-        }
-    	//验证秘密
-    	if(Hash::check($data['upwd'],$user['upwd'])){
-    			//用户信息存入session
-                session(['user'=>$user]);
+        $this->validate($request, [
+            'password' => 'required',
+            'user'    =>'required'
+        ],[
+            'password.required'   => '密码必填',
+            'user.required'      =>'用户必填'
+        ]);
+
+        $user=$request->input('user');
+        $password=$request->input('password');
+        $res=User::where('uname',$user)->orwhere('phone',$user)->first();
+        if($res){
+            if(Hash::check($password,$res['upwd'])){
+                //用户信息存入session
+                session(['user'=>$res]);
                 //添加登录时间
-                $arr['dtime'] = time(); 
-                $res = DB::table('home_user') -> where('uid',$user['uid'])->update($arr);
-                if($res){
-                    if(session('detil')){
-                        return redirect('/user/index');
-                    }elseif(session('goods')){
-                        return redirect('/goods/add');
-                    }elseif(session('buy')){
-                        return redirect('/goods/details/'.session('gid'));
-                    }else{
-                	    return redirect('/');
-                    }
-                }
-                
+                $arr['dtime'] = time();
+                $resdtime = DB::table('home_user') -> where('uid',$res['uid'])->update($arr);
+                echo 1;//登录成功
             }else{
-                return redirect('/login/login') -> withinput() -> with('error','用户或密码错误');
+                echo 2;//密码错误
             }
+        }else{
+            echo 3;//用户名不存在
+        }
     }
 
     /**
