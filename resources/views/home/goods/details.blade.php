@@ -115,7 +115,7 @@
 				</li>
 				<li>
 					<div class="clearfix tb-btn tb-btn-basket theme-login">
-						<a id="LikBasket" title="联系卖家" href="#"><i></i>联系卖家</a>
+						<a id="LikBasket" title="商品举报" href="{{url('/report/show/'.$data['gid'])}}"><i></i>商品举报</a>
 					</div>
 				</li>
 			

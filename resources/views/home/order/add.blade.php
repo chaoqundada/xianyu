@@ -31,7 +31,6 @@
 					  付款
 					</button>
 				     &nbsp;&nbsp;
-					<a class="btn btn-success" style="color:#fff;" href="">联系卖家</a>
 				</td>
 			</tr>
 			

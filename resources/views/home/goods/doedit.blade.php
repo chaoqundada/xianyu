@@ -97,11 +97,6 @@
 			        var ue = UE.getEditor('container');
 			    </script>
 		    </div>
-			<div class="checkbox">
-				<span>同步商品到鱼塘:</span>
-				<label class="bg-info"><input type="checkbox" >华文学院</label>
-				<label class="bg-info"><input type="checkbox">爱陶瓷鱼塘</label>
-			</div>
 		
 				<button type="submit" class="btn btn-primary">发布闲置</button>
 		</form>

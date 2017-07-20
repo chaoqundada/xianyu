@@ -494,7 +494,7 @@
 											</div>
 										</li>
 										<li class="td td-change">
-											<a href="commentlist.html">
+											<a href="/goods/details/{{$v['gid']}}">
 												<div class="am-btn am-btn-danger anniu">
 													评价商品</div>
 											</a>
