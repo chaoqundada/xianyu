@@ -15,7 +15,7 @@
 				<select class="form-control" name="tid" style="width:200px">
 					@if(!empty($res))
 						@foreach($res as $v)
-							<option value="{{$v['tid']}}">{{$v['tname']}}</option>	
+							<option value="{{$v['tid']}}" @if($v['ziji'] == 'yes') disabled  @endif >{{$v['tname']}}</option>
 						@endforeach
 					@endif
 				</select>

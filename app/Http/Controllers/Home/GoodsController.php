@@ -53,6 +53,11 @@ class GoodsController extends Controller
                 $n = substr_count($v['npath'], '-')-2;
                 $newarr[$k] = $v;
                 $newarr[$k]['tname'] = str_repeat('&nbsp;',$n*8).$v['tname'];
+                if(substr_count($v['npath'], '-') ==4){
+                    $newarr[$k]['ziji'] = 'no';
+                }else{
+                    $newarr[$k]['ziji'] = 'yes';
+                }
             }                                                           
         }
         $sign= Sign::where('uid',session('user')['uid'])->get();
