@@ -62,6 +62,21 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','adm
 });
 
 //前台操作
+Route::group(['namespace'=>'Home','middleware'=>'home'],function(){
+	// 收藏
+	Route::controller('/home/user_coll','User_collController');
+	//订单操作
+	Route::controller('/order','OrderController');
+	//地址
+	Route::controller('/addr','AddrController');
+	//安全设置
+	Route::controller('/pass','PassController');
+	//举报显示
+	Route::controller('/report','ReportController');
+	//我的鱼塘
+	Route::controller('/myfishpond','MyfishpondController');
+
+});
 	//主页面
 	Route::get('/','Home\IndexController@index');
 	//注册
@@ -70,29 +85,13 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['login','adm
 	Route::controller('/login','Home\LoginController');
 	//前台商品路由
 	Route::controller('/goods','Home\GoodsController');
-	// 收藏
-	Route::controller('/home/user_coll','Home\User_collController');
 	//导航
 	Route::controller('/nav','Home\NavController');
 	// 轮播
 	//Route::controller('slide','Home\SlideController');
-
-	//地址
-	Route::controller('/addr','Home\AddrController');
-	//安全设置
-	Route::controller('/pass','Home\PassController');
-	//订单操作
-	Route::controller('/order','Home\OrderController');
-	//举报显示
-	Route::controller('/report','Home\ReportController');
-
-	//我的鱼塘
-	Route::controller('/myfishpond','Home\MyfishpondController');
 	//鱼塘展示
     Route::controller('/fishpond','Home\FishpondController');
-
     //前台搜索功能
     Route::get('/search','Home\IndexController@search');
-
     //前台搜索功能
     Route::controller('/blog','Home\BlogController');
